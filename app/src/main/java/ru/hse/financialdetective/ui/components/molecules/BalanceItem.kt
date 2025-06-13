@@ -22,6 +22,7 @@ import ru.hse.coursework.financialdetective.ui.theme.GreyDark
 @Composable
 fun BalanceItem(
     balance: String,
+    modifier: Modifier = Modifier
 ) {
     ListItem(
         leadIcon = {
@@ -51,7 +52,8 @@ fun BalanceItem(
             )
         },
         color = GreenLight,
-        height = 56.dp
+        height = 56.dp,
+        modifier = modifier
     )
 }
 

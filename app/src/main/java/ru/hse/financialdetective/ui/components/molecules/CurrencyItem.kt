@@ -16,6 +16,7 @@ import ru.hse.coursework.financialdetective.ui.theme.GreyDark
 @Composable
 fun CurrencyItem(
     currency: String,
+    modifier: Modifier = Modifier
 ) {
     ListItem(
         content = "Валюта",
@@ -31,7 +32,8 @@ fun CurrencyItem(
         },
         color = GreenLight,
         height = 56.dp,
-        showDivider = false
+        showDivider = false,
+        modifier = modifier
     )
 }
 

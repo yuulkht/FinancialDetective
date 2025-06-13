@@ -25,10 +25,11 @@ import ru.hse.coursework.financialdetective.ui.theme.Surface
 fun SearchBar(
     text: String,
     onTextChange: (String) -> Unit,
-    onSearchClick: () -> Unit
+    onSearchClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(56.dp)
             .background(Surface),

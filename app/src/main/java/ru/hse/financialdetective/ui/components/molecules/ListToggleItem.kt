@@ -45,7 +45,8 @@ fun ListToggleItem(
                     null
                 }
             )
-        }
+        },
+        modifier = modifier
     )
 }
 

@@ -6,12 +6,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.hse.financialdetective.domain.model.Expense
 import ru.hse.financialdetective.ui.components.molecules.ListExpenseItem
+import ru.hse.financialdetective.ui.uimodel.model.ExpenseUiModel
 
 @Composable
 fun ExpensesList(
-    expenses: List<Expense>,
+    expenses: List<ExpenseUiModel>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
@@ -32,25 +32,37 @@ fun ExpensesList(
 @Preview(apiLevel = 34, showBackground = true)
 fun ExpensesListPreview() {
     val mockExpenses = listOf(
-        Expense(
+        ExpenseUiModel(
             id = 1,
             emoji = "🏠",
             category = "Аренда квартиры",
             amount = "25000",
             currency = "₽"
         ),
-        Expense(id = 2, emoji = "👗", category = "Одежда", amount = "4500", currency = "₽"),
-        Expense(id = 3, emoji = "🐶", category = "На собачку", amount = "3200", currency = "₽"),
-        Expense(
+        ExpenseUiModel(id = 2, emoji = "👗", category = "Одежда", amount = "4500", currency = "₽"),
+        ExpenseUiModel(
+            id = 3,
+            emoji = "🐶",
+            category = "На собачку",
+            amount = "3200",
+            currency = "₽"
+        ),
+        ExpenseUiModel(
             id = 4,
             emoji = "🛠",
             category = "Ремонт квартиры",
             amount = "18000",
             currency = "₽"
         ),
-        Expense(id = 5, emoji = "🍭", category = "Продукты", amount = "7000", currency = "₽"),
-        Expense(id = 6, emoji = "🏋️", category = "Спортзал", amount = "2500", currency = "₽"),
-        Expense(id = 7, emoji = "💊", category = "Медицина", amount = "5200", currency = "₽")
+        ExpenseUiModel(id = 5, emoji = "🍭", category = "Продукты", amount = "7000", currency = "₽"),
+        ExpenseUiModel(
+            id = 6,
+            emoji = "🏋️",
+            category = "Спортзал",
+            amount = "2500",
+            currency = "₽"
+        ),
+        ExpenseUiModel(id = 7, emoji = "💊", category = "Медицина", amount = "5200", currency = "₽")
     )
 
     ExpensesList(expenses = mockExpenses)

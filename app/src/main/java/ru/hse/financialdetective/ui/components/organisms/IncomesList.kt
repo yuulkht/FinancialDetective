@@ -6,12 +6,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.hse.financialdetective.domain.model.Income
 import ru.hse.financialdetective.ui.components.molecules.ListIncomeItem
+import ru.hse.financialdetective.ui.uimodel.model.IncomeUiModel
 
 @Composable
 fun IncomesList(
-    incomes: List<Income>,
+    incomes: List<IncomeUiModel>,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
@@ -31,8 +31,8 @@ fun IncomesList(
 @Preview(apiLevel = 34, showBackground = true)
 fun IncomesListPreview() {
     val mockIncomes = listOf(
-        Income(id = 2, name = "Работа", amount = "100 000", currency = "₽"),
-        Income(id = 3, name = "Подработка", amount = "50 000", currency = "₽"),
+        IncomeUiModel(id = 2, name = "Работа", amount = "100 000", currency = "₽"),
+        IncomeUiModel(id = 3, name = "Подработка", amount = "50 000", currency = "₽"),
     )
 
     IncomesList(incomes = mockIncomes)
