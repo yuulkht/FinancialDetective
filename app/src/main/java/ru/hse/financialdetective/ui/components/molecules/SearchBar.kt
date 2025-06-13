@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
 import ru.hse.coursework.financialdetective.ui.theme.GreyDark
-import ru.hse.coursework.financialdetective.ui.theme.GreyLight
+import ru.hse.coursework.financialdetective.ui.theme.Surface
 
 @Composable
 fun SearchBar(
@@ -31,7 +31,7 @@ fun SearchBar(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp)
-            .background(GreyLight),
+            .background(Surface),
         verticalAlignment = Alignment.CenterVertically
     ) {
         OutlinedTextField(
