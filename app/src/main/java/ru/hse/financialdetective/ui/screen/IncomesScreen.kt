@@ -29,7 +29,7 @@ fun IncomesScreen() {
 
     val onAddCLick = {}
 
-    Box() {
+    Box {
         Column(
             modifier = Modifier
                 .fillMaxSize()

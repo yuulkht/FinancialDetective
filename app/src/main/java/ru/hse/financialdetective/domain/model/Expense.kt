@@ -4,6 +4,6 @@ data class Expense(
     val id: Int,
     val emoji: String,
     val category: String,
-    val amount: String,
+    val amount: Double,
     val currency: String
 )
