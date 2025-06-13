@@ -23,7 +23,7 @@ import ru.hse.financialdetective.ui.uimodel.model.IncomesWithTotalUiModel
 
 val mockIncomesWithTotalUiModel = IncomesWithTotalUiModel(
     incomes = listOf(
-        IncomeUiModel(id = 2, name = "Работа", amount = "100 000", currency = "₽"),
+        IncomeUiModel(id = 2, name = "Зарплата", amount = "100 000", currency = "₽"),
         IncomeUiModel(id = 3, name = "Подработка", amount = "50 000", currency = "₽"),
     ),
     total = "150 000",
