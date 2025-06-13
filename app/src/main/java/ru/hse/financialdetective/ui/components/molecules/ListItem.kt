@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -13,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.hse.coursework.financialdetective.ui.theme.GreyLight
@@ -22,6 +24,7 @@ fun ListItem(
     leadIcon: @Composable () -> Unit = {},
     content: String,
     tailString: String = "",
+    height: Dp = 70.dp,
     tailIcon: @Composable () -> Unit = {},
     showDivider: Boolean = true,
     onClick: () -> Unit = {},
@@ -32,12 +35,12 @@ fun ListItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .background(color)
     ) {
         Row(
             modifier = Modifier
-                .height(56.dp)
+                .height(height)
                 .padding(horizontal = 16.dp, vertical = 8.dp)
-                .background(color)
                 .clickable(enabled = isClickable, onClick = onClick),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -46,13 +49,13 @@ fun ListItem(
             Text(
                 text = content,
                 fontSize = 18.sp,
-                modifier = Modifier.weight(1f)
             )
+
+            Spacer(Modifier.weight(1f))
 
             Text(
                 text = tailString,
                 fontSize = 18.sp,
-                modifier = Modifier.weight(1f)
             )
 
             tailIcon()

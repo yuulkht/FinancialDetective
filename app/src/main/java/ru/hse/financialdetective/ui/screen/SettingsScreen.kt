@@ -6,7 +6,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import ru.hse.coursework.financialdetective.ui.theme.GreenBright
-import ru.hse.financialdetective.ui.components.molecules.ScreenHeader
+import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.components.organisms.SettingsList
 
 @Composable

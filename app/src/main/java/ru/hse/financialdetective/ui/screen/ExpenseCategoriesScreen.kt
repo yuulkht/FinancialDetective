@@ -10,9 +10,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import ru.hse.coursework.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.domain.model.Category
-import ru.hse.financialdetective.ui.components.molecules.ScreenHeader
 import ru.hse.financialdetective.ui.components.molecules.SearchBar
 import ru.hse.financialdetective.ui.components.organisms.CategoriesList
+import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 
 @Composable
 fun ExpenseCategoriesScreen() {
