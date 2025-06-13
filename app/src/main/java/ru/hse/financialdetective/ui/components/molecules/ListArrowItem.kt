@@ -21,7 +21,7 @@ fun ListArrowItem(
         content = title,
         tailIcon = {
             Icon(
-                painter = painterResource(R.drawable.trailing),
+                painter = painterResource(R.drawable.arrow),
                 contentDescription = "Перейти",
                 modifier = Modifier.size(35.dp),
                 tint = GreyDark

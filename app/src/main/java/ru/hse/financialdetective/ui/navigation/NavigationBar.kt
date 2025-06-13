@@ -1,6 +1,5 @@
 package ru.hse.financialdetective.ui.navigation
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -11,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -32,9 +30,6 @@ fun BottomNavigationBar(navController: NavController) {
 
     NavigationBar(
         containerColor = Surface,
-        modifier = Modifier
-            .padding(horizontal = 8.dp)
-            .padding(top = 16.dp)
     ) {
         val backStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = backStackEntry?.destination?.route
