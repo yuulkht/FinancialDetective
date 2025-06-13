@@ -20,18 +20,21 @@ import ru.hse.financialdetective.ui.components.molecules.AddButton
 import ru.hse.financialdetective.ui.components.molecules.BalanceItem
 import ru.hse.financialdetective.ui.components.molecules.CurrencyItem
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.uimodel.mapper.toUi
+import ru.hse.financialdetective.ui.uimodel.model.AccountUiModel
+
+// Моковые данные
+val mockAccount: AccountUiModel = Account(
+    id = 1,
+    name = "Основной",
+    balance = "-670 000 ₽",
+    currency = "₽"
+).toUi()
+
+val mockOnAddCLick = {}
 
 @Composable
 fun AccountsScreen() {
-    //TODO Заглушка
-    val account: Account = Account(
-        id = 1,
-        name = "Основной",
-        balance = "-670 000 ₽",
-        currency = "₽"
-    )
-    val onAddCLick = {}
-
     Box {
         Column(
             modifier = Modifier
@@ -51,14 +54,14 @@ fun AccountsScreen() {
                 color = GreenBright
             )
 
-            BalanceItem(balance = account.balance)
+            BalanceItem(balance = mockAccount.balance)
 
-            CurrencyItem(currency = account.currency)
+            CurrencyItem(currency = mockAccount.currency)
 
             //TODO график
         }
         AddButton(
-            onClick = onAddCLick,
+            onClick = mockOnAddCLick,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)

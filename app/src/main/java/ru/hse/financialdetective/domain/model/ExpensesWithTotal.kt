@@ -1,6 +1,6 @@
 package ru.hse.financialdetective.domain.model
 
-data class ExpenseWithTotal(
+data class ExpensesWithTotal(
     val items: List<Expense>
 ) {
     val totalAmount: Double = items.sumOf { it.amount }

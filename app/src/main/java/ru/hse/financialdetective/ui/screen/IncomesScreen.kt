@@ -14,21 +14,24 @@ import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
 import ru.hse.coursework.financialdetective.ui.theme.GreenBright
 import ru.hse.coursework.financialdetective.ui.theme.GreyDark
-import ru.hse.financialdetective.domain.model.Income
 import ru.hse.financialdetective.ui.components.molecules.AddButton
 import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
 import ru.hse.financialdetective.ui.components.organisms.IncomesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.uimodel.model.IncomeUiModel
+import ru.hse.financialdetective.ui.uimodel.model.IncomesWithTotalUiModel
+
+val mockIncomesWithTotalUiModel = IncomesWithTotalUiModel(
+    incomes = listOf(
+        IncomeUiModel(id = 2, name = "Работа", amount = "100 000", currency = "₽"),
+        IncomeUiModel(id = 3, name = "Подработка", amount = "50 000", currency = "₽"),
+    ),
+    total = "150 000",
+    currency = "₽"
+)
 
 @Composable
 fun IncomesScreen() {
-    val mockIncomes = listOf(
-        Income(id = 2, name = "Работа", amount = "100 000", currency = "₽"),
-        Income(id = 3, name = "Подработка", amount = "50 000", currency = "₽"),
-    )
-
-    val onAddCLick = {}
-
     Box {
         Column(
             modifier = Modifier
@@ -48,13 +51,13 @@ fun IncomesScreen() {
                 color = GreenBright
             )
             TransactionsInfoItem(
-                amount = "150 000",
-                currency = "₽"
+                amount = mockIncomesWithTotalUiModel.total,
+                currency = mockIncomesWithTotalUiModel.currency
             )
-            IncomesList(incomes = mockIncomes)
+            IncomesList(incomes = mockIncomesWithTotalUiModel.incomes)
         }
         AddButton(
-            onClick = onAddCLick,
+            onClick = mockOnAddCLick,
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)

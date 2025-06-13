@@ -9,18 +9,18 @@ import ru.hse.coursework.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.components.organisms.SettingsList
 
+var checked = mutableStateOf(false)
+
 @Composable
 fun SettingsScreen() {
-    var checked by remember { mutableStateOf(false) }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
         ScreenHeader(title = "Настройки", color = GreenBright)
         SettingsList(
-            darkTheme = checked,
-            onDarkThemeChange = { newValue -> checked = newValue },
+            darkTheme = checked.value,
+            onDarkThemeChange = { newValue -> checked.value = newValue },
             onBaseColorClick = {},
             onSoundsClick = {},
             onHapticsClick = {},
