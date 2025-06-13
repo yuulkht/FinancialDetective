@@ -1,8 +1,8 @@
 package ru.hse.financialdetective.domain.model
 
-data class Category(
+data class Income(
     val id: Int,
     val name: String,
-    val emoji: String,
-    val isIncome: Boolean
+    val amount: String,
+    val currency: String
 )

@@ -30,13 +30,13 @@ fun CategoriesList(
 @Preview(apiLevel = 34, showBackground = true)
 fun CategoriesListPreview() {
     val mockCategories = listOf(
-        Category(emoji = "🏠", name = "Аренда квартиры", isIncome = false),
-        Category(emoji = "👗", name = "Одежда", isIncome = false),
-        Category(emoji = "🐶", name = "На собачку", isIncome = false),
-        Category(emoji = "🛠", name = "Ремонт квартиры", isIncome = false),
-        Category(emoji = "🍭", name = "Продукты", isIncome = false),
-        Category(emoji = "🏋️", name = "Спортзал", isIncome = false),
-        Category(emoji = "💊", name = "Медицина", isIncome = false),
+        Category(id = 1, emoji = "🏠", name = "Аренда квартиры", isIncome = false),
+        Category(id = 2, emoji = "👗", name = "Одежда", isIncome = false),
+        Category(id = 3, emoji = "🐶", name = "На собачку", isIncome = false),
+        Category(id = 4, emoji = "🛠", name = "Ремонт квартиры", isIncome = false),
+        Category(id = 5, emoji = "🍭", name = "Продукты", isIncome = false),
+        Category(id = 6, emoji = "🏋️", name = "Спортзал", isIncome = false),
+        Category(id = 7, emoji = "💊", name = "Медицина", isIncome = false),
     )
 
     CategoriesList(categories = mockCategories)

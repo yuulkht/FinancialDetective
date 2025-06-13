@@ -43,7 +43,7 @@ fun ScreenHeader(
             }
             Text(
                 text = title,
-                fontSize = 18.sp,
+                fontSize = 20.sp,
                 modifier = Modifier
                     .align(Alignment.Center)
             )

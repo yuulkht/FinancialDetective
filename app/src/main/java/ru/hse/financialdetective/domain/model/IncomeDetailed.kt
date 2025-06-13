@@ -1,8 +1,10 @@
 package ru.hse.financialdetective.domain.model
 
-data class Account(
+data class IncomeDetailed(
     val id: Int,
     val name: String,
-    val balance: String,
+    val amount: String,
+    val date: String,
+    val comment: String,
     val currency: String
 )

@@ -21,6 +21,7 @@ import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 fun AccountsScreen() {
     //TODO Заглушка
     val account: Account = Account(
+        id = 1,
         name = "Основной",
         balance = "-670 000 ₽",
         currency = "₽"
