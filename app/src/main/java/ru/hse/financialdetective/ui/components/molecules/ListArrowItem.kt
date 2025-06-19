@@ -8,7 +8,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
-import ru.hse.coursework.financialdetective.ui.theme.GreyDark
+import ru.hse.financialdetective.ui.theme.GreyDark
 
 @Composable
 fun ListArrowItem(
@@ -23,10 +23,11 @@ fun ListArrowItem(
             Icon(
                 painter = painterResource(R.drawable.arrow),
                 contentDescription = "Перейти",
-                modifier = Modifier.size(35.dp),
+                modifier = Modifier.size(24.dp),
                 tint = GreyDark
             )
         },
+        height = 56.dp,
         showDivider = true,
         onClick = onClick,
         isClickable = true,

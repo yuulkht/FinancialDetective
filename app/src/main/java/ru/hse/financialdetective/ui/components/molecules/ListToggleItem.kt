@@ -13,8 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.hse.coursework.financialdetective.ui.theme.GreenBright
-import ru.hse.coursework.financialdetective.ui.theme.GreenLight
+import androidx.compose.ui.unit.dp
+import ru.hse.financialdetective.ui.theme.GreenBright
+import ru.hse.financialdetective.ui.theme.GreenLight
 
 @Composable
 fun ListToggleItem(
@@ -46,6 +47,7 @@ fun ListToggleItem(
                 }
             )
         },
+        height = 56.dp,
         modifier = modifier
     )
 }

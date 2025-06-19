@@ -2,10 +2,12 @@ package ru.hse.financialdetective.ui.components.molecules
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -18,8 +20,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
-import ru.hse.coursework.financialdetective.ui.theme.GreyDark
-import ru.hse.coursework.financialdetective.ui.theme.Surface
+import ru.hse.financialdetective.ui.theme.GreyDark
+import ru.hse.financialdetective.ui.theme.GreyLight
+import ru.hse.financialdetective.ui.theme.Surface
 
 @Composable
 fun SearchBar(
@@ -28,35 +31,39 @@ fun SearchBar(
     onSearchClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(56.dp)
-            .background(Surface),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        OutlinedTextField(
-            value = text,
-            onValueChange = onTextChange,
-            placeholder = { Text("Найти статью") },
-            trailingIcon = {
-                Icon(
-                    painter = painterResource(R.drawable.search),
-                    contentDescription = "Поиск",
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clickable(onClick = onSearchClick),
-                    tint = GreyDark
+    Column {
+        Row(
+            modifier = modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .background(Surface),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OutlinedTextField(
+                value = text,
+                onValueChange = onTextChange,
+                placeholder = { Text("Найти статью") },
+                trailingIcon = {
+                    Icon(
+                        painter = painterResource(R.drawable.search),
+                        contentDescription = "Поиск",
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clickable(onClick = onSearchClick),
+                        tint = GreyDark
+                    )
+                },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                colors = OutlinedTextFieldDefaults.colors().copy(
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
                 )
-            },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            colors = OutlinedTextFieldDefaults.colors().copy(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
             )
-        )
+        }
+        HorizontalDivider(thickness = 1.dp, color = GreyLight)
     }
+
 }
 
 @Preview(apiLevel = 34, showBackground = true)

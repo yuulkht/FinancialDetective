@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,13 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import ru.hse.coursework.financialdetective.ui.theme.GreyLight
+import ru.hse.financialdetective.ui.theme.GreyLight
 
 @Composable
 fun ListItem(
-    leadIcon: @Composable () -> Unit = {},
     content: String,
+    modifier: Modifier = Modifier,
+    leadIcon: @Composable () -> Unit = {},
     tailString: String = "",
     height: Dp = 70.dp,
     tailIcon: @Composable () -> Unit = {},
@@ -30,7 +31,6 @@ fun ListItem(
     onClick: () -> Unit = {},
     isClickable: Boolean = false,
     color: Color = Color.Transparent,
-    modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
@@ -48,14 +48,14 @@ fun ListItem(
 
             Text(
                 text = content,
-                fontSize = 18.sp,
+                style = MaterialTheme.typography.bodyLarge,
             )
 
             Spacer(Modifier.weight(1f))
 
             Text(
                 text = tailString,
-                fontSize = 18.sp,
+                style = MaterialTheme.typography.bodyLarge,
             )
 
             tailIcon()

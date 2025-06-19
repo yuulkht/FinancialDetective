@@ -10,8 +10,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
-import ru.hse.coursework.financialdetective.ui.theme.GreenLight
-import ru.hse.coursework.financialdetective.ui.theme.GreyDark
+import ru.hse.financialdetective.ui.theme.GreenLight
+import ru.hse.financialdetective.ui.theme.GreyDark
 
 @Composable
 fun CurrencyItem(
@@ -22,7 +22,7 @@ fun CurrencyItem(
         content = "Валюта",
         tailString = currency,
         tailIcon = {
-            Spacer(Modifier.width(18.dp))
+            Spacer(Modifier.width(16.dp))
             Icon(
                 painter = painterResource(R.drawable.more_vert),
                 contentDescription = "Выбрать валюту",

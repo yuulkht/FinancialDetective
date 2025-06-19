@@ -5,10 +5,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import ru.hse.coursework.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.components.molecules.SearchBar
 import ru.hse.financialdetective.ui.components.organisms.CategoriesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.uimodel.model.CategoryUiModel
 
 // Моковые данные
