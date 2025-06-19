@@ -20,13 +20,14 @@ import ru.hse.financialdetective.ui.theme.GreenLight
 import ru.hse.financialdetective.ui.theme.GreyDark
 
 @Composable
-fun ListExpenseItem(
+fun ListHistoryExpenseItem(
     emoji: String,
     category: String,
     amount: String,
     currency: String,
+    tailDate: String,
     modifier: Modifier = Modifier,
-    comment: String = ""
+    comment: String = "",
 ) {
     ListItem(
         leadIcon = {
@@ -56,6 +57,7 @@ fun ListExpenseItem(
                 tint = GreyDark
             )
         },
+        tailDate = tailDate,
         showDivider = true,
         modifier = modifier
     )
@@ -63,12 +65,13 @@ fun ListExpenseItem(
 
 @Preview(apiLevel = 34, showBackground = true)
 @Composable
-fun ListExpenseItemPreview() {
-    ListExpenseItem(
+fun ListHistoryExpenseItemPreview() {
+    ListHistoryExpenseItem(
         emoji = "🏠",
         category = "Аренда квартиры",
         amount = "100 000",
         currency = "₽",
         comment = "Сокольники",
+        tailDate = "22:01 19.06.2025"
     )
 }
