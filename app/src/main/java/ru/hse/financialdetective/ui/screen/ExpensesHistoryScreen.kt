@@ -18,50 +18,9 @@ import ru.hse.financialdetective.ui.components.organisms.ExpensesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
-import ru.hse.financialdetective.ui.uimodel.model.ExpenseUiModel
-import ru.hse.financialdetective.ui.uimodel.model.ExpensesWithTotalUiModel
-
-// Моковые данные
-val mockExpensesWithTotal = ExpensesWithTotalUiModel(
-    expenses = listOf(
-        ExpenseUiModel(
-            id = 1,
-            emoji = "🏠",
-            category = "Аренда квартиры",
-            amount = "25000",
-            currency = "₽"
-        ),
-        ExpenseUiModel(id = 2, emoji = "👗", category = "Одежда", amount = "4500", currency = "₽"),
-        ExpenseUiModel(
-            id = 3,
-            emoji = "🐶",
-            category = "На собачку",
-            amount = "3200",
-            currency = "₽"
-        ),
-        ExpenseUiModel(
-            id = 4,
-            emoji = "🛠",
-            category = "Ремонт квартиры",
-            amount = "18000",
-            currency = "₽"
-        ),
-        ExpenseUiModel(id = 5, emoji = "🍭", category = "Продукты", amount = "7000", currency = "₽"),
-        ExpenseUiModel(
-            id = 6,
-            emoji = "🏋️",
-            category = "Спортзал",
-            amount = "2500",
-            currency = "₽"
-        ),
-        ExpenseUiModel(id = 7, emoji = "💊", category = "Медицина", amount = "5200", currency = "₽")
-    ),
-    total = "435 000",
-    currency = "₽"
-)
 
 @Composable
-fun ExpensesScreen() {
+fun ExpensesHistoryScreen() {
     Box {
         Column(
             modifier = Modifier
