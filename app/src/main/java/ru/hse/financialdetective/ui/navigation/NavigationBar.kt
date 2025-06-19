@@ -1,6 +1,7 @@
 package ru.hse.financialdetective.ui.navigation
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -10,13 +11,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import ru.hse.coursework.financialdetective.ui.theme.GreenBright
-import ru.hse.coursework.financialdetective.ui.theme.GreenLight
-import ru.hse.coursework.financialdetective.ui.theme.GreyDark
-import ru.hse.coursework.financialdetective.ui.theme.Surface
+import ru.hse.financialdetective.ui.theme.GreenBright
+import ru.hse.financialdetective.ui.theme.GreenLight
+import ru.hse.financialdetective.ui.theme.GreyDark
+import ru.hse.financialdetective.ui.theme.Surface
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
@@ -50,7 +51,9 @@ fun BottomNavigationBar(navController: NavController) {
                 label = {
                     Text(
                         text = item.title,
-                        fontSize = 12.sp,
+                        style = MaterialTheme.typography.labelMedium.copy(
+                            fontWeight = if (currentRoute == item.route) FontWeight.W600 else FontWeight.Medium
+                        )
                     )
 
                 },

@@ -1,4 +1,4 @@
-package ru.hse.coursework.financialdetective.ui.theme
+package ru.hse.financialdetective.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -14,4 +14,4 @@ val GreenBright = Color(0xFF2AE881)
 val GreenLight = Color(0xFFD4FAE6)
 val GreyDark = Color(0xFF49454F)
 val GreyLight = Color(0x3C3C434D)
-val Surface = Color(0xFFF3EDF7)
+val Surface = Color(0xFFECE6F0)
