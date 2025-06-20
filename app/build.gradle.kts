@@ -12,8 +12,7 @@ val apiToken: String by extra {
     }
     value
 }
-
-val serverUrl = "https://shmr-finance.ru/api/v1"
+val serverUrl = "https://shmr-finance.ru/api/v1/"
 
 
 plugins {
@@ -81,8 +80,12 @@ dependencies {
 
     // Network
     implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlinx.serialization)
+//    implementation(libs.retrofit.kotlinx.serialization)
     implementation(libs.kotlinx.serialization.json)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     // OkHttp
     implementation(libs.okhttp)

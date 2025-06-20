@@ -8,5 +8,5 @@ fun Account.toUi(): AccountUiModel =
         id = this.id,
         name = this.name,
         balance = this.balance,
-        currency = this.currency
+        currency = getCurrencySymbol(this.currency)
     )

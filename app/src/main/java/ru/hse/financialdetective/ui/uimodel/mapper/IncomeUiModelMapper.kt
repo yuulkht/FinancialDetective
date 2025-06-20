@@ -18,7 +18,7 @@ fun Income.toUi(): IncomeUiModel {
         comment = this.comment,
         amount = this.amount.toString(),
         date = formattedDate,
-        currency = this.currency
+        currency = getCurrencySymbol(this.currency)
     )
 }
 

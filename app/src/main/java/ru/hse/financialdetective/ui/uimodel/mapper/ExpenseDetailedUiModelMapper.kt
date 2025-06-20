@@ -11,5 +11,5 @@ fun ExpenseDetailed.toUi(): ExpenseDetailedUiModel =
         amount = this.amount.toString(),
         date = this.date,
         comment = this.comment,
-        currency = this.currency
+        currency = getCurrencySymbol(this.currency)
     )

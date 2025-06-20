@@ -14,7 +14,7 @@ class AccountRepository @Inject constructor(
 
             when (response.code()) {
                 200 -> {
-                    val firstAccount = response.body()?.accounts?.firstOrNull()
+                    val firstAccount = response.body()?.firstOrNull()
                         ?: return Result.failure(ApiException("Список аккаунтов пуст"))
                     Result.success(firstAccount.toDomain())
                 }

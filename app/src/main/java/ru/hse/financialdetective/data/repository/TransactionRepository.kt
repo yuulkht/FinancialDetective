@@ -2,6 +2,7 @@ package ru.hse.financialdetective.data.repository
 
 import ru.hse.financialdetective.data.mapper.toExpensesDomain
 import ru.hse.financialdetective.data.mapper.toIncomesDomain
+import ru.hse.financialdetective.data.model.TransactionsResponse
 import ru.hse.financialdetective.data.network.ApiService
 import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 import ru.hse.financialdetective.domain.model.IncomesWithTotal
@@ -49,7 +50,7 @@ class TransactionRepository @Inject constructor(
             when (response.code()) {
                 200 -> {
                     response.body()?.let {
-                        Result.success(it.toExpensesDomain())
+                        Result.success(TransactionsResponse(it).toExpensesDomain())
                     } ?: Result.failure(ApiException("Не удалось получить список транзакций"))
                 }
 
@@ -85,7 +86,7 @@ class TransactionRepository @Inject constructor(
             when (response.code()) {
                 200 -> {
                     response.body()?.let {
-                        Result.success(it.toIncomesDomain())
+                        Result.success(TransactionsResponse(it).toIncomesDomain())
                     } ?: Result.failure(ApiException("Не удалось получить список транзакций"))
                 }
 

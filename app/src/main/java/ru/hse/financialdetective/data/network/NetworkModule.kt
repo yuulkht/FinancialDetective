@@ -14,7 +14,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
-import ru.hse.coursework.financialdetective.BuildConfig
 import javax.inject.Singleton
 
 @Module
@@ -55,7 +54,7 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(json: Json, okHttp: Lazy<Call.Factory>, mapper: ObjectMapper): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.SERVER_URL)
+            .baseUrl("https://shmr-finance.ru/")
             .callFactory { okHttp.get().newCall(it) }
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .build()

@@ -19,7 +19,7 @@ fun Expense.toUi(): ExpenseUiModel {
         comment = this.comment,
         date = formattedDate,
         amount = this.amount.toString(),
-        currency = this.currency
+        currency = getCurrencySymbol(this.currency)
     )
 }
 

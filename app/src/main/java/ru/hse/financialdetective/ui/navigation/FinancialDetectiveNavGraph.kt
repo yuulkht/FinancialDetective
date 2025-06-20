@@ -6,9 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.hse.financialdetective.ui.screen.AccountsScreen
 import ru.hse.financialdetective.ui.screen.ExpenseCategoriesScreen
-import ru.hse.financialdetective.ui.screen.ExpensesScreen
-import ru.hse.financialdetective.ui.screen.IncomesScreen
 import ru.hse.financialdetective.ui.screen.SettingsScreen
+import ru.hse.financialdetective.ui.screen.expenses.ExpensesScreen
+import ru.hse.financialdetective.ui.screen.incomes.IncomesScreen
 
 @Composable
 fun FinancialDetectiveNavGraph(
