@@ -6,7 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.hse.financialdetective.data.model.AccountResponse
 import ru.hse.financialdetective.data.model.AccountsResponse
-import ru.hse.financialdetective.data.model.TransactionResponse
+import ru.hse.financialdetective.data.model.TransactionsResponse
 
 interface ApiService {
 
@@ -23,7 +23,5 @@ interface ApiService {
         @Path("accountId") accountId: Int,
         @Query("startDate") startDate: String? = null,
         @Query("endDate") endDate: String? = null
-    ): Response<List<TransactionResponse>>
-
-
+    ): Response<TransactionsResponse>
 }
