@@ -4,14 +4,18 @@ import jakarta.inject.Inject
 import ru.hse.financialdetective.data.repository.AccountRepository
 import ru.hse.financialdetective.data.repository.ApiException
 import ru.hse.financialdetective.data.repository.TransactionRepository
-import ru.hse.financialdetective.domain.model.ExpensesWithTotal
+import ru.hse.financialdetective.domain.model.IncomesWithTotal
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-class GetExpensesTodayUseCase @Inject constructor(
+class GetIncomesForPeriodUseCase @Inject constructor(
     private val accountRepository: AccountRepository,
     private val transactionRepository: TransactionRepository
 ) {
     suspend operator fun invoke(
-    ): Result<ExpensesWithTotal> {
+        dateFrom: LocalDate,
+        dateTo: LocalDate
+    ): Result<IncomesWithTotal> {
         val accountResponse = accountRepository.getFirstAccount()
         if (accountResponse.isFailure) {
             return Result.failure(
@@ -22,7 +26,11 @@ class GetExpensesTodayUseCase @Inject constructor(
         val accountId = accountResponse.getOrNull()?.id
             ?: return Result.failure(ApiException("Не удалось получить ID счета"))
 
-        return transactionRepository.getExpensesForToday(accountId)
+        return transactionRepository.getIncomesForPeriod(
+            accountId,
+            dateFrom.format(DateTimeFormatter.ISO_DATE),
+            dateTo.format(DateTimeFormatter.ISO_DATE)
+        )
     }
 }
 

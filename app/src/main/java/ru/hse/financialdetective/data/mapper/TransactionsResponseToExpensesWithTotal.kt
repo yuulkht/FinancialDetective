@@ -1,6 +1,5 @@
 package ru.hse.financialdetective.data.mapper
 
-import ru.hse.financialdetective.data.model.TransactionResponse
 import ru.hse.financialdetective.data.model.TransactionsResponse
 import ru.hse.financialdetective.domain.model.Expense
 import ru.hse.financialdetective.domain.model.ExpensesWithTotal

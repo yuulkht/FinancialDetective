@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter
 
 fun Income.toUi(): IncomeUiModel {
     val zonedDateTime = this.date.atZone(ZoneId.systemDefault())
-    val formatter = DateTimeFormatter.ofPattern("HH.mm, dd.MM.yyyy")
+    val formatter = DateTimeFormatter.ofPattern("HH:mm, dd.MM.yyyy")
     val formattedDate = zonedDateTime.format(formatter)
 
     return IncomeUiModel(
