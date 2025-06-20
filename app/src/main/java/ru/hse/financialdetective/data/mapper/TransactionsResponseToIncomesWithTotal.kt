@@ -1,23 +1,23 @@
 package ru.hse.financialdetective.data.mapper
 
-import ru.hse.financialdetective.data.model.TransactionResponse
 import ru.hse.financialdetective.data.model.TransactionsResponse
-import ru.hse.financialdetective.domain.model.Expense
-import ru.hse.financialdetective.domain.model.ExpensesWithTotal
+import ru.hse.financialdetective.domain.model.Income
+import ru.hse.financialdetective.domain.model.IncomesWithTotal
 
-fun TransactionsResponse.toExpensesDomain(): ExpensesWithTotal {
-    val expenses: MutableList<Expense> = mutableListOf()
-    for (transaction: TransactionResponse in this.transactions) {
-        if (!transaction.categoryDto.isIncome) {
-            expenses.add(Expense(
+fun TransactionsResponse.toIncomesDomain(): IncomesWithTotal {
+    val incomes = transactions
+        .filter { it.categoryDto.isIncome }
+        .map { transaction ->
+            Income(
                 id = transaction.id,
-                emoji = transaction.categoryDto.emoji,
                 category = transaction.categoryDto.name,
+                comment = transaction.comment ?: "",
+                date = transaction.transactionDate,
                 amount = transaction.amount.toDouble(),
                 currency = transaction.account.currency
-            ))
+            )
         }
-    }
+        .sortedByDescending { it.date }
 
-    return ExpensesWithTotal(expenses)
+    return IncomesWithTotal(incomes)
 }

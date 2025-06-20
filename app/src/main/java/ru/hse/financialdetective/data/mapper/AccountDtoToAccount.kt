@@ -1,11 +1,12 @@
-package ru.hse.financialdetective.domain.domainmodel.mapper
+package ru.hse.financialdetective.data.mapper
 
 import ru.hse.financialdetective.data.model.AccountDto
-import ru.hse.financialdetective.domain.domainmodel.model.Account
+import ru.hse.financialdetective.domain.model.Account
 
 fun AccountDto.toDomain(): Account =
+    //TODO ХАРДКОД убрать id
     Account(
-        id = this.id,
+        id = 1,//this.id,
         name = this.name,
         balance = this.balance,
         currency = this.currency
