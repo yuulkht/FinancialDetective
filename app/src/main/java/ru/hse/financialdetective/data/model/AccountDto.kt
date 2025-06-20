@@ -2,7 +2,7 @@ package ru.hse.financialdetective.data.model
 
 import java.time.Instant
 
-data class Account(
+data class AccountDto(
     val id: Int,
     val userId: Int,
     val name: String,
@@ -13,5 +13,5 @@ data class Account(
 )
 
 data class AccountsResponse(
-    val accounts: List<Account>
+    val accounts: List<AccountDto>
 )

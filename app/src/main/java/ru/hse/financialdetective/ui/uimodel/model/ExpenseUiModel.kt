@@ -7,6 +7,8 @@ data class ExpenseUiModel(
     val id: Int,
     val emoji: String,
     val category: String,
+    val comment: String,
+    val date: String,
     val amount: String,
     val currency: String
 )

@@ -4,5 +4,5 @@ data class ExpensesWithTotal(
     val items: List<Expense>
 ) {
     val totalAmount: Double = items.sumOf { it.amount }
-    val currency: String = items.firstOrNull()?.currency ?: ""
+    val currency: String = items.firstOrNull()?.currency ?: "RUB"
 }

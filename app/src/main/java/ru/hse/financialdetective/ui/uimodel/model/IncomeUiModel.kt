@@ -5,7 +5,9 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class IncomeUiModel(
     val id: Int,
-    val name: String,
+    val category: String,
+    val comment: String,
+    val date: String,
     val amount: String,
     val currency: String
 )
