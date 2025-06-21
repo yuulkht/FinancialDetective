@@ -17,7 +17,7 @@ fun IncomesList(
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(incomes) { income ->
             ListIncomeItem(
-                name = income.name,
+                name = income.category,
                 amount = income.amount,
                 currency = income.currency,
                 //TODO добавить возможность клика
@@ -31,8 +31,22 @@ fun IncomesList(
 @Preview(apiLevel = 34, showBackground = true)
 fun IncomesListPreview() {
     val mockIncomes = listOf(
-        IncomeUiModel(id = 2, name = "Работа", amount = "100 000", currency = "₽"),
-        IncomeUiModel(id = 3, name = "Подработка", amount = "50 000", currency = "₽"),
+        IncomeUiModel(
+            id = 2,
+            category = "Работа",
+            amount = "100 000",
+            comment = "",
+            date = "19:02, 20.06.2025",
+            currency = "₽"
+        ),
+        IncomeUiModel(
+            id = 3,
+            category = "Подработка",
+            amount = "50 000",
+            comment = "",
+            date = "19:02, 20.06.2025",
+            currency = "₽"
+        ),
     )
 
     IncomesList(incomes = mockIncomes)

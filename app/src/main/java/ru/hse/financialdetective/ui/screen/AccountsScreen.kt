@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.domain.model.Account
 import ru.hse.financialdetective.ui.components.molecules.AddButton
@@ -34,7 +34,9 @@ val mockAccount: AccountUiModel = Account(
 val mockOnAddCLick = {}
 
 @Composable
-fun AccountsScreen() {
+fun AccountsScreen(
+    navController: NavController,
+) {
     Box {
         Column(
             modifier = Modifier
@@ -67,10 +69,4 @@ fun AccountsScreen() {
                 .padding(16.dp)
         )
     }
-}
-
-@Preview(apiLevel = 34, showBackground = true)
-@Composable
-fun AccountsScreenPreview() {
-    AccountsScreen()
 }

@@ -1,3 +1,20 @@
+import java.util.Properties
+
+val apiToken: String by extra {
+    val properties = Properties()
+    val localPropertiesFile = project.rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { properties.load(it) }
+    }
+    val value = properties.getProperty("API_TOKEN", "")
+    if (value.isEmpty()) {
+        throw InvalidUserDataException("Token for using API is not provided. Set your API token in the project's local.properties file: API_TOKEN=<your-api-token-value>.")
+    }
+    value
+}
+val serverUrl = "https://shmr-finance.ru/api/v1/"
+
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -18,6 +35,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_TOKEN", "\"$apiToken\"")
+        buildConfigField("String", "SERVER_URL", "\"$serverUrl\"")
     }
 
     buildTypes {
@@ -38,6 +58,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -56,6 +77,24 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+
+    // Network
+    implementation(libs.retrofit)
+//    implementation(libs.retrofit.kotlinx.serialization)
+    implementation(libs.kotlinx.serialization.json)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    // OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
+
+    // Jackson
+    implementation(libs.retrofit.jackson)
+    implementation(libs.jackson.kotlin)
+    implementation(libs.jackson.jsr310)
 
     // Splash
     implementation(libs.androidx.core.splashscreen)

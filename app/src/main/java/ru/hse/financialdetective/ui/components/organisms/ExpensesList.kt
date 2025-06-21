@@ -37,14 +37,26 @@ fun ExpensesListPreview() {
             emoji = "🏠",
             category = "Аренда квартиры",
             amount = "25000",
+            comment = "",
+            date = "19:02, 20.06.2025",
             currency = "₽"
         ),
-        ExpenseUiModel(id = 2, emoji = "👗", category = "Одежда", amount = "4500", currency = "₽"),
+        ExpenseUiModel(
+            id = 2,
+            emoji = "👗",
+            category = "Одежда",
+            comment = "",
+            amount = "4500",
+            date = "19:02, 20.06.2025",
+            currency = "₽"
+        ),
         ExpenseUiModel(
             id = 3,
             emoji = "🐶",
             category = "На собачку",
             amount = "3200",
+            comment = "Энни",
+            date = "19:02, 20.06.2025",
             currency = "₽"
         ),
         ExpenseUiModel(
@@ -52,17 +64,37 @@ fun ExpensesListPreview() {
             emoji = "🛠",
             category = "Ремонт квартиры",
             amount = "18000",
+            comment = "",
+            date = "19:02, 20.06.2025",
             currency = "₽"
         ),
-        ExpenseUiModel(id = 5, emoji = "🍭", category = "Продукты", amount = "7000", currency = "₽"),
+        ExpenseUiModel(
+            id = 5,
+            emoji = "🍭",
+            category = "Продукты",
+            amount = "7000",
+            comment = "",
+            date = "19:02, 20.06.2025",
+            currency = "₽"
+        ),
         ExpenseUiModel(
             id = 6,
             emoji = "🏋️",
             category = "Спортзал",
             amount = "2500",
+            comment = "",
+            date = "19:02, 20.06.2025",
             currency = "₽"
         ),
-        ExpenseUiModel(id = 7, emoji = "💊", category = "Медицина", amount = "5200", currency = "₽")
+        ExpenseUiModel(
+            id = 7,
+            emoji = "💊",
+            category = "Медицина",
+            amount = "5200",
+            comment = "",
+            date = "19:02, 20.06.2025",
+            currency = "₽"
+        )
     )
 
     ExpensesList(expenses = mockExpenses)

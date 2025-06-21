@@ -10,10 +10,11 @@ import ru.hse.financialdetective.ui.theme.GreenLight
 fun TransactionsInfoItem(
     amount: String,
     currency: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    text: String = "Всего",
 ) {
     ListItem(
-        content = "Всего",
+        content = text,
         tailString = "$amount $currency",
         color = GreenLight,
         height = 56.dp,

@@ -6,9 +6,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.hse.financialdetective.ui.screen.AccountsScreen
 import ru.hse.financialdetective.ui.screen.ExpenseCategoriesScreen
-import ru.hse.financialdetective.ui.screen.ExpensesScreen
-import ru.hse.financialdetective.ui.screen.IncomesScreen
 import ru.hse.financialdetective.ui.screen.SettingsScreen
+import ru.hse.financialdetective.ui.screen.expenses.ExpensesScreen
+import ru.hse.financialdetective.ui.screen.expenseshistory.ExpensesHistoryScreen
+import ru.hse.financialdetective.ui.screen.incomes.IncomesScreen
+import ru.hse.financialdetective.ui.screen.incomeshistory.IncomesHistoryScreen
 
 @Composable
 fun FinancialDetectiveNavGraph(
@@ -19,19 +21,25 @@ fun FinancialDetectiveNavGraph(
         startDestination = NavigationItem.Expenses.route
     ) {
         composable(NavigationItem.Expenses.route) {
-            ExpensesScreen()
+            ExpensesScreen(navController)
         }
         composable(NavigationItem.Incomes.route) {
-            IncomesScreen()
+            IncomesScreen(navController)
         }
         composable(NavigationItem.Accounts.route) {
-            AccountsScreen()
+            AccountsScreen(navController)
         }
         composable(NavigationItem.ExpenseCategories.route) {
-            ExpenseCategoriesScreen()
+            ExpenseCategoriesScreen(navController)
         }
         composable(NavigationItem.Settings.route) {
-            SettingsScreen()
+            SettingsScreen(navController)
+        }
+        composable(NavigationItem.IncomesHistory.route) {
+            IncomesHistoryScreen(navController)
+        }
+        composable(NavigationItem.ExpensesHistory.route) {
+            ExpensesHistoryScreen(navController)
         }
     }
 }

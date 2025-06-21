@@ -1,8 +1,13 @@
 package ru.hse.financialdetective.domain.model
 
+import ru.hse.financialdetective.ui.uimodel.mapper.getCurrencySymbol
+
 data class ExpensesWithTotal(
     val items: List<Expense>
 ) {
     val totalAmount: Double = items.sumOf { it.amount }
-    val currency: String = items.firstOrNull()?.currency ?: ""
+    val currency: String
+        get() = items.firstOrNull()?.currency?.let { currency ->
+            getCurrencySymbol(currency)
+        } ?: "₽"
 }

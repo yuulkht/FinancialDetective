@@ -17,14 +17,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.theme.GreyLight
 
 @Composable
 fun ListItem(
     content: String,
     modifier: Modifier = Modifier,
+    comment: String = "",
     leadIcon: @Composable () -> Unit = {},
     tailString: String = "",
+    tailDate: String = "",
     height: Dp = 70.dp,
     tailIcon: @Composable () -> Unit = {},
     showDivider: Boolean = true,
@@ -45,18 +48,38 @@ fun ListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
             leadIcon()
-
-            Text(
-                text = content,
-                style = MaterialTheme.typography.bodyLarge,
-            )
+            Column {
+                Text(
+                    text = content,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+                if (comment != "") {
+                    Text(
+                        text = comment,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = GreyDark
+                    )
+                }
+            }
 
             Spacer(Modifier.weight(1f))
 
-            Text(
-                text = tailString,
-                style = MaterialTheme.typography.bodyLarge,
-            )
+            Column {
+                Text(
+                    text = tailString,
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.align(Alignment.End)
+                )
+                if (tailDate != "") {
+                    Text(
+                        text = tailDate,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = GreyDark,
+                        modifier = Modifier.align(Alignment.End)
+                    )
+                }
+            }
+
 
             tailIcon()
 

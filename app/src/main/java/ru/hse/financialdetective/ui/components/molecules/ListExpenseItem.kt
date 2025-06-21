@@ -25,7 +25,8 @@ fun ListExpenseItem(
     category: String,
     amount: String,
     currency: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    comment: String = ""
 ) {
     ListItem(
         leadIcon = {
@@ -43,6 +44,7 @@ fun ListExpenseItem(
             Spacer(Modifier.width(16.dp))
         },
         content = category,
+        comment = comment,
         tailString = "$amount $currency",
         tailIcon = {
             Spacer(Modifier.width(16.dp))
@@ -66,6 +68,7 @@ fun ListExpenseItemPreview() {
         emoji = "🏠",
         category = "Аренда квартиры",
         amount = "100 000",
-        currency = "₽"
+        currency = "₽",
+        comment = "Сокольники",
     )
 }
