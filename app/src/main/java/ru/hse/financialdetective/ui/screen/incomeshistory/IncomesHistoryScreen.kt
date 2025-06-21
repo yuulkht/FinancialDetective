@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.screen.expenseshistory
+package ru.hse.financialdetective.ui.screen.incomeshistory
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -22,28 +22,28 @@ import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.molecules.AddButton
 import ru.hse.financialdetective.ui.components.molecules.DateSelector
 import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
-import ru.hse.financialdetective.ui.components.organisms.ExpensesHistoryList
+import ru.hse.financialdetective.ui.components.organisms.IncomesHistoryList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.screen.mockOnAddCLick
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
-import ru.hse.financialdetective.ui.uimodel.model.ExpensesUiState
+import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
 
 @Composable
-fun ExpensesHistoryScreen(
+fun IncomesHistoryScreen(
     navController: NavController,
-    viewModel: ExpensesHistoryViewModel = hiltViewModel()
+    viewModel: IncomesHistoryViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.loadForPeriodExpenses()
+        viewModel.loadForPeriodIncomes()
     }
 
     when (uiState) {
-        is ExpensesUiState.Loading -> {}//TODO
-        is ExpensesUiState.Error -> {}//TODO
-        is ExpensesUiState.Success -> {
+        is IncomesUiState.Loading -> {}//TODO
+        is IncomesUiState.Error -> {}//TODO
+        is IncomesUiState.Success -> {
             Box {
                 Column(
                     modifier = Modifier
@@ -76,7 +76,7 @@ fun ExpensesHistoryScreen(
                         selectedDate = viewModel.dateFrom.value,
                         onDateSelected = {
                             viewModel.dateFrom.value = it
-                            viewModel.loadForPeriodExpenses()
+                            viewModel.loadForPeriodIncomes()
                         }
                     )
                     DateSelector(
@@ -84,15 +84,15 @@ fun ExpensesHistoryScreen(
                         selectedDate = viewModel.dateTo.value,
                         onDateSelected = {
                             viewModel.dateTo.value = it
-                            viewModel.loadForPeriodExpenses()
+                            viewModel.loadForPeriodIncomes()
                         }
                     )
                     TransactionsInfoItem(
-                        amount = (uiState as ExpensesUiState.Success).data.total,
-                        currency = (uiState as ExpensesUiState.Success).data.currency,
+                        amount = (uiState as IncomesUiState.Success).data.total,
+                        currency = (uiState as IncomesUiState.Success).data.currency,
                         text = "Сумма"
                     )
-                    ExpensesHistoryList(expenses = (uiState as ExpensesUiState.Success).data.expenses)
+                    IncomesHistoryList(incomes = (uiState as IncomesUiState.Success).data.incomes)
                 }
                 AddButton(
                     onClick = mockOnAddCLick,

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import ru.hse.financialdetective.ui.components.molecules.SearchBar
 import ru.hse.financialdetective.ui.components.organisms.CategoriesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
@@ -24,7 +25,9 @@ val mockCategories = listOf(
 var mockSearchText = mutableStateOf("")
 
 @Composable
-fun ExpenseCategoriesScreen() {
+fun ExpenseCategoriesScreen(
+    navController: NavController,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()

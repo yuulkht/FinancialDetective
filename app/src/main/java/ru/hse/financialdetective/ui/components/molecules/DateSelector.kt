@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.dp
 import ru.hse.financialdetective.ui.theme.GreenLight
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 @Composable
 fun DateSelector(
@@ -40,7 +39,7 @@ fun DateSelector(
         content = label,
         modifier = modifier,
         height = 56.dp,
-        tailString = selectedDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale("ru"))),
+        tailString = selectedDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
         isClickable = true,
         onClick = { datePickerDialog.show() },
         color = GreenLight

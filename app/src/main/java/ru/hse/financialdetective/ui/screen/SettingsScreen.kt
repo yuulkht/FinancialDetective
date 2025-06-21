@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.components.organisms.SettingsList
 import ru.hse.financialdetective.ui.theme.GreenBright
@@ -13,7 +13,9 @@ import ru.hse.financialdetective.ui.theme.GreenBright
 var checked = mutableStateOf(false)
 
 @Composable
-fun SettingsScreen() {
+fun SettingsScreen(
+    navController: NavController,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -31,10 +33,4 @@ fun SettingsScreen() {
             onAboutProgramClick = {}
         )
     }
-}
-
-@Preview(apiLevel = 34, showBackground = true)
-@Composable
-fun SettingsScreenPreview() {
-    SettingsScreen()
 }
