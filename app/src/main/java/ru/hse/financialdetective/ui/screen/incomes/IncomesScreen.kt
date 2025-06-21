@@ -23,32 +23,7 @@ import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.screen.mockOnAddCLick
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
-import ru.hse.financialdetective.ui.uimodel.model.IncomeUiModel
 import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
-import ru.hse.financialdetective.ui.uimodel.model.IncomesWithTotalUiModel
-
-val mockIncomesWithTotalUiModel = IncomesWithTotalUiModel(
-    incomes = listOf(
-        IncomeUiModel(
-            id = 2,
-            category = "Зарплата",
-            amount = "100 000",
-            comment = "",
-            date = "19:02, 20.06.2025",
-            currency = "₽"
-        ),
-        IncomeUiModel(
-            id = 3,
-            category = "Подработка",
-            amount = "50 000",
-            comment = "",
-            date = "19:02, 20.06.2025",
-            currency = "₽"
-        ),
-    ),
-    total = "150 000",
-    currency = "₽"
-)
 
 @Composable
 fun IncomesScreen(

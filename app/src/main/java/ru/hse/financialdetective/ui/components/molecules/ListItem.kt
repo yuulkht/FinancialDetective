@@ -70,7 +70,7 @@ fun ListItem(
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.align(Alignment.End)
                 )
-                if (comment != "") {
+                if (tailDate != "") {
                     Text(
                         text = tailDate,
                         style = MaterialTheme.typography.bodyMedium,
