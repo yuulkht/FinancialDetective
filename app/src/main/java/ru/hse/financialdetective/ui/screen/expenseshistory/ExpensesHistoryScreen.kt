@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
+import ru.hse.financialdetective.ui.components.error.ErrorScreen
+import ru.hse.financialdetective.ui.components.loading.LoadingScreen
 import ru.hse.financialdetective.ui.components.molecules.AddButton
 import ru.hse.financialdetective.ui.components.molecules.DateSelector
 import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
@@ -41,8 +43,14 @@ fun ExpensesHistoryScreen(
     }
 
     when (uiState) {
-        is ExpensesUiState.Loading -> {}//TODO
-        is ExpensesUiState.Error -> {}//TODO
+        is ExpensesUiState.Loading -> {
+            LoadingScreen()
+        }
+
+        is ExpensesUiState.Error -> {
+            ErrorScreen()
+        }
+
         is ExpensesUiState.Success -> {
             Box {
                 Column(
@@ -63,7 +71,7 @@ fun ExpensesHistoryScreen(
                         },
                         tailIcon = {
                             Icon(
-                                painter = painterResource(R.drawable.history),
+                                painter = painterResource(R.drawable.analysis),
                                 contentDescription = "История",
                                 modifier = Modifier
                                     .size(48.dp),
