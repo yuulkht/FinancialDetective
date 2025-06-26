@@ -37,7 +37,7 @@ fun BottomNavigationBar(navController: NavController) {
 
         items.forEach { item ->
             NavigationBarItem(
-                selected = currentRoute == item.route,
+                selected = currentRoute?.startsWith(item.route) == true,
                 modifier = Modifier.align(Alignment.CenterVertically),
                 onClick = {
                     navController.navigate(item.route)
