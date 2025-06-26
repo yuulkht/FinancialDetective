@@ -19,6 +19,7 @@ import ru.hse.financialdetective.ui.theme.GreenLight
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.theme.Surface
 
+// TODO сделать чтобы на второстепенных экранах нижний бар оставался активным (зеленым selected)
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(

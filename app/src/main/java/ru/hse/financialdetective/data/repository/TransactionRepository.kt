@@ -6,8 +6,8 @@ import ru.hse.financialdetective.data.model.TransactionsResponse
 import ru.hse.financialdetective.data.network.ApiService
 import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 import ru.hse.financialdetective.domain.model.IncomesWithTotal
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.time.Instant
+import java.time.ZoneOffset
 import javax.inject.Inject
 
 class TransactionRepository @Inject constructor(
@@ -16,7 +16,7 @@ class TransactionRepository @Inject constructor(
     suspend fun getExpensesForToday(
         accountId: Int,
     ): Result<ExpensesWithTotal> {
-        val today = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+        val today = Instant.now().atZone(ZoneOffset.systemDefault()).toLocalDate().toString()
         return getExpensesForPeriod(
             accountId,
             today,
@@ -27,7 +27,7 @@ class TransactionRepository @Inject constructor(
     suspend fun getIncomesForToday(
         accountId: Int,
     ): Result<IncomesWithTotal> {
-        val today = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
+        val today = Instant.now().atZone(ZoneOffset.systemDefault()).toLocalDate().toString()
         return getIncomesForPeriod(
             accountId,
             today,

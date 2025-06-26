@@ -11,6 +11,8 @@ import ru.hse.financialdetective.domain.usecase.GetIncomesForPeriodUseCase
 import ru.hse.financialdetective.ui.uimodel.mapper.toUi
 import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
 import java.time.LocalDate
+import java.time.LocalTime
+import java.time.ZoneId
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +30,10 @@ class IncomesHistoryViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.value = IncomesUiState.Loading
 
-            val result = getIncomesForPeriodUseCase(dateFrom.value, dateTo.value)
+            val result = getIncomesForPeriodUseCase(
+                dateFrom.value.atStartOfDay(ZoneId.systemDefault()).toInstant(),
+                dateTo.value.atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant()
+            )
             _uiState.value = result.fold(
                 onSuccess = { expenses ->
                     IncomesUiState.Success(expenses.toUi())

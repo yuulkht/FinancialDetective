@@ -5,16 +5,16 @@ import ru.hse.financialdetective.data.repository.AccountRepository
 import ru.hse.financialdetective.data.repository.ApiException
 import ru.hse.financialdetective.data.repository.TransactionRepository
 import ru.hse.financialdetective.domain.model.IncomesWithTotal
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
+import java.time.Instant
+import java.time.ZoneOffset
 
 class GetIncomesForPeriodUseCase @Inject constructor(
     private val accountRepository: AccountRepository,
     private val transactionRepository: TransactionRepository
 ) {
     suspend operator fun invoke(
-        dateFrom: LocalDate,
-        dateTo: LocalDate
+        dateFrom: Instant,
+        dateTo: Instant
     ): Result<IncomesWithTotal> {
         val accountResponse = accountRepository.getFirstAccount()
         if (accountResponse.isFailure) {
@@ -28,8 +28,8 @@ class GetIncomesForPeriodUseCase @Inject constructor(
 
         return transactionRepository.getIncomesForPeriod(
             accountId,
-            dateFrom.format(DateTimeFormatter.ISO_DATE),
-            dateTo.format(DateTimeFormatter.ISO_DATE)
+            dateFrom.atZone(ZoneOffset.UTC).toLocalDate().toString(),
+            dateTo.atZone(ZoneOffset.UTC).toLocalDate().toString()
         )
     }
 }

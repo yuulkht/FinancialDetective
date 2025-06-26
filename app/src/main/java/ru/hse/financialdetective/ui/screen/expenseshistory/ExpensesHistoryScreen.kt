@@ -63,7 +63,7 @@ fun ExpensesHistoryScreen(
                         },
                         tailIcon = {
                             Icon(
-                                painter = painterResource(R.drawable.history),
+                                painter = painterResource(R.drawable.analysis),
                                 contentDescription = "История",
                                 modifier = Modifier
                                     .size(48.dp),
