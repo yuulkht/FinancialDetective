@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
+import ru.hse.financialdetective.ui.components.error.ErrorScreen
+import ru.hse.financialdetective.ui.components.loading.LoadingScreen
 import ru.hse.financialdetective.ui.components.molecules.AddButton
 import ru.hse.financialdetective.ui.components.molecules.DateSelector
 import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
@@ -41,8 +43,14 @@ fun IncomesHistoryScreen(
     }
 
     when (uiState) {
-        is IncomesUiState.Loading -> {}//TODO
-        is IncomesUiState.Error -> {}//TODO
+        is IncomesUiState.Loading -> {
+            LoadingScreen()
+        }
+
+        is IncomesUiState.Error -> {
+            ErrorScreen()
+        }
+
         is IncomesUiState.Success -> {
             Box {
                 Column(
@@ -58,7 +66,7 @@ fun IncomesHistoryScreen(
                                 modifier = Modifier
                                     .size(48.dp)
                                     .clickable { navController.popBackStack() },
-                                tint = MaterialTheme.colorScheme.onSurface //TODO
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
                         },
                         tailIcon = {

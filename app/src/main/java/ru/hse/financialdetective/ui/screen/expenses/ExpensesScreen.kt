@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
+import ru.hse.financialdetective.ui.components.error.ErrorScreen
+import ru.hse.financialdetective.ui.components.loading.LoadingScreen
 import ru.hse.financialdetective.ui.components.molecules.AddButton
 import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
 import ru.hse.financialdetective.ui.components.organisms.ExpensesList
@@ -40,8 +42,14 @@ fun ExpensesScreen(
     }
 
     when (uiState) {
-        is ExpensesUiState.Loading -> {}//TODO
-        is ExpensesUiState.Error -> {}//TODO
+        is ExpensesUiState.Loading -> {
+            LoadingScreen()
+        }
+
+        is ExpensesUiState.Error -> {
+            ErrorScreen()
+        }
+
         is ExpensesUiState.Success -> {
             Box {
                 Column(
