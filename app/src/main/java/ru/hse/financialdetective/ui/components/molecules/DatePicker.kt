@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DatePicker
@@ -53,26 +54,17 @@ fun CustomDatePicker(
                     .padding(start = 12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                TextButton(
-                    onClick = {
-                        onDateSelected(null)
-                    }
-                ) {
-                    Text(
-                        style = MaterialTheme.typography.labelLarge,
-                        text = stringResource(R.string.clear),
-                        color = TextColor
-                    )
-                }
 
                 Row {
                     TextButton(onClick = onDismiss) {
                         Text(
                             style = MaterialTheme.typography.labelLarge,
                             text = stringResource(R.string.cancel),
-                            color = TextColor
+                            color = TextColor,
                         )
                     }
+
+                    Spacer(Modifier.weight(1f))
 
                     TextButton(
                         onClick = {
@@ -85,7 +77,7 @@ fun CustomDatePicker(
                     ) {
                         Text(
                             style = MaterialTheme.typography.labelLarge,
-                            text = "ОК",
+                            text = stringResource(R.string.ok),
                             color = TextColor
                         )
                     }

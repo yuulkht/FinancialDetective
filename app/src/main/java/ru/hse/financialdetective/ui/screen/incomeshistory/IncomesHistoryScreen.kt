@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -27,7 +26,6 @@ import ru.hse.financialdetective.ui.components.molecules.DateSelector
 import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
 import ru.hse.financialdetective.ui.components.organisms.IncomesHistoryList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
-import ru.hse.financialdetective.ui.screen.mockOnAddCLick
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
@@ -38,10 +36,6 @@ fun IncomesHistoryScreen(
     viewModel: IncomesHistoryViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.loadForPeriodIncomes()
-    }
 
     when (uiState) {
         is IncomesUiState.Loading -> {
@@ -104,7 +98,7 @@ fun IncomesHistoryScreen(
                     IncomesHistoryList(incomes = (uiState as IncomesUiState.Success).data.incomes)
                 }
                 AddButton(
-                    onClick = mockOnAddCLick,
+                    onClick = {}, //TODO
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(16.dp)

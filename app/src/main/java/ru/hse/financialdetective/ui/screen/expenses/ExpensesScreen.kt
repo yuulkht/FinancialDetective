@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -26,7 +25,6 @@ import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
 import ru.hse.financialdetective.ui.components.organisms.ExpensesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.navigation.NavigationItem
-import ru.hse.financialdetective.ui.screen.mockOnAddCLick
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.uimodel.model.ExpensesUiState
@@ -37,10 +35,6 @@ fun ExpensesScreen(
     viewModel: ExpensesViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.loadTodayExpenses()
-    }
 
     when (uiState) {
         is ExpensesUiState.Loading -> {
@@ -79,7 +73,7 @@ fun ExpensesScreen(
                     ExpensesList(expenses = (uiState as ExpensesUiState.Success).data.expenses)
                 }
                 AddButton(
-                    onClick = mockOnAddCLick,
+                    onClick = { }, //todo
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(16.dp)

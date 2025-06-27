@@ -20,7 +20,11 @@ class ExpensesViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<ExpensesUiState>(ExpensesUiState.Loading)
     val uiState: StateFlow<ExpensesUiState> = _uiState
 
-    fun loadTodayExpenses() {
+    init {
+        loadTodayExpenses()
+    }
+
+    private fun loadTodayExpenses() {
         viewModelScope.launch {
             _uiState.value = ExpensesUiState.Loading
 
@@ -30,7 +34,7 @@ class ExpensesViewModel @Inject constructor(
                     ExpensesUiState.Success(expenses.toUi())
                 },
                 onFailure = { error ->
-                    ExpensesUiState.Error(error.message ?: DataException.UNRECOGNIZED) //TODO
+                    ExpensesUiState.Error(error.message ?: DataException.UNRECOGNIZED)
                 }
             )
         }

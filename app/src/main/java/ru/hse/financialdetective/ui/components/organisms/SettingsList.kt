@@ -36,7 +36,10 @@ fun SettingsList(
             )
         }
         item {
-            ListArrowItem(title = stringResource(R.string.primary_color), onClick = onBaseColorClick)
+            ListArrowItem(
+                title = stringResource(R.string.primary_color),
+                onClick = onBaseColorClick
+            )
         }
         item {
             ListArrowItem(title = stringResource(R.string.sounds), onClick = onSoundsClick)
@@ -45,7 +48,10 @@ fun SettingsList(
             ListArrowItem(title = stringResource(R.string.haptics), onClick = onHapticsClick)
         }
         item {
-            ListArrowItem(title = stringResource(R.string.password_code), onClick = onCodePasswordClick)
+            ListArrowItem(
+                title = stringResource(R.string.password_code),
+                onClick = onCodePasswordClick
+            )
         }
         item {
             ListArrowItem(title = stringResource(R.string.sync), onClick = onSynchronizationClick)

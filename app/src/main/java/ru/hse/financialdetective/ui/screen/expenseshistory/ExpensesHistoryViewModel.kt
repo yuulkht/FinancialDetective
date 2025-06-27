@@ -27,6 +27,10 @@ class ExpensesHistoryViewModel @Inject constructor(
     val dateFrom = mutableStateOf(LocalDate.now().withDayOfMonth(1))
     val dateTo = mutableStateOf(LocalDate.now())
 
+    init {
+        loadForPeriodExpenses()
+    }
+
     fun loadForPeriodExpenses() {
         viewModelScope.launch {
             _uiState.value = ExpensesUiState.Loading
@@ -40,7 +44,7 @@ class ExpensesHistoryViewModel @Inject constructor(
                     ExpensesUiState.Success(expenses.toUi())
                 },
                 onFailure = { error ->
-                    ExpensesUiState.Error(error.message ?: DataException.UNRECOGNIZED) //TODO
+                    ExpensesUiState.Error(error.message ?: DataException.UNRECOGNIZED)
                 }
             )
         }
