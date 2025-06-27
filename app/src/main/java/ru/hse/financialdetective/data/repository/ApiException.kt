@@ -10,6 +10,9 @@ class ApiException(
 
         const val NO_ACCOUNTS = "Список аккаунтов пуст"
         const val NO_TRANSACTIONS = "Не удалось получить список транзакций"
+
         const val INCORRECT_FORMAT = "Неверный формат переданных параметров"
+
+        const val FAIL_TO_GET_ID = "Не удалось получить ID счета"
     }
 }

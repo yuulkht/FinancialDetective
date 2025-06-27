@@ -15,12 +15,12 @@ class GetExpensesTodayUseCase @Inject constructor(
         val accountResponse = accountRepository.getFirstAccount()
         if (accountResponse.isFailure) {
             return Result.failure(
-                accountResponse.exceptionOrNull() ?: ApiException("Неизвестная ошибка")
+                accountResponse.exceptionOrNull() ?: ApiException(ApiException.UNRECOGNIZED)
             )
         }
 
         val accountId = accountResponse.getOrNull()?.id
-            ?: return Result.failure(ApiException("Не удалось получить ID счета"))
+            ?: return Result.failure(ApiException(ApiException.FAIL_TO_GET_ID))
 
         return transactionRepository.getExpensesForToday(accountId)
     }
