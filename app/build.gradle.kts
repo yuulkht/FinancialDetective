@@ -12,7 +12,7 @@ val apiToken: String by extra {
     }
     value
 }
-val serverUrl = "https://shmr-finance.ru/api/v1/"
+val serverUrl = "https://shmr-finance.ru/"
 
 
 plugins {
@@ -21,6 +21,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.detekt)
 }
 
 android {

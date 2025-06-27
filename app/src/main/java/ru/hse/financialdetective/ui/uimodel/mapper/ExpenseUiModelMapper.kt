@@ -4,20 +4,15 @@ import ru.hse.financialdetective.domain.model.Expense
 import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 import ru.hse.financialdetective.ui.uimodel.model.ExpenseUiModel
 import ru.hse.financialdetective.ui.uimodel.model.ExpensesWithTotalUiModel
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 
 fun Expense.toUi(): ExpenseUiModel {
-    val zonedDateTime = this.date.atZone(ZoneId.systemDefault())
-    val formatter = DateTimeFormatter.ofPattern("HH:mm, dd.MM.yyyy")
-    val formattedDate = zonedDateTime.format(formatter)
 
     return ExpenseUiModel(
         id = this.id,
         emoji = this.emoji,
         category = this.category,
         comment = this.comment,
-        date = formattedDate,
+        date = convertInstantToDateWithTime(this.date),
         amount = this.amount.toString(),
         currency = getCurrencySymbol(this.currency)
     )

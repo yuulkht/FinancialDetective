@@ -3,7 +3,7 @@ package ru.hse.financialdetective.ui.uimodel.model
 import androidx.compose.runtime.Immutable
 
 sealed interface IncomesUiState {
-    object Loading : IncomesUiState
+    data object Loading : IncomesUiState
     data class Success(val data: IncomesWithTotalUiModel) : IncomesUiState
     data class Error(val message: String) : IncomesUiState
 }

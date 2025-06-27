@@ -8,6 +8,9 @@ import ru.hse.financialdetective.data.model.AccountDto
 import ru.hse.financialdetective.data.model.AccountResponse
 import ru.hse.financialdetective.data.model.TransactionResponse
 
+/**
+ * Отвечает за взаимодействие с бэкендом по REST API
+ */
 interface ApiService {
 
     // Получить счета пользователя
@@ -18,6 +21,7 @@ interface ApiService {
     @GET("/api/v1/accounts/{id}")
     suspend fun getAccountById(@Path("id") id: Int): Response<AccountResponse>
 
+    // Получить транзакции за период
     @GET("/api/v1/transactions/account/{accountId}/period")
     suspend fun getTransactionsByAccountIdAndPeriod(
         @Path("accountId") accountId: Int,

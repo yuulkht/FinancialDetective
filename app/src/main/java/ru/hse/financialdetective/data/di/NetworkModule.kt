@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.data.network
+package ru.hse.financialdetective.data.di
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
@@ -8,25 +8,22 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import ru.hse.coursework.financialdetective.BuildConfig
+import ru.hse.financialdetective.data.network.ApiService
+import ru.hse.financialdetective.data.network.JWTInterceptor
 import javax.inject.Singleton
 
+/**
+ * Отвечает за di для походов в сеть
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
-    @Provides
-    @Singleton
-    fun provideJson(): Json {
-        return Json {
-            ignoreUnknownKeys = true
-        }
-    }
 
     @Provides
     @Singleton
@@ -52,9 +49,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(json: Json, okHttp: Lazy<Call.Factory>, mapper: ObjectMapper): Retrofit {
+    fun provideRetrofit(okHttp: Lazy<Call.Factory>, mapper: ObjectMapper): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://shmr-finance.ru/")
+            .baseUrl(BuildConfig.SERVER_URL)
             .callFactory { okHttp.get().newCall(it) }
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .build()
@@ -64,6 +61,5 @@ class NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
-        //return FakeApiService()
     }
 }

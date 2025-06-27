@@ -18,6 +18,7 @@ jackson-kotlin = "2.18.3"
 jackson-jsr310 = "2.18.3"
 okhttp = "4.12.0"
 kotlinx-coroutines = "1.7.3"
+detekt = "1.23.8"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,4 +56,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
