@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -62,7 +63,7 @@ fun IncomesHistoryScreen(
                         leadingIcon = {
                             Icon(
                                 painter = painterResource(R.drawable.back),
-                                contentDescription = "Назад",
+                                contentDescription = stringResource(R.string.back),
                                 modifier = Modifier
                                     .size(48.dp)
                                     .clickable { navController.popBackStack() },
@@ -88,7 +89,7 @@ fun IncomesHistoryScreen(
                         }
                     )
                     DateSelector(
-                        label = "Конец",
+                        label = stringResource(R.string.end),
                         selectedDate = viewModel.dateTo.value,
                         onDateSelected = {
                             viewModel.dateTo.value = it
@@ -98,7 +99,7 @@ fun IncomesHistoryScreen(
                     TransactionsInfoItem(
                         amount = (uiState as IncomesUiState.Success).data.total,
                         currency = (uiState as IncomesUiState.Success).data.currency,
-                        text = "Сумма"
+                        text = stringResource(R.string.sum)
                     )
                     IncomesHistoryList(incomes = (uiState as IncomesUiState.Success).data.incomes)
                 }

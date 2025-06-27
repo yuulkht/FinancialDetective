@@ -1,5 +1,6 @@
 package ru.hse.financialdetective.data.repository
 
+import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.data.mapper.toDomain
 import ru.hse.financialdetective.data.network.ApiService
 import ru.hse.financialdetective.domain.model.Account
@@ -15,20 +16,20 @@ class AccountRepository @Inject constructor(
             when (response.code()) {
                 200 -> {
                     val firstAccount = response.body()?.firstOrNull()
-                        ?: return Result.failure(ApiException(ApiException.NO_ACCOUNTS))
+                        ?: return Result.failure(DataException(DataException.NO_ACCOUNTS))
                     Result.success(firstAccount.toDomain())
                 }
 
                 401 -> {
-                    Result.failure(ApiException(ApiException.UNAUTHORIZED))
+                    Result.failure(DataException(DataException.UNAUTHORIZED))
                 }
 
                 else -> {
-                    Result.failure(ApiException("${ApiException.UNRECOGNIZED}: ${response.code()}"))
+                    Result.failure(DataException("${DataException.UNRECOGNIZED}: ${response.code()}"))
                 }
             }
         } catch (e: Exception) {
-            Result.failure(ApiException(ApiException.SERVER_ERROR))
+            Result.failure(DataException(DataException.SERVER_ERROR))
         }
     }
 }

@@ -8,7 +8,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.molecules.ListArrowItem
 import ru.hse.financialdetective.ui.components.molecules.ListToggleItem
 
@@ -28,31 +30,31 @@ fun SettingsList(
     LazyColumn(modifier = modifier.fillMaxSize()) {
         item {
             ListToggleItem(
-                title = "Тёмная тема",
+                title = stringResource(R.string.dark_theme),
                 checked = darkTheme,
                 onCheckedChange = onDarkThemeChange
             )
         }
         item {
-            ListArrowItem(title = "Основной цвет", onClick = onBaseColorClick)
+            ListArrowItem(title = stringResource(R.string.primary_color), onClick = onBaseColorClick)
         }
         item {
-            ListArrowItem(title = "Звуки", onClick = onSoundsClick)
+            ListArrowItem(title = stringResource(R.string.sounds), onClick = onSoundsClick)
         }
         item {
-            ListArrowItem(title = "Хаптики", onClick = onHapticsClick)
+            ListArrowItem(title = stringResource(R.string.haptics), onClick = onHapticsClick)
         }
         item {
-            ListArrowItem(title = "Код пароль", onClick = onCodePasswordClick)
+            ListArrowItem(title = stringResource(R.string.password_code), onClick = onCodePasswordClick)
         }
         item {
-            ListArrowItem(title = "Синхронизация", onClick = onSynchronizationClick)
+            ListArrowItem(title = stringResource(R.string.sync), onClick = onSynchronizationClick)
         }
         item {
-            ListArrowItem(title = "Язык", onClick = onLanguageClick)
+            ListArrowItem(title = stringResource(R.string.language), onClick = onLanguageClick)
         }
         item {
-            ListArrowItem(title = "О программе", onClick = onAboutProgramClick)
+            ListArrowItem(title = stringResource(R.string.about), onClick = onAboutProgramClick)
         }
     }
 }

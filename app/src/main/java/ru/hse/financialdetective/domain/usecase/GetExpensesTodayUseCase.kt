@@ -2,7 +2,7 @@ package ru.hse.financialdetective.domain.usecase
 
 import jakarta.inject.Inject
 import ru.hse.financialdetective.data.repository.AccountRepository
-import ru.hse.financialdetective.data.repository.ApiException
+import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.data.repository.TransactionRepository
 import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 
@@ -15,12 +15,12 @@ class GetExpensesTodayUseCase @Inject constructor(
         val accountResponse = accountRepository.getFirstAccount()
         if (accountResponse.isFailure) {
             return Result.failure(
-                accountResponse.exceptionOrNull() ?: ApiException(ApiException.UNRECOGNIZED)
+                accountResponse.exceptionOrNull() ?: DataException(DataException.UNRECOGNIZED)
             )
         }
 
         val accountId = accountResponse.getOrNull()?.id
-            ?: return Result.failure(ApiException(ApiException.FAIL_TO_GET_ID))
+            ?: return Result.failure(DataException(DataException.FAIL_TO_GET_ID))
 
         return transactionRepository.getExpensesForToday(accountId)
     }

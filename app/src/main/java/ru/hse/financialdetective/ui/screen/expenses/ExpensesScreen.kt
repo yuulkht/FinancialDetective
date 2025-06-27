@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -57,11 +58,11 @@ fun ExpensesScreen(
                         .fillMaxSize()
                 ) {
                     ScreenHeader(
-                        title = "Расходы сегодня",
+                        title = stringResource(R.string.expenses_today),
                         tailIcon = {
                             Icon(
                                 painter = painterResource(R.drawable.history),
-                                contentDescription = "История",
+                                contentDescription = stringResource(R.string.history),
                                 modifier = Modifier
                                     .size(48.dp)
                                     .clickable { navController.navigate(NavigationItem.ExpensesHistory.route) },

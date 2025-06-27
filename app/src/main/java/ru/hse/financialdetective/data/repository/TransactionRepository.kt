@@ -1,5 +1,6 @@
 package ru.hse.financialdetective.data.repository
 
+import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.data.mapper.toExpensesDomain
 import ru.hse.financialdetective.data.mapper.toIncomesDomain
 import ru.hse.financialdetective.data.model.TransactionsResponse
@@ -51,23 +52,23 @@ class TransactionRepository @Inject constructor(
                 200 -> {
                     response.body()?.let {
                         Result.success(TransactionsResponse(it).toExpensesDomain())
-                    } ?: Result.failure(ApiException(ApiException.NO_TRANSACTIONS))
+                    } ?: Result.failure(DataException(DataException.NO_TRANSACTIONS))
                 }
 
                 400 -> {
-                    Result.failure(ApiException(ApiException.INCORRECT_FORMAT))
+                    Result.failure(DataException(DataException.INCORRECT_FORMAT))
                 }
 
                 401 -> {
-                    Result.failure(ApiException(ApiException.UNAUTHORIZED))
+                    Result.failure(DataException(DataException.UNAUTHORIZED))
                 }
 
                 else -> {
-                    Result.failure(ApiException("${ApiException.UNRECOGNIZED}: ${response.code()}"))
+                    Result.failure(DataException("${DataException.UNRECOGNIZED}: ${response.code()}"))
                 }
             }
         } catch (e: Exception) {
-            Result.failure(ApiException(ApiException.SERVER_ERROR))
+            Result.failure(DataException(DataException.SERVER_ERROR))
         }
     }
 
@@ -87,23 +88,23 @@ class TransactionRepository @Inject constructor(
                 200 -> {
                     response.body()?.let {
                         Result.success(TransactionsResponse(it).toIncomesDomain())
-                    } ?: Result.failure(ApiException(ApiException.NO_TRANSACTIONS))
+                    } ?: Result.failure(DataException(DataException.NO_TRANSACTIONS))
                 }
 
                 400 -> {
-                    Result.failure(ApiException(ApiException.INCORRECT_FORMAT))
+                    Result.failure(DataException(DataException.INCORRECT_FORMAT))
                 }
 
                 401 -> {
-                    Result.failure(ApiException(ApiException.UNAUTHORIZED))
+                    Result.failure(DataException(DataException.UNAUTHORIZED))
                 }
 
                 else -> {
-                    Result.failure(ApiException("${ApiException.UNRECOGNIZED}: ${response.code()}"))
+                    Result.failure(DataException("${DataException.UNRECOGNIZED}: ${response.code()}"))
                 }
             }
         } catch (e: Exception) {
-            Result.failure(ApiException(ApiException.SERVER_ERROR))
+            Result.failure(DataException(DataException.SERVER_ERROR))
         }
     }
 }

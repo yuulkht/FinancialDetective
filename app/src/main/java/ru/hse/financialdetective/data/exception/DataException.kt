@@ -1,6 +1,6 @@
-package ru.hse.financialdetective.data.repository
+package ru.hse.financialdetective.data.exception
 
-class ApiException(
+class DataException(
     override val message: String
 ) : Exception(message) {
     companion object {

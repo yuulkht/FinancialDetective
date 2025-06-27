@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
@@ -42,11 +43,11 @@ fun SearchBar(
             OutlinedTextField(
                 value = text,
                 onValueChange = onTextChange,
-                placeholder = { Text("Найти статью") },
+                placeholder = { Text(stringResource(R.string.find_article)) },
                 trailingIcon = {
                     Icon(
                         painter = painterResource(R.drawable.search),
-                        contentDescription = "Поиск",
+                        contentDescription = stringResource(R.string.search),
                         modifier = Modifier
                             .size(48.dp)
                             .clickable(onClick = onSearchClick),

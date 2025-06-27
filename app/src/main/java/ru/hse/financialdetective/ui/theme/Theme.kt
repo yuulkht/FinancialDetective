@@ -16,6 +16,7 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = Pink80
 )
 
+// Todo Разобраться с цветами
 private val LightColorScheme = lightColorScheme(
     primary = GreenBright,
     surface = Surface,

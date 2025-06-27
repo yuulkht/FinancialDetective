@@ -17,8 +17,10 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreenLight
 import ru.hse.financialdetective.ui.theme.TextColor
@@ -58,7 +60,7 @@ fun CustomDatePicker(
                 ) {
                     Text(
                         style = MaterialTheme.typography.labelLarge,
-                        text = "Очистить",
+                        text = stringResource(R.string.clear),
                         color = TextColor
                     )
                 }
@@ -67,7 +69,7 @@ fun CustomDatePicker(
                     TextButton(onClick = onDismiss) {
                         Text(
                             style = MaterialTheme.typography.labelLarge,
-                            text = "Отмена",
+                            text = stringResource(R.string.cancel),
                             color = TextColor
                         )
                     }

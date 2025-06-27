@@ -9,8 +9,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.theme.GreenLight
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -20,7 +22,7 @@ fun DateSelector(
     selectedDate: LocalDate,
     onDateSelected: (LocalDate?) -> Unit,
     modifier: Modifier = Modifier,
-    label: String = "Начало",
+    label: String = stringResource(R.string.start),
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
@@ -34,15 +36,6 @@ fun DateSelector(
             onDismiss = { showDialog = false }
         )
     }
-//        DatePickerDialog(
-//            context,
-//            { _, year, month, dayOfMonth ->
-//                onDateSelected(LocalDate.of(year, month + 1, dayOfMonth))
-//            },
-//            selectedDate.year,
-//            selectedDate.monthValue - 1,
-//            selectedDate.dayOfMonth
-//        )
 
     ListItem(
         content = label,
