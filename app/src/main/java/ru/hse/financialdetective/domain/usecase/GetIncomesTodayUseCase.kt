@@ -6,6 +6,9 @@ import ru.hse.financialdetective.data.repository.AccountRepository
 import ru.hse.financialdetective.data.repository.TransactionRepository
 import ru.hse.financialdetective.domain.model.IncomesWithTotal
 
+/**
+ * Отвечает за получение поступлений за сегодняшний день
+ */
 class GetIncomesTodayUseCase @Inject constructor(
     private val accountRepository: AccountRepository,
     private val transactionRepository: TransactionRepository

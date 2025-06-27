@@ -2,6 +2,9 @@ package ru.hse.financialdetective.ui.navigation
 
 import ru.hse.coursework.financialdetective.R
 
+/**
+ * Отвечает за навигационные элементы приложения
+ */
 sealed class NavigationItem(val route: String, val icon: Int, val title: String) {
     data object Expenses : NavigationItem("expenses", R.drawable.expenses, "Расходы")
     data object Incomes : NavigationItem("incomes", R.drawable.incomes, "Доходы")

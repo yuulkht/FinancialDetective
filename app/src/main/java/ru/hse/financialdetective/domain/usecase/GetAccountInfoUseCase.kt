@@ -4,6 +4,9 @@ import jakarta.inject.Inject
 import ru.hse.financialdetective.data.repository.AccountRepository
 import ru.hse.financialdetective.domain.model.Account
 
+/**
+ * Отвечает за получение краткой информации об аккаунте
+ */
 class GetAccountInfoUseCase @Inject constructor(
     private val accountRepository: AccountRepository,
 ) {

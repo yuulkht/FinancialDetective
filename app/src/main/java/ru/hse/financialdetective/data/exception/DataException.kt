@@ -1,5 +1,8 @@
 package ru.hse.financialdetective.data.exception
 
+/**
+ * Отвечает за ошибки при загрузке данных
+ */
 class DataException(
     override val message: String
 ) : Exception(message) {

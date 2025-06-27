@@ -8,6 +8,9 @@ import ru.hse.financialdetective.data.model.AccountDto
 import ru.hse.financialdetective.data.model.AccountResponse
 import ru.hse.financialdetective.data.model.TransactionResponse
 
+/**
+ * Отвечает за взаимодействие с бэкендом по REST API
+ */
 interface ApiService {
 
     // Получить счета пользователя

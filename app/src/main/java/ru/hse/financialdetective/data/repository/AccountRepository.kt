@@ -6,6 +6,9 @@ import ru.hse.financialdetective.data.network.ApiService
 import ru.hse.financialdetective.domain.model.Account
 import javax.inject.Inject
 
+/**
+ * Отвечает за вызов методов АПИ-сервиса, связанных с аккаунтом и обработку ответа
+ */
 class AccountRepository @Inject constructor(
     private val api: ApiService
 ) {

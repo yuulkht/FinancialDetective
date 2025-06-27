@@ -11,6 +11,9 @@ import java.time.Instant
 import java.time.ZoneOffset
 import javax.inject.Inject
 
+/**
+ * Отвечает за вызов методов АПИ-сервиса, связанных с транзакциями по счету и обработку ответа
+ */
 class TransactionRepository @Inject constructor(
     private val api: ApiService
 ) {

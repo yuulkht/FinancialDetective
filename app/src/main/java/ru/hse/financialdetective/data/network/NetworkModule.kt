@@ -16,6 +16,9 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import ru.hse.coursework.financialdetective.BuildConfig
 import javax.inject.Singleton
 
+/**
+ * Отвечает за di для походов в сеть
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {

@@ -8,6 +8,9 @@ import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 import java.time.Instant
 import java.time.ZoneOffset
 
+/**
+ * Отвечает за получение трат за период
+ */
 class GetExpensesForPeriodUseCase @Inject constructor(
     private val accountRepository: AccountRepository,
     private val transactionRepository: TransactionRepository
