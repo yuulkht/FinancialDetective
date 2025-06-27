@@ -14,19 +14,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
+import ru.hse.coursework.financialdetective.BuildConfig
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
-    @Provides
-    @Singleton
-    fun provideJson(): Json {
-        return Json {
-            ignoreUnknownKeys = true
-        }
-    }
 
     @Provides
     @Singleton
@@ -52,9 +45,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(json: Json, okHttp: Lazy<Call.Factory>, mapper: ObjectMapper): Retrofit {
+    fun provideRetrofit(okHttp: Lazy<Call.Factory>, mapper: ObjectMapper): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://shmr-finance.ru/")
+            .baseUrl(BuildConfig.SERVER_URL)
             .callFactory { okHttp.get().newCall(it) }
             .addConverterFactory(JacksonConverterFactory.create(mapper))
             .build()
@@ -64,6 +57,5 @@ class NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
-        //return FakeApiService()
     }
 }

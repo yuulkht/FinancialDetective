@@ -12,7 +12,7 @@ val apiToken: String by extra {
     }
     value
 }
-val serverUrl = "https://shmr-finance.ru/api/v1/"
+val serverUrl = "https://shmr-finance.ru/"
 
 
 plugins {

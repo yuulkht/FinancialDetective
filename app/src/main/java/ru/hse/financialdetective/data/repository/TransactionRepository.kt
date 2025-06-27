@@ -51,23 +51,23 @@ class TransactionRepository @Inject constructor(
                 200 -> {
                     response.body()?.let {
                         Result.success(TransactionsResponse(it).toExpensesDomain())
-                    } ?: Result.failure(ApiException("Не удалось получить список транзакций"))
+                    } ?: Result.failure(ApiException(ApiException.NO_TRANSACTIONS))
                 }
 
                 400 -> {
-                    Result.failure(ApiException("Неверный формат ID счета или некорректный формат дат"))
+                    Result.failure(ApiException(ApiException.INCORRECT_FORMAT))
                 }
 
                 401 -> {
-                    Result.failure(ApiException("Неавторизованный доступ"))
+                    Result.failure(ApiException(ApiException.UNAUTHORIZED))
                 }
 
                 else -> {
-                    Result.failure(ApiException("Неизвестная ошибка: ${response.code()}"))
+                    Result.failure(ApiException("${ApiException.UNRECOGNIZED}: ${response.code()}"))
                 }
             }
         } catch (e: Exception) {
-            Result.failure(ApiException("Ошибка сети или сервера"))
+            Result.failure(ApiException(ApiException.SERVER_ERROR))
         }
     }
 
@@ -87,23 +87,23 @@ class TransactionRepository @Inject constructor(
                 200 -> {
                     response.body()?.let {
                         Result.success(TransactionsResponse(it).toIncomesDomain())
-                    } ?: Result.failure(ApiException("Не удалось получить список транзакций"))
+                    } ?: Result.failure(ApiException(ApiException.NO_TRANSACTIONS))
                 }
 
                 400 -> {
-                    Result.failure(ApiException("Неверный формат ID счета или некорректный формат дат"))
+                    Result.failure(ApiException(ApiException.INCORRECT_FORMAT))
                 }
 
                 401 -> {
-                    Result.failure(ApiException("Неавторизованный доступ"))
+                    Result.failure(ApiException(ApiException.UNAUTHORIZED))
                 }
 
                 else -> {
-                    Result.failure(ApiException("Неизвестная ошибка: ${response.code()}"))
+                    Result.failure(ApiException("${ApiException.UNRECOGNIZED}: ${response.code()}"))
                 }
             }
         } catch (e: Exception) {
-            Result.failure(ApiException("Ошибка сети или сервера"))
+            Result.failure(ApiException(ApiException.SERVER_ERROR))
         }
     }
 }

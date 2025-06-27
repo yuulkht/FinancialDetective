@@ -15,20 +15,20 @@ class AccountRepository @Inject constructor(
             when (response.code()) {
                 200 -> {
                     val firstAccount = response.body()?.firstOrNull()
-                        ?: return Result.failure(ApiException("Список аккаунтов пуст"))
+                        ?: return Result.failure(ApiException(ApiException.NO_ACCOUNTS))
                     Result.success(firstAccount.toDomain())
                 }
 
                 401 -> {
-                    Result.failure(ApiException("Неавторизованный доступ"))
+                    Result.failure(ApiException(ApiException.UNAUTHORIZED))
                 }
 
                 else -> {
-                    Result.failure(ApiException("Неизвестная ошибка: ${response.code()}"))
+                    Result.failure(ApiException("${ApiException.UNRECOGNIZED}: ${response.code()}"))
                 }
             }
         } catch (e: Exception) {
-            Result.failure(ApiException("Ошибка сети или сервера"))
+            Result.failure(ApiException(ApiException.SERVER_ERROR))
         }
     }
 }

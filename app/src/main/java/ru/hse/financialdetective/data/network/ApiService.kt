@@ -18,6 +18,7 @@ interface ApiService {
     @GET("/api/v1/accounts/{id}")
     suspend fun getAccountById(@Path("id") id: Int): Response<AccountResponse>
 
+    // Получить транзакции за период
     @GET("/api/v1/transactions/account/{accountId}/period")
     suspend fun getTransactionsByAccountIdAndPeriod(
         @Path("accountId") accountId: Int,
