@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.data.network
+package ru.hse.financialdetective.data.di
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
@@ -14,6 +14,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 import ru.hse.coursework.financialdetective.BuildConfig
+import ru.hse.financialdetective.data.network.ApiService
+import ru.hse.financialdetective.data.network.JWTInterceptor
 import javax.inject.Singleton
 
 /**
