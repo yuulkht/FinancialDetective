@@ -6,6 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.hse.financialdetective.data.model.AccountDto
 import ru.hse.financialdetective.data.model.AccountResponse
+import ru.hse.financialdetective.data.model.CategoryDto
 import ru.hse.financialdetective.data.model.TransactionResponse
 
 /**
@@ -28,4 +29,9 @@ interface ApiService {
         @Query("startDate") startDate: String? = null,
         @Query("endDate") endDate: String? = null
     ): Response<List<TransactionResponse>>
+
+    // Получить информацию о категориях
+    @GET("/api/v1/categories")
+    suspend fun getCategories(): Response<List<CategoryDto>>
+
 }
