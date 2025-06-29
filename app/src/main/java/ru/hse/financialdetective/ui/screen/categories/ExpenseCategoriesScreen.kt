@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -21,7 +23,9 @@ fun ExpenseCategoriesScreen(
     navController: NavController,
     viewModel: ExpenseCategoriesViewModel = hiltViewModel()
 ) {
+    //TODO подумать где лучше хранить логику и search
     val uiState by viewModel.uiState.collectAsState()
+    val searchQuery = remember { mutableStateOf("") }
 
     when (uiState) {
         is CategoriesUiState.Loading -> {
@@ -39,9 +43,11 @@ fun ExpenseCategoriesScreen(
             ) {
                 ScreenHeader(title = "Мои статьи", color = GreenBright)
                 SearchBar(
-                    text = "", //TODO
-                    onTextChange = {},
-                    onSearchClick = {}
+                    text = searchQuery.value,
+                    onTextChange = { searchQuery.value = it },
+                    onSearchClick = {
+                        viewModel.filterCategoriesByName(searchQuery.value)
+                    }
                 )
                 CategoriesList(categories = (uiState as CategoriesUiState.Success).data.categories)
             }
