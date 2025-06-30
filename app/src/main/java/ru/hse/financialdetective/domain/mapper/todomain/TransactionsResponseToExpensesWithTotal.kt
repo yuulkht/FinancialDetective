@@ -1,15 +1,16 @@
-package ru.hse.financialdetective.data.mapper
+package ru.hse.financialdetective.domain.mapper.todomain
 
 import ru.hse.financialdetective.data.model.TransactionsResponse
-import ru.hse.financialdetective.domain.model.Income
-import ru.hse.financialdetective.domain.model.IncomesWithTotal
+import ru.hse.financialdetective.domain.model.Expense
+import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 
-fun TransactionsResponse.toIncomesDomain(): IncomesWithTotal {
-    val incomes = transactions
-        .filter { it.categoryDto.isIncome }
+fun TransactionsResponse.toExpensesDomain(): ExpensesWithTotal {
+    val expenses = transactions
+        .filter { !it.categoryDto.isIncome }
         .map { transaction ->
-            Income(
+            Expense(
                 id = transaction.id,
+                emoji = transaction.categoryDto.emoji,
                 category = transaction.categoryDto.name,
                 comment = transaction.comment ?: "",
                 date = transaction.transactionDate,
@@ -19,5 +20,5 @@ fun TransactionsResponse.toIncomesDomain(): IncomesWithTotal {
         }
         .sortedByDescending { it.date }
 
-    return IncomesWithTotal(incomes)
+    return ExpensesWithTotal(expenses)
 }

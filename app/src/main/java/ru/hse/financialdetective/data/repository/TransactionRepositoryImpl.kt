@@ -1,10 +1,10 @@
 package ru.hse.financialdetective.data.repository
 
 import ru.hse.financialdetective.data.exception.DataException
-import ru.hse.financialdetective.data.mapper.toExpensesDomain
-import ru.hse.financialdetective.data.mapper.toIncomesDomain
 import ru.hse.financialdetective.data.model.TransactionsResponse
 import ru.hse.financialdetective.data.network.ApiService
+import ru.hse.financialdetective.domain.mapper.todomain.toExpensesDomain
+import ru.hse.financialdetective.domain.mapper.todomain.toIncomesDomain
 import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 import ru.hse.financialdetective.domain.model.IncomesWithTotal
 import java.time.Instant

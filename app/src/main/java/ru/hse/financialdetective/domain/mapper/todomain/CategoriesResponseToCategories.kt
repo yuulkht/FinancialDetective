@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.data.mapper
+package ru.hse.financialdetective.domain.mapper.todomain
 
 import ru.hse.financialdetective.data.model.CategoriesResponse
 import ru.hse.financialdetective.domain.model.Categories
