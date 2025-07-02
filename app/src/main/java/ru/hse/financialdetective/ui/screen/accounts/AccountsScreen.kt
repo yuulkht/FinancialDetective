@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -49,11 +50,12 @@ fun AccountsScreen(
                         .fillMaxSize()
                 ) {
                     ScreenHeader(
-                        title = "Мой счёт",
+                        //TODO сделать хеддер подстраивающимся
+                        title = (uiState as AccountUiState.Success).data.name,
                         tailIcon = {
                             Icon(
                                 painter = painterResource(R.drawable.edit),
-                                contentDescription = "Изменить",
+                                contentDescription = stringResource(R.string.edit),
                                 modifier = Modifier
                                     .size(48.dp),
                                 tint = GreyDark

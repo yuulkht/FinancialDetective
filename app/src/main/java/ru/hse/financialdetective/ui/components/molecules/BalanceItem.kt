@@ -41,7 +41,12 @@ fun BalanceItem(
             }
             Spacer(Modifier.width(16.dp))
         },
-        content = stringResource(R.string.balance),
+        content = {
+            Text(
+                text = stringResource(R.string.balance),
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        },
         tailString = balance,
         tailIcon = {
             Spacer(Modifier.width(16.dp))

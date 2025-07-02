@@ -1,5 +1,7 @@
 package ru.hse.financialdetective.ui.components.molecules
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -16,7 +18,12 @@ fun TransactionsInfoItem(
     text: String = stringResource(R.string.total),
 ) {
     ListItem(
-        content = text,
+        content = {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        },
         tailString = "$amount $currency",
         color = GreenLight,
         height = 56.dp,

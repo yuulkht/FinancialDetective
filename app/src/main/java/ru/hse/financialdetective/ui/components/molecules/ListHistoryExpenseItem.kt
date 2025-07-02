@@ -45,7 +45,12 @@ fun ListHistoryExpenseItem(
             }
             Spacer(Modifier.width(16.dp))
         },
-        content = category,
+        content = {
+            Text(
+                text = category,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        },
         comment = comment,
         tailString = "$amount $currency",
         tailIcon = {

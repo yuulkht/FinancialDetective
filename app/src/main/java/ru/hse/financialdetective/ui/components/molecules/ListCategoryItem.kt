@@ -36,7 +36,12 @@ fun ListCategoryItem(
             }
             Spacer(Modifier.width(16.dp))
         },
-        content = title,
+        content = {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        },
         showDivider = true,
         modifier = modifier
     )

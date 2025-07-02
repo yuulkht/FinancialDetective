@@ -2,6 +2,8 @@ package ru.hse.financialdetective.ui.components.molecules
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -19,7 +21,12 @@ fun ListArrowItem(
 ) {
 
     ListItem(
-        content = title,
+        content = {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+        },
         tailIcon = {
             Icon(
                 painter = painterResource(R.drawable.arrow),

@@ -22,7 +22,7 @@ import ru.hse.financialdetective.ui.theme.GreyLight
 
 @Composable
 fun ListItem(
-    content: String,
+    content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
     comment: String = "",
     leadIcon: @Composable () -> Unit = {},
@@ -49,10 +49,7 @@ fun ListItem(
         ) {
             leadIcon()
             Column {
-                Text(
-                    text = content,
-                    style = MaterialTheme.typography.bodyLarge,
-                )
+                content()
                 if (comment != "") {
                     Text(
                         text = comment,
