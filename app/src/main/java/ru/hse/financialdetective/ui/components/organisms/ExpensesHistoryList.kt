@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.hse.financialdetective.ui.components.molecules.ListExpenseHistoryItem
+import ru.hse.financialdetective.ui.components.molecules.listitems.ListExpenseHistoryItem
 import ru.hse.financialdetective.ui.uimodel.model.ExpenseUiModel
 
 @Composable

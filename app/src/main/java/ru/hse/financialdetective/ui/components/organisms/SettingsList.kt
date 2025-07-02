@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import ru.hse.coursework.financialdetective.R
-import ru.hse.financialdetective.ui.components.molecules.ListArrowItem
-import ru.hse.financialdetective.ui.components.molecules.ListToggleItem
+import ru.hse.financialdetective.ui.components.molecules.listitems.ListArrowItem
+import ru.hse.financialdetective.ui.components.molecules.listitems.ListToggleItem
 
 @Composable
 fun SettingsList(

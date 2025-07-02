@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules
+package ru.hse.financialdetective.ui.components.molecules.listitems
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,32 +21,39 @@ import ru.hse.financialdetective.ui.theme.GreenLight
 import ru.hse.financialdetective.ui.theme.GreyDark
 
 @Composable
-fun BalanceItem(
-    balance: String,
-    modifier: Modifier = Modifier
+fun ListExpenseHistoryItem(
+    emoji: String,
+    category: String,
+    amount: String,
+    date: String,
+    currency: String,
+    modifier: Modifier = Modifier,
+    comment: String = ""
 ) {
     ListItem(
         leadIcon = {
             Box(
                 modifier = Modifier
                     .size(24.dp)
-                    .background(Color.White, shape = CircleShape),
+                    .background(GreenLight, shape = CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "💰",
+                    text = emoji,
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
             Spacer(Modifier.width(16.dp))
         },
+        tailDate = date,
         content = {
             Text(
-                text = stringResource(R.string.balance),
+                text = category,
                 style = MaterialTheme.typography.bodyLarge,
             )
         },
-        tailString = balance,
+        comment = comment,
+        tailString = "$amount $currency",
         tailIcon = {
             Spacer(Modifier.width(16.dp))
             Icon(
@@ -58,14 +64,20 @@ fun BalanceItem(
                 tint = GreyDark
             )
         },
-        color = GreenLight,
-        height = 56.dp,
+        showDivider = true,
         modifier = modifier
     )
 }
 
 @Preview(apiLevel = 34, showBackground = true)
 @Composable
-fun BalanceItemPreview() {
-    BalanceItem("-670 000 ₽")
+fun ListExpenseHistoryItemPreview() {
+    ListExpenseHistoryItem(
+        emoji = "🏠",
+        category = "Аренда квартиры",
+        amount = "100 000",
+        currency = "₽",
+        comment = "Сокольники",
+        date = "22:01"
+    )
 }

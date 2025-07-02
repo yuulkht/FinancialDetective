@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules
+package ru.hse.financialdetective.ui.components.molecules.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

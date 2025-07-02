@@ -19,9 +19,9 @@ import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
-import ru.hse.financialdetective.ui.components.molecules.AddButton
-import ru.hse.financialdetective.ui.components.molecules.BalanceItem
-import ru.hse.financialdetective.ui.components.molecules.CurrencyItem
+import ru.hse.financialdetective.ui.components.molecules.common.AddButton
+import ru.hse.financialdetective.ui.components.molecules.listitems.BalanceItem
+import ru.hse.financialdetective.ui.components.molecules.listitems.CurrencyItem
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark

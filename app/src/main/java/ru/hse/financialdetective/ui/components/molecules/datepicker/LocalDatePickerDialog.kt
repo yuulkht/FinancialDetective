@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules
+package ru.hse.financialdetective.ui.components.molecules.datepicker
 
 import androidx.compose.runtime.Composable
 import java.time.LocalDate

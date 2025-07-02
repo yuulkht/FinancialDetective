@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules
+package ru.hse.financialdetective.ui.components.molecules.datepicker
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
+import ru.hse.financialdetective.ui.components.molecules.listitems.ListItem
 import ru.hse.financialdetective.ui.theme.GreenLight
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

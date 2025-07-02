@@ -12,7 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
-import ru.hse.financialdetective.ui.components.molecules.SearchBar
+import ru.hse.financialdetective.ui.components.molecules.common.SearchBar
 import ru.hse.financialdetective.ui.components.organisms.CategoriesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.theme.GreenBright

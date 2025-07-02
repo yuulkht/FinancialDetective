@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules
+package ru.hse.financialdetective.ui.components.molecules.common
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape

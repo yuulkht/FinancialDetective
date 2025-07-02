@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules
+package ru.hse.financialdetective.ui.components.molecules.datepicker
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules
+package ru.hse.financialdetective.ui.components.molecules.listitems
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
