@@ -8,5 +8,5 @@ fun AccountDto.toDomain(): Account =
         id = this.id,
         name = this.name,
         balance = this.balance,
-        currency = this.currency
+        currency = this.currency.toCurrencyDomain()
     )

@@ -92,7 +92,7 @@ fun ExpensesHistoryScreen(
                     )
                     TransactionsInfoItem(
                         amount = (uiState as ExpensesUiState.Success).data.total,
-                        currency = (uiState as ExpensesUiState.Success).data.currency,
+                        currency = (uiState as ExpensesUiState.Success).data.currency.symbol,
                         text = "Сумма"
                     )
                     ExpensesHistoryList(expenses = (uiState as ExpensesUiState.Success).data.expenses)

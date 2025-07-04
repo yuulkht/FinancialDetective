@@ -68,7 +68,7 @@ fun IncomesScreen(
                     )
                     TransactionsInfoItem(
                         amount = (uiState as IncomesUiState.Success).data.total,
-                        currency = (uiState as IncomesUiState.Success).data.currency
+                        currency = (uiState as IncomesUiState.Success).data.currency.symbol
                     )
                     IncomesList(incomes = (uiState as IncomesUiState.Success).data.incomes)
                 }

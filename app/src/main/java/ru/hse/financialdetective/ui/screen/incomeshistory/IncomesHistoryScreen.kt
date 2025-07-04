@@ -92,7 +92,7 @@ fun IncomesHistoryScreen(
                     )
                     TransactionsInfoItem(
                         amount = (uiState as IncomesUiState.Success).data.total,
-                        currency = (uiState as IncomesUiState.Success).data.currency,
+                        currency = (uiState as IncomesUiState.Success).data.currency.symbol,
                         text = stringResource(R.string.sum)
                     )
                     IncomesHistoryList(incomes = (uiState as IncomesUiState.Success).data.incomes)

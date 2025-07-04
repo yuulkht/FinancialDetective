@@ -1,10 +1,11 @@
 package ru.hse.financialdetective.domain.mapper.todomain
 
 import ru.hse.financialdetective.data.model.TransactionsResponse
+import ru.hse.financialdetective.domain.model.Currency
 import ru.hse.financialdetective.domain.model.Income
-import ru.hse.financialdetective.domain.model.IncomesWithTotal
+import ru.hse.financialdetective.domain.model.Incomes
 
-fun TransactionsResponse.toIncomesDomain(): IncomesWithTotal {
+fun TransactionsResponse.toIncomesDomain(currency: Currency): Incomes {
     val incomes = transactions
         .filter { it.categoryDto.isIncome }
         .map { transaction ->
@@ -14,10 +15,10 @@ fun TransactionsResponse.toIncomesDomain(): IncomesWithTotal {
                 comment = transaction.comment ?: "",
                 date = transaction.transactionDate,
                 amount = transaction.amount.toDouble(),
-                currency = transaction.account.currency
+                currency = transaction.account.currency.toCurrencyDomain()
             )
         }
         .sortedByDescending { it.date }
 
-    return IncomesWithTotal(incomes)
+    return Incomes(incomes, currency)
 }

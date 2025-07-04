@@ -8,10 +8,10 @@ fun ExpenseDetailed.toUi(): ExpenseDetailedUiModel {
     return ExpenseDetailedUiModel(
         id = this.id,
         emoji = this.emoji,
-        category = this.currency,
+        category = this.category,
         amount = this.amount.toString(),
         date = convertInstantToDateWithTime(this.date),
         comment = this.comment,
-        currency = getCurrencySymbol(this.currency)
+        currency = this.currency.toUiModel()
     )
 }

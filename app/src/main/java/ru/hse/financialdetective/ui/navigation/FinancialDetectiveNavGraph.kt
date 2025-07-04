@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import ru.hse.financialdetective.ui.screen.SettingsScreen
 import ru.hse.financialdetective.ui.screen.accounts.AccountsScreen
 import ru.hse.financialdetective.ui.screen.categories.ExpenseCategoriesScreen
+import ru.hse.financialdetective.ui.screen.editaccountscreen.EditAccountScreen
 import ru.hse.financialdetective.ui.screen.expenses.ExpensesScreen
 import ru.hse.financialdetective.ui.screen.expenseshistory.ExpensesHistoryScreen
 import ru.hse.financialdetective.ui.screen.incomes.IncomesScreen
@@ -14,7 +15,7 @@ import ru.hse.financialdetective.ui.screen.incomeshistory.IncomesHistoryScreen
 
 @Composable
 fun FinancialDetectiveNavGraph(
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     NavHost(
         navController = navController,
@@ -40,6 +41,9 @@ fun FinancialDetectiveNavGraph(
         }
         composable(NavigationItem.ExpensesHistory.route) {
             ExpensesHistoryScreen(navController)
+        }
+        composable(NavigationItem.EditAccount.route) {
+            EditAccountScreen(navController)
         }
     }
 }

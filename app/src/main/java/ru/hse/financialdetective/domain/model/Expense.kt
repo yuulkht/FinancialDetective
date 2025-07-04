@@ -9,5 +9,5 @@ data class Expense(
     val comment: String,
     val date: Instant,
     val amount: Double,
-    val currency: String
+    val currency: Currency
 )

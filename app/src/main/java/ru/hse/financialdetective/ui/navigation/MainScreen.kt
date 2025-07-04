@@ -18,6 +18,7 @@ import ru.hse.financialdetective.ui.theme.GreenBright
 fun MainScreen(
     navController: NavHostController = rememberNavController()
 ) {
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = { BottomNavigationBar(navController) },

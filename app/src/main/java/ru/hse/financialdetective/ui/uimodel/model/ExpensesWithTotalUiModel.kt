@@ -11,6 +11,6 @@ sealed interface ExpensesUiState {
 @Immutable
 data class ExpensesWithTotalUiModel(
     val total: String,
-    val currency: String,
+    val currency: CurrencyUiModel,
     val expenses: List<ExpenseUiModel>
 )

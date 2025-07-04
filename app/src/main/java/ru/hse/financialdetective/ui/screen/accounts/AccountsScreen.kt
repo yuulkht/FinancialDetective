@@ -1,5 +1,6 @@
 package ru.hse.financialdetective.ui.screen.accounts
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +24,7 @@ import ru.hse.financialdetective.ui.components.molecules.common.AddButton
 import ru.hse.financialdetective.ui.components.molecules.listitems.BalanceItem
 import ru.hse.financialdetective.ui.components.molecules.listitems.CurrencyItem
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.navigation.NavigationItem
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.uimodel.model.AccountUiState
@@ -50,14 +52,14 @@ fun AccountsScreen(
                         .fillMaxSize()
                 ) {
                     ScreenHeader(
-                        //TODO сделать хеддер подстраивающимся
                         title = (uiState as AccountUiState.Success).data.name,
                         tailIcon = {
                             Icon(
                                 painter = painterResource(R.drawable.edit),
                                 contentDescription = stringResource(R.string.edit),
                                 modifier = Modifier
-                                    .size(48.dp),
+                                    .size(48.dp)
+                                    .clickable { navController.navigate(NavigationItem.EditAccount.route) },
                                 tint = GreyDark
                             )
                         },
@@ -66,7 +68,7 @@ fun AccountsScreen(
 
                     BalanceItem(balance = (uiState as AccountUiState.Success).data.balance)
 
-                    CurrencyItem(currency = (uiState as AccountUiState.Success).data.currency)
+                    CurrencyItem(currency = (uiState as AccountUiState.Success).data.currency.symbol)
 
                     //TODO график
                 }

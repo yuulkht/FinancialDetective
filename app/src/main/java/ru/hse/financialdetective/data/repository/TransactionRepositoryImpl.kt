@@ -3,10 +3,6 @@ package ru.hse.financialdetective.data.repository
 import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.data.model.TransactionsResponse
 import ru.hse.financialdetective.data.network.ApiService
-import ru.hse.financialdetective.domain.mapper.todomain.toExpensesDomain
-import ru.hse.financialdetective.domain.mapper.todomain.toIncomesDomain
-import ru.hse.financialdetective.domain.model.ExpensesWithTotal
-import ru.hse.financialdetective.domain.model.IncomesWithTotal
 import java.time.Instant
 import java.time.ZoneOffset
 import javax.inject.Inject
@@ -19,7 +15,7 @@ class TransactionRepositoryImpl @Inject constructor(
 ) : TransactionRepository {
     override suspend fun getExpensesForToday(
         accountId: Int,
-    ): Result<ExpensesWithTotal> {
+    ): Result<TransactionsResponse> {
         val today = Instant.now().atZone(ZoneOffset.systemDefault()).toLocalDate().toString()
         return getExpensesForPeriod(
             accountId,
@@ -30,7 +26,7 @@ class TransactionRepositoryImpl @Inject constructor(
 
     override suspend fun getIncomesForToday(
         accountId: Int,
-    ): Result<IncomesWithTotal> {
+    ): Result<TransactionsResponse> {
         val today = Instant.now().atZone(ZoneOffset.systemDefault()).toLocalDate().toString()
         return getIncomesForPeriod(
             accountId,
@@ -43,7 +39,7 @@ class TransactionRepositoryImpl @Inject constructor(
         accountId: Int,
         dateFrom: String,
         dateTo: String
-    ): Result<ExpensesWithTotal> {
+    ): Result<TransactionsResponse> {
         return try {
             val response = api.getTransactionsByAccountIdAndPeriod(
                 accountId,
@@ -54,7 +50,7 @@ class TransactionRepositoryImpl @Inject constructor(
             when (response.code()) {
                 200 -> {
                     response.body()?.let {
-                        Result.success(TransactionsResponse(it).toExpensesDomain())
+                        Result.success(TransactionsResponse(it))
                     } ?: Result.failure(DataException(DataException.NO_TRANSACTIONS))
                 }
 
@@ -79,7 +75,7 @@ class TransactionRepositoryImpl @Inject constructor(
         accountId: Int,
         dateFrom: String,
         dateTo: String
-    ): Result<IncomesWithTotal> {
+    ): Result<TransactionsResponse> {
         return try {
             val response = api.getTransactionsByAccountIdAndPeriod(
                 accountId,
@@ -90,7 +86,7 @@ class TransactionRepositoryImpl @Inject constructor(
             when (response.code()) {
                 200 -> {
                     response.body()?.let {
-                        Result.success(TransactionsResponse(it).toIncomesDomain())
+                        Result.success(TransactionsResponse(it))
                     } ?: Result.failure(DataException(DataException.NO_TRANSACTIONS))
                 }
 

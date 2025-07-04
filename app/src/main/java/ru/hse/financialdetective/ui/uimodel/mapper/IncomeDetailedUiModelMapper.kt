@@ -11,6 +11,6 @@ fun IncomeDetailed.toUi(): IncomeDetailedUiModel {
         amount = this.amount.toString(),
         date = convertInstantToDateWithTime(this.date),
         comment = this.comment,
-        currency = getCurrencySymbol(this.currency)
+        currency = this.currency.toUiModel()
     )
 }

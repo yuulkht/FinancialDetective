@@ -19,8 +19,11 @@ import ru.hse.financialdetective.ui.theme.GreyDark
 @Composable
 fun CurrencyItem(
     currency: String,
-    modifier: Modifier = Modifier
-) {
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    isClickable: Boolean = false,
+
+    ) {
     ListItem(
         content = {
             Text(
@@ -41,6 +44,8 @@ fun CurrencyItem(
         color = GreenLight,
         height = 56.dp,
         showDivider = false,
+        isClickable = isClickable,
+        onClick = onClick,
         modifier = modifier
     )
 }

@@ -24,7 +24,7 @@ fun CurrencyBottomSheetItem(
     ListItem(
         leadIcon = {
             Icon(
-                painter = painterResource(currency.symbol),
+                painter = painterResource(currency.icon),
                 contentDescription = stringResource(R.string.choose_currency),
                 modifier = Modifier.size(24.dp),
                 tint = Color.Black

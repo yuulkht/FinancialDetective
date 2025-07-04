@@ -1,20 +1,19 @@
 package ru.hse.financialdetective.data.repository
 
-import ru.hse.financialdetective.domain.model.ExpensesWithTotal
-import ru.hse.financialdetective.domain.model.IncomesWithTotal
+import ru.hse.financialdetective.data.model.TransactionsResponse
 
 interface TransactionRepository {
-    suspend fun getExpensesForToday(accountId: Int): Result<ExpensesWithTotal>
-    suspend fun getIncomesForToday(accountId: Int): Result<IncomesWithTotal>
+    suspend fun getExpensesForToday(accountId: Int): Result<TransactionsResponse>
+    suspend fun getIncomesForToday(accountId: Int): Result<TransactionsResponse>
     suspend fun getExpensesForPeriod(
         accountId: Int,
         dateFrom: String,
         dateTo: String
-    ): Result<ExpensesWithTotal>
+    ): Result<TransactionsResponse>
 
     suspend fun getIncomesForPeriod(
         accountId: Int,
         dateFrom: String,
         dateTo: String
-    ): Result<IncomesWithTotal>
+    ): Result<TransactionsResponse>
 }

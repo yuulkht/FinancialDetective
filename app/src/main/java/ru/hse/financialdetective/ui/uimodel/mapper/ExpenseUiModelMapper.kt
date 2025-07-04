@@ -1,7 +1,7 @@
 package ru.hse.financialdetective.ui.uimodel.mapper
 
 import ru.hse.financialdetective.domain.model.Expense
-import ru.hse.financialdetective.domain.model.ExpensesWithTotal
+import ru.hse.financialdetective.domain.model.Expenses
 import ru.hse.financialdetective.ui.uimodel.model.ExpenseUiModel
 import ru.hse.financialdetective.ui.uimodel.model.ExpensesWithTotalUiModel
 
@@ -14,13 +14,13 @@ fun Expense.toUi(): ExpenseUiModel {
         comment = this.comment,
         date = convertInstantToDateWithTime(this.date),
         amount = this.amount.toString(),
-        currency = getCurrencySymbol(this.currency)
+        currency = this.currency.toUiModel()
     )
 }
 
-fun ExpensesWithTotal.toUi(): ExpensesWithTotalUiModel =
+fun Expenses.toUi(): ExpensesWithTotalUiModel =
     ExpensesWithTotalUiModel(
         expenses = this.items.map { it.toUi() },
-        total = this.totalAmount.toString(),
-        currency = this.currency
+        total = this.items.sumOf { it.amount }.toString(),
+        currency = this.currency.toUiModel()
     )

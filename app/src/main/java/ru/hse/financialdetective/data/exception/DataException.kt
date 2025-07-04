@@ -19,5 +19,6 @@ class DataException(
         const val INCORRECT_FORMAT = "Неверный формат переданных параметров"
 
         const val FAIL_TO_GET_ID = "Не удалось получить ID счета"
+        const val FAIL_TO_GET_CURRENCY = "Не удалось получить валюту счета"
     }
 }

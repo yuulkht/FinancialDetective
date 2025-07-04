@@ -23,7 +23,6 @@ fun ExpenseCategoriesScreen(
     navController: NavController,
     viewModel: ExpenseCategoriesViewModel = hiltViewModel()
 ) {
-    //TODO подумать где лучше хранить логику и search
     val uiState by viewModel.uiState.collectAsState()
     val searchQuery = remember { mutableStateOf("") }
 
