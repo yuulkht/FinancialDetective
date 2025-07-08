@@ -5,13 +5,13 @@ import ru.hse.financialdetective.ui.feature.expenseshistory.viewmodel.ExpensesHi
 import ru.hse.financialdetective.ui.feature.incomes.di.IncomesModule
 import ru.hse.financialdetective.ui.feature.incomeshistory.di.IncomesHistoryComponent
 
-@IncomesHistoryScope
-@Subcomponent(modules = [IncomesModule::class])
+@ExpensesHistoryScope
+@Subcomponent(modules = [ExpensesHistoryModule::class])
 interface ExpensesHistoryComponent {
     fun viewModelFactory(): ExpensesHistoryViewModel.Factory
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(): IncomesHistoryComponent
+        fun create(): ExpensesHistoryComponent
     }
 }

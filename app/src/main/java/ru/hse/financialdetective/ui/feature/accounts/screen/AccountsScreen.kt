@@ -10,12 +10,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
@@ -24,6 +25,7 @@ import ru.hse.financialdetective.ui.components.molecules.common.AddButton
 import ru.hse.financialdetective.ui.components.molecules.listitems.BalanceItem
 import ru.hse.financialdetective.ui.components.molecules.listitems.CurrencyItem
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.feature.accounts.viewmodel.AccountsViewModel
 import ru.hse.financialdetective.ui.navigation.NavigationItem
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
@@ -32,8 +34,9 @@ import ru.hse.financialdetective.ui.uimodel.model.AccountUiState
 @Composable
 fun AccountsScreen(
     navController: NavController,
-    viewModel: AccountsViewModel = hiltViewModel()
+//    viewModel: AccountsViewModel
 ) {
+
     val uiState by viewModel.uiState.collectAsState()
 
     when (uiState) {

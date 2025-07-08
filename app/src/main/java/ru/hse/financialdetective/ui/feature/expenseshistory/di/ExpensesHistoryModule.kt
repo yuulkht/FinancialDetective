@@ -11,7 +11,7 @@ import ru.hse.financialdetective.ui.feature.expenseshistory.viewmodel.ExpensesHi
 class ExpensesHistoryModule {
 
     @Provides
-    @IncomesHistoryScope
+    @ExpensesHistoryScope
     fun provideGetExpensesForPeriodUseCase(
         accountRepository: AccountRepository,
         transactionRepository: TransactionRepository): GetExpensesForPeriodUseCase
@@ -20,7 +20,7 @@ class ExpensesHistoryModule {
     }
 
     @Provides
-    @IncomesHistoryScope
+    @ExpensesHistoryScope
     fun provideExpensesHistoryViewModelFactory(
         getExpensesForPeriodUseCase: GetExpensesForPeriodUseCase
     ): ExpensesHistoryViewModel.Factory {

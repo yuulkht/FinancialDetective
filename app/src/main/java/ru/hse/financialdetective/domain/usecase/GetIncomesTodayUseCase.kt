@@ -2,13 +2,10 @@ package ru.hse.financialdetective.domain.usecase
 
 import jakarta.inject.Inject
 import ru.hse.financialdetective.data.exception.DataException
-import ru.hse.financialdetective.domain.repository.AccountRepository
-import ru.hse.financialdetective.domain.repository.TransactionRepository
-import ru.hse.financialdetective.domain.model.IncomesWithTotal
-import ru.hse.financialdetective.data.repository.AccountRepository
-import ru.hse.financialdetective.data.repository.TransactionRepository
 import ru.hse.financialdetective.domain.mapper.todomain.toIncomesDomain
 import ru.hse.financialdetective.domain.model.Incomes
+import ru.hse.financialdetective.domain.repository.AccountRepository
+import ru.hse.financialdetective.domain.repository.TransactionRepository
 
 /**
  * Отвечает за получение поступлений за сегодняшний день

@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.screen.editaccountscreen
+package ru.hse.financialdetective.ui.feature.editaccountscreen.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -17,7 +17,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
@@ -27,6 +26,7 @@ import ru.hse.financialdetective.ui.components.molecules.listitems.EditAccountNa
 import ru.hse.financialdetective.ui.components.molecules.listitems.EditBalance
 import ru.hse.financialdetective.ui.components.organisms.CurrencyChangeBottomSheet
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.uimodel.model.AccountUiState
@@ -35,7 +35,7 @@ import ru.hse.financialdetective.ui.uimodel.model.EditAccountEvent
 @Composable
 fun EditAccountScreen(
     navController: NavController,
-    viewModel: EditAccountViewModel = hiltViewModel()
+    viewModel: EditAccountViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val showCurrencyChoiceSheet = viewModel.showCurrencyChoiceSheet

@@ -2,10 +2,10 @@ package ru.hse.financialdetective.domain.usecase
 
 import jakarta.inject.Inject
 import ru.hse.financialdetective.data.exception.DataException
-import ru.hse.financialdetective.data.repository.AccountRepository
 import ru.hse.financialdetective.domain.mapper.todto.toDto
 import ru.hse.financialdetective.domain.model.Account
 import ru.hse.financialdetective.domain.model.UpdateAccountRequest
+import ru.hse.financialdetective.domain.repository.AccountRepository
 
 /**
  * Отвечает за обновление информации об аккаунте

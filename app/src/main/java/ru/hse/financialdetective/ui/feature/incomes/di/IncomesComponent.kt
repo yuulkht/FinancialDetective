@@ -1,7 +1,6 @@
 package ru.hse.financialdetective.ui.feature.incomes.di
 
 import dagger.Subcomponent
-import ru.hse.financialdetective.ui.feature.accounts.di.AccountsScope
 import ru.hse.financialdetective.ui.feature.incomes.viewmodel.IncomesViewModel
 
 @IncomesScope

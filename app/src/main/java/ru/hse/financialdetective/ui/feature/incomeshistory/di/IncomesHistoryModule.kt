@@ -6,7 +6,6 @@ import ru.hse.financialdetective.domain.repository.AccountRepository
 import ru.hse.financialdetective.domain.repository.TransactionRepository
 import ru.hse.financialdetective.domain.usecase.GetIncomesForPeriodUseCase
 import ru.hse.financialdetective.ui.feature.expenseshistory.di.IncomesHistoryScope
-import ru.hse.financialdetective.ui.feature.expenseshistory.viewmodel.IncomesHistoryViewModel
 import ru.hse.financialdetective.ui.feature.incomeshistory.viewmodel.IncomesHistoryViewModel
 
 @Module
@@ -16,8 +15,8 @@ class IncomesHistoryModule {
     @IncomesHistoryScope
     fun provideGetIncomesForPeriodUseCase(
         accountRepository: AccountRepository,
-        transactionRepository: TransactionRepository): GetIncomesForPeriodUseCase
-    {
+        transactionRepository: TransactionRepository
+    ): GetIncomesForPeriodUseCase {
         return GetIncomesForPeriodUseCase(accountRepository, transactionRepository)
     }
 

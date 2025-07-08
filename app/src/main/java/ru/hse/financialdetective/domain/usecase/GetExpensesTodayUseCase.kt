@@ -2,13 +2,10 @@ package ru.hse.financialdetective.domain.usecase
 
 import jakarta.inject.Inject
 import ru.hse.financialdetective.data.exception.DataException
-import ru.hse.financialdetective.data.repository.AccountRepository
-import ru.hse.financialdetective.data.repository.TransactionRepository
 import ru.hse.financialdetective.domain.mapper.todomain.toExpensesDomain
 import ru.hse.financialdetective.domain.model.Expenses
 import ru.hse.financialdetective.domain.repository.AccountRepository
 import ru.hse.financialdetective.domain.repository.TransactionRepository
-import ru.hse.financialdetective.domain.model.ExpensesWithTotal
 
 /**
  * Отвечает за получение трат за сегодняшний день

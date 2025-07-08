@@ -5,7 +5,6 @@ import dagger.Provides
 import ru.hse.financialdetective.domain.repository.AccountRepository
 import ru.hse.financialdetective.domain.repository.TransactionRepository
 import ru.hse.financialdetective.domain.usecase.GetIncomesTodayUseCase
-import ru.hse.financialdetective.ui.feature.accounts.di.AccountsScope
 import ru.hse.financialdetective.ui.feature.incomes.viewmodel.IncomesViewModel
 
 @Module

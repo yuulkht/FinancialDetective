@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.screen.categories
+package ru.hse.financialdetective.ui.feature.categories.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,20 +8,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
 import ru.hse.financialdetective.ui.components.molecules.common.SearchBar
 import ru.hse.financialdetective.ui.components.organisms.CategoriesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.feature.categories.viewmodel.ExpenseCategoriesViewModel
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.uimodel.model.CategoriesUiState
 
 @Composable
 fun ExpenseCategoriesScreen(
     navController: NavController,
-    viewModel: ExpenseCategoriesViewModel = hiltViewModel()
+    viewModel: ExpenseCategoriesViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val searchQuery = remember { mutableStateOf("") }
