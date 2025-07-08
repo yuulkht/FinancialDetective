@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.screen
+package ru.hse.financialdetective.ui.feature
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

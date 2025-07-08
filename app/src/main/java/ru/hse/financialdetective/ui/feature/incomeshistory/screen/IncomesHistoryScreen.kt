@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.screen.expenseshistory
+package ru.hse.financialdetective.ui.feature.incomeshistory.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
@@ -24,29 +23,30 @@ import ru.hse.financialdetective.ui.components.loading.LoadingScreen
 import ru.hse.financialdetective.ui.components.molecules.common.AddButton
 import ru.hse.financialdetective.ui.components.molecules.datepicker.DateSelector
 import ru.hse.financialdetective.ui.components.molecules.listitems.TransactionsInfoItem
-import ru.hse.financialdetective.ui.components.organisms.ExpensesHistoryList
+import ru.hse.financialdetective.ui.components.organisms.IncomesHistoryList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.feature.incomeshistory.viewmodel.IncomesHistoryViewModel
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
-import ru.hse.financialdetective.ui.uimodel.model.ExpensesUiState
+import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
 
 @Composable
-fun ExpensesHistoryScreen(
+fun IncomesHistoryScreen(
     navController: NavController,
-    viewModel: ExpensesHistoryViewModel = hiltViewModel()
+    viewModel: IncomesHistoryViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     when (uiState) {
-        is ExpensesUiState.Loading -> {
+        is IncomesUiState.Loading -> {
             LoadingScreen()
         }
 
-        is ExpensesUiState.Error -> {
+        is IncomesUiState.Error -> {
             ErrorScreen()
         }
 
-        is ExpensesUiState.Success -> {
+        is IncomesUiState.Success -> {
             Box {
                 Column(
                     modifier = Modifier
@@ -61,13 +61,13 @@ fun ExpensesHistoryScreen(
                                 modifier = Modifier
                                     .size(48.dp)
                                     .clickable { navController.popBackStack() },
-                                tint = MaterialTheme.colorScheme.onSurface //TODO
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
                         },
                         tailIcon = {
                             Icon(
                                 painter = painterResource(R.drawable.analysis),
-                                contentDescription = stringResource(R.string.history),
+                                contentDescription = "История",
                                 modifier = Modifier
                                     .size(48.dp),
                                 tint = GreyDark
@@ -79,7 +79,7 @@ fun ExpensesHistoryScreen(
                         selectedDate = viewModel.dateFrom.value,
                         onDateSelected = {
                             viewModel.dateFrom.value = it
-                            viewModel.loadForPeriodExpenses()
+                            viewModel.loadForPeriodIncomes()
                         }
                     )
                     DateSelector(
@@ -87,18 +87,18 @@ fun ExpensesHistoryScreen(
                         selectedDate = viewModel.dateTo.value,
                         onDateSelected = {
                             viewModel.dateTo.value = it
-                            viewModel.loadForPeriodExpenses()
+                            viewModel.loadForPeriodIncomes()
                         }
                     )
                     TransactionsInfoItem(
-                        amount = (uiState as ExpensesUiState.Success).data.total,
-                        currency = (uiState as ExpensesUiState.Success).data.currency.symbol,
-                        text = "Сумма"
+                        amount = (uiState as IncomesUiState.Success).data.total,
+                        currency = (uiState as IncomesUiState.Success).data.currency.symbol,
+                        text = stringResource(R.string.sum)
                     )
-                    ExpensesHistoryList(expenses = (uiState as ExpensesUiState.Success).data.expenses)
+                    IncomesHistoryList(incomes = (uiState as IncomesUiState.Success).data.incomes)
                 }
                 AddButton(
-                    onClick = {}, //todo
+                    onClick = {}, //TODO
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(16.dp)

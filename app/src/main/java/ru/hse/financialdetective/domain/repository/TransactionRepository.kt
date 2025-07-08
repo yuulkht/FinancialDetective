@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.data.repository
+package ru.hse.financialdetective.domain.repository
 
 import ru.hse.financialdetective.data.model.TransactionsResponse
 

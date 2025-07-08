@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.screen.accounts
+package ru.hse.financialdetective.ui.feature.incomes.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,62 +15,62 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
 import ru.hse.financialdetective.ui.components.molecules.common.AddButton
-import ru.hse.financialdetective.ui.components.molecules.listitems.BalanceItem
-import ru.hse.financialdetective.ui.components.molecules.listitems.CurrencyItem
+import ru.hse.financialdetective.ui.components.molecules.listitems.TransactionsInfoItem
+import ru.hse.financialdetective.ui.components.organisms.IncomesList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
+import ru.hse.financialdetective.ui.feature.incomes.viewmodel.IncomesViewModel
 import ru.hse.financialdetective.ui.navigation.NavigationItem
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
-import ru.hse.financialdetective.ui.uimodel.model.AccountUiState
+import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
 
 @Composable
-fun AccountsScreen(
+fun IncomesScreen(
     navController: NavController,
-    viewModel: AccountsViewModel = hiltViewModel()
+    viewModel: IncomesViewModel
 ) {
+
     val uiState by viewModel.uiState.collectAsState()
 
     when (uiState) {
-        is AccountUiState.Loading -> {
+        is IncomesUiState.Loading -> {
             LoadingScreen()
         }
 
-        is AccountUiState.Error -> {
+        is IncomesUiState.Error -> {
             ErrorScreen()
         }
 
-        is AccountUiState.Success -> {
+        is IncomesUiState.Success -> {
             Box {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
                 ) {
                     ScreenHeader(
-                        title = (uiState as AccountUiState.Success).data.name,
+                        title = stringResource(R.string.incomes_today),
                         tailIcon = {
                             Icon(
-                                painter = painterResource(R.drawable.edit),
-                                contentDescription = stringResource(R.string.edit),
+                                painter = painterResource(R.drawable.history),
+                                contentDescription = "История",
                                 modifier = Modifier
                                     .size(48.dp)
-                                    .clickable { navController.navigate(NavigationItem.EditAccount.route) },
+                                    .clickable { navController.navigate(NavigationItem.IncomesHistory.route) },
                                 tint = GreyDark
                             )
                         },
                         color = GreenBright
                     )
-
-                    BalanceItem(balance = (uiState as AccountUiState.Success).data.balance)
-
-                    CurrencyItem(currency = (uiState as AccountUiState.Success).data.currency.symbol)
-
-                    //TODO график
+                    TransactionsInfoItem(
+                        amount = (uiState as IncomesUiState.Success).data.total,
+                        currency = (uiState as IncomesUiState.Success).data.currency.symbol
+                    )
+                    IncomesList(incomes = (uiState as IncomesUiState.Success).data.incomes)
                 }
                 AddButton(
                     onClick = { }, //TODO

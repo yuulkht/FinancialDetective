@@ -1,7 +1,7 @@
 package ru.hse.financialdetective.domain.usecase
 
 import jakarta.inject.Inject
-import ru.hse.financialdetective.data.repository.AccountRepository
+import ru.hse.financialdetective.domain.repository.AccountRepository
 import ru.hse.financialdetective.domain.model.Account
 
 /**

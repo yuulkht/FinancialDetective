@@ -1,8 +1,8 @@
-package ru.hse.financialdetective.ui.screen.incomes
+package ru.hse.financialdetective.ui.feature.incomes.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -12,10 +12,17 @@ import ru.hse.financialdetective.ui.uimodel.mapper.toUi
 import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
 import javax.inject.Inject
 
-@HiltViewModel
 class IncomesViewModel @Inject constructor(
     private val getIncomesTodayUseCase: GetIncomesTodayUseCase
 ) : ViewModel() {
+
+    class Factory @Inject constructor(
+        private val getIncomesTodayUseCase: GetIncomesTodayUseCase
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return IncomesViewModel(getIncomesTodayUseCase) as T
+        }
+    }
 
     private val _uiState = MutableStateFlow<IncomesUiState>(IncomesUiState.Loading)
     val uiState: StateFlow<IncomesUiState> = _uiState

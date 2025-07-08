@@ -6,8 +6,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,17 +14,15 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import ru.hse.coursework.financialdetective.BuildConfig
 import ru.hse.financialdetective.data.network.ApiService
 import ru.hse.financialdetective.data.network.JWTInterceptor
-import javax.inject.Singleton
 
 /**
  * Отвечает за di для походов в сеть
  */
 @Module
-@InstallIn(SingletonComponent::class)
 class NetworkModule {
 
     @Provides
-    @Singleton
+    @DataScope
     fun provideMapper(): ObjectMapper {
         return ObjectMapper().apply {
             registerModule(JavaTimeModule())
@@ -35,7 +31,7 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @DataScope
     fun provideOkHttp(): Call.Factory {
         return OkHttpClient.Builder()
             .addInterceptor(JWTInterceptor())
@@ -48,7 +44,7 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @DataScope
     fun provideRetrofit(okHttp: Lazy<Call.Factory>, mapper: ObjectMapper): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.SERVER_URL)
@@ -58,7 +54,7 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
+    @DataScope
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
