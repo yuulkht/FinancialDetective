@@ -10,5 +10,5 @@ data class ExpenseDetailedUiModel(
     val amount: String,
     val date: String,
     val comment: String,
-    val currency: String
+    val currency: CurrencyUiModel
 )

@@ -6,3 +6,7 @@ data class Category(
     val emoji: String,
     val isIncome: Boolean
 )
+
+data class Categories(
+    val items: List<Category>
+)

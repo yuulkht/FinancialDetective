@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.hse.financialdetective.data.repository.AccountRepository
 import ru.hse.financialdetective.data.repository.AccountRepositoryImpl
+import ru.hse.financialdetective.data.repository.CategoryRepository
+import ru.hse.financialdetective.data.repository.CategoryRepositoryImpl
 import ru.hse.financialdetective.data.repository.TransactionRepository
 import ru.hse.financialdetective.data.repository.TransactionRepositoryImpl
 import javax.inject.Singleton
@@ -25,4 +27,10 @@ abstract class RepositoryModule {
     abstract fun bindTransactionsRepository(
         impl: TransactionRepositoryImpl
     ): TransactionRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCategoriesRepository(
+        impl: CategoryRepositoryImpl
+    ): CategoryRepository
 }

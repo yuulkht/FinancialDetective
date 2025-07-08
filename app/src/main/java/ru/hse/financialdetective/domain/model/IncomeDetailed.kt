@@ -8,5 +8,5 @@ data class IncomeDetailed(
     val amount: Double,
     val date: Instant,
     val comment: String,
-    val currency: String
+    val currency: Currency
 )

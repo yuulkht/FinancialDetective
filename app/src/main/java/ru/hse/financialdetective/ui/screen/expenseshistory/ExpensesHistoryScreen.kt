@@ -21,9 +21,9 @@ import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
-import ru.hse.financialdetective.ui.components.molecules.AddButton
-import ru.hse.financialdetective.ui.components.molecules.DateSelector
-import ru.hse.financialdetective.ui.components.molecules.TransactionsInfoItem
+import ru.hse.financialdetective.ui.components.molecules.common.AddButton
+import ru.hse.financialdetective.ui.components.molecules.datepicker.DateSelector
+import ru.hse.financialdetective.ui.components.molecules.listitems.TransactionsInfoItem
 import ru.hse.financialdetective.ui.components.organisms.ExpensesHistoryList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.theme.GreenBright
@@ -92,7 +92,7 @@ fun ExpensesHistoryScreen(
                     )
                     TransactionsInfoItem(
                         amount = (uiState as ExpensesUiState.Success).data.total,
-                        currency = (uiState as ExpensesUiState.Success).data.currency,
+                        currency = (uiState as ExpensesUiState.Success).data.currency.symbol,
                         text = "Сумма"
                     )
                     ExpensesHistoryList(expenses = (uiState as ExpensesUiState.Success).data.expenses)

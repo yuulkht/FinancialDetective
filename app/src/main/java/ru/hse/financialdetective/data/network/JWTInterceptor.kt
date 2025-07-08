@@ -8,7 +8,7 @@ import ru.hse.coursework.financialdetective.BuildConfig
 /**
  * Отвечает за добавление JWT-токена авторизации при запросах
  */
-class JWTInterceptor() : Interceptor {
+class JWTInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()

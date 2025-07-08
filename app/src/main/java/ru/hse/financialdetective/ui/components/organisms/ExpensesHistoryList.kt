@@ -6,7 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.hse.financialdetective.ui.components.molecules.ListExpenseHistoryItem
+import ru.hse.financialdetective.ui.components.molecules.listitems.ListExpenseHistoryItem
+import ru.hse.financialdetective.ui.uimodel.model.CurrencyUiModel
 import ru.hse.financialdetective.ui.uimodel.model.ExpenseUiModel
 
 @Composable
@@ -20,7 +21,7 @@ fun ExpensesHistoryList(
                 emoji = expense.emoji,
                 category = expense.category,
                 amount = expense.amount,
-                currency = expense.currency,
+                currency = expense.currency.symbol,
                 date = expense.date
                 //TODO добавить возможность клика
             )
@@ -40,7 +41,7 @@ fun ExpensesHistoryListPreview() {
             amount = "25000",
             comment = "",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
         ExpenseUiModel(
             id = 2,
@@ -49,7 +50,7 @@ fun ExpensesHistoryListPreview() {
             comment = "",
             amount = "4500",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
         ExpenseUiModel(
             id = 3,
@@ -58,7 +59,7 @@ fun ExpensesHistoryListPreview() {
             amount = "3200",
             comment = "Энни",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
         ExpenseUiModel(
             id = 4,
@@ -67,7 +68,7 @@ fun ExpensesHistoryListPreview() {
             amount = "18000",
             comment = "",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
         ExpenseUiModel(
             id = 5,
@@ -76,7 +77,7 @@ fun ExpensesHistoryListPreview() {
             amount = "7000",
             comment = "",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
         ExpenseUiModel(
             id = 6,
@@ -85,7 +86,7 @@ fun ExpensesHistoryListPreview() {
             amount = "2500",
             comment = "",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
         ExpenseUiModel(
             id = 7,
@@ -94,7 +95,7 @@ fun ExpensesHistoryListPreview() {
             amount = "5200",
             comment = "",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         )
     )
 

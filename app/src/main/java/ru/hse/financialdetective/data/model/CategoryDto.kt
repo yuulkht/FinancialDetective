@@ -12,3 +12,7 @@ data class CategoryDto(
     @JsonProperty("isIncome")
     val isIncome: Boolean
 )
+
+data class CategoriesResponse(
+    val categories: List<CategoryDto>
+)

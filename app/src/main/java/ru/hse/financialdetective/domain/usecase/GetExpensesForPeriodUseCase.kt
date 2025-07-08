@@ -4,7 +4,8 @@ import jakarta.inject.Inject
 import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.data.repository.AccountRepository
 import ru.hse.financialdetective.data.repository.TransactionRepository
-import ru.hse.financialdetective.domain.model.ExpensesWithTotal
+import ru.hse.financialdetective.domain.mapper.todomain.toExpensesDomain
+import ru.hse.financialdetective.domain.model.Expenses
 import java.time.Instant
 import java.time.ZoneOffset
 
@@ -18,7 +19,7 @@ class GetExpensesForPeriodUseCase @Inject constructor(
     suspend operator fun invoke(
         dateFrom: Instant,
         dateTo: Instant
-    ): Result<ExpensesWithTotal> {
+    ): Result<Expenses> {
         val accountResponse = accountRepository.getFirstAccount()
         if (accountResponse.isFailure) {
             return Result.failure(
@@ -28,12 +29,29 @@ class GetExpensesForPeriodUseCase @Inject constructor(
 
         val accountId = accountResponse.getOrNull()?.id
             ?: return Result.failure(DataException(DataException.FAIL_TO_GET_ID))
+        val currency = accountResponse.getOrNull()?.currency
+            ?: return Result.failure(DataException(DataException.FAIL_TO_GET_CURRENCY))
 
-        return transactionRepository.getExpensesForPeriod(
+        val expensesResponse = transactionRepository.getExpensesForPeriod(
             accountId,
             dateFrom.atZone(ZoneOffset.UTC).toLocalDate().toString(),
             dateTo.atZone(ZoneOffset.UTC).toLocalDate().toString()
         )
+
+        if (expensesResponse.isFailure) {
+            return Result.failure(
+                expensesResponse.exceptionOrNull() ?: DataException(DataException.UNRECOGNIZED)
+            )
+        }
+
+        val expenses = expensesResponse.getOrNull() ?: return Result.failure(
+            DataException(
+                DataException.NO_TRANSACTIONS
+            )
+        )
+
+        return Result.success(expenses.toExpensesDomain(currency))
+
     }
 }
 

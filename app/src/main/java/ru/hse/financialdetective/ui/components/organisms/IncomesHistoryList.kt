@@ -6,7 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.hse.financialdetective.ui.components.molecules.ListIncomeHistoryItem
+import ru.hse.financialdetective.ui.components.molecules.listitems.ListIncomeHistoryItem
+import ru.hse.financialdetective.ui.uimodel.model.CurrencyUiModel
 import ru.hse.financialdetective.ui.uimodel.model.IncomeUiModel
 
 @Composable
@@ -19,7 +20,7 @@ fun IncomesHistoryList(
             ListIncomeHistoryItem(
                 name = income.category,
                 amount = income.amount,
-                currency = income.currency,
+                currency = income.currency.symbol,
                 date = income.date
                 //TODO добавить возможность клика
             )
@@ -38,7 +39,7 @@ fun IncomesHistoryListPreview() {
             amount = "100 000",
             comment = "",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
         IncomeUiModel(
             id = 3,
@@ -46,7 +47,7 @@ fun IncomesHistoryListPreview() {
             amount = "50 000",
             comment = "",
             date = "19:02, 20.06.2025",
-            currency = "₽"
+            currency = CurrencyUiModel.EUR
         ),
     )
 
