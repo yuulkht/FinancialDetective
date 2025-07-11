@@ -21,7 +21,8 @@ fun ListIncomeHistoryItem(
     amount: String,
     currency: String,
     date: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onIncomeClick: () -> Unit = {}
 ) {
     ListItem(
         content = {
@@ -42,6 +43,8 @@ fun ListIncomeHistoryItem(
             )
         },
         tailDate = date,
+        isClickable = true,
+        onClick = onIncomeClick,
         showDivider = true,
         modifier = modifier
     )

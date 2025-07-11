@@ -5,6 +5,7 @@ import ru.hse.financialdetective.data.model.CategoriesResponse
 import ru.hse.financialdetective.data.network.ApiService
 import ru.hse.financialdetective.domain.mapper.todomain.toDomain
 import ru.hse.financialdetective.domain.model.Categories
+import ru.hse.financialdetective.domain.repository.CategoryRepository
 import javax.inject.Inject
 
 /**
@@ -16,6 +17,35 @@ class CategoryRepositoryImpl @Inject constructor(
     override suspend fun getCategories(): Result<Categories> {
         return try {
             val response = api.getCategories()
+
+            when (response.code()) {
+                200 -> {
+                    val categories = response.body() ?: return Result.failure(
+                        DataException(
+                            DataException.NO_CATEGORIES
+                        )
+                    )
+                    Result.success(CategoriesResponse(categories).toDomain())
+                }
+
+                401 -> {
+                    Result.failure(DataException(DataException.UNAUTHORIZED))
+                }
+
+                else -> {
+                    Result.failure(DataException("${DataException.UNRECOGNIZED}: ${response.code()}"))
+                }
+            }
+        } catch (e: Exception) {
+            Result.failure(DataException(DataException.SERVER_ERROR))
+        }
+    }
+
+    override suspend fun getCategoriesByType(
+        isIncome: Boolean
+    ): Result<Categories> {
+        return try {
+            val response = api.getCategoriesByType(isIncome)
 
             when (response.code()) {
                 200 -> {

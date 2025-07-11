@@ -28,7 +28,8 @@ fun ListExpenseHistoryItem(
     date: String,
     currency: String,
     modifier: Modifier = Modifier,
-    comment: String = ""
+    comment: String = "",
+    onExpenseClick: () -> Unit = {}
 ) {
     ListItem(
         leadIcon = {
@@ -64,6 +65,8 @@ fun ListExpenseHistoryItem(
                 tint = GreyDark
             )
         },
+        isClickable = true,
+        onClick = onExpenseClick,
         showDivider = true,
         modifier = modifier
     )

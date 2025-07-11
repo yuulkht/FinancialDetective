@@ -1,7 +1,16 @@
 package ru.hse.financialdetective
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import ru.hse.financialdetective.di.AppComponent
+import ru.hse.financialdetective.di.DaggerAppComponent
 
-@HiltAndroidApp
-class FinancialDetectiveApp : Application()
+class FinancialDetectiveApp : Application() {
+    lateinit var appComponent: AppComponent
+        private set
+
+    override fun onCreate() {
+        super.onCreate()
+
+        appComponent = DaggerAppComponent.factory().create(this)
+    }
+}

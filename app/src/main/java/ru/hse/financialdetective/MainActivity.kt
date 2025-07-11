@@ -6,16 +6,57 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import dagger.hilt.android.AndroidEntryPoint
+import ru.hse.financialdetective.di.AppComponent
 import ru.hse.financialdetective.ui.navigation.MainScreen
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
 
+    private val appComponent: AppComponent
+        get() = (application as FinancialDetectiveApp).appComponent
+
+    private val accountsComponent by lazy {
+        appComponent.accountComponent().create()
+    }
+
+    private val expensesComponent by lazy {
+        appComponent.expensesComponent().create()
+    }
+
+    private val expenseCategoriesComponent by lazy {
+        appComponent.categoriesComponent().create()
+    }
+
+    private val editAccountComponent by lazy {
+        appComponent.editAccountComponent().create()
+    }
+
+    private val editTransactionComponent by lazy {
+        appComponent.editTransactionComponent().create()
+    }
+
+    private val createTransactionComponent by lazy {
+        appComponent.createTransactionComponent().create()
+    }
+
+    private val expensesHistoryComponent by lazy {
+        appComponent.expensesHistoryComponent().create()
+    }
+
+    private val incomesComponent by lazy {
+        appComponent.incomesComponent().create()
+    }
+
+    private val incomesHistoryComponent by lazy {
+        appComponent.incomesHistoryComponent().create()
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         installSplashScreen().apply {
             setKeepOnScreenCondition {
                 !viewModel.isReady.value
@@ -23,7 +64,17 @@ class MainActivity : ComponentActivity() {
         }
         enableEdgeToEdge()
         setContent {
-            MainScreen()
+            MainScreen(
+                accountsFactory = accountsComponent.viewModelFactory(),
+                expensesFactory = expensesComponent.viewModelFactory(),
+                incomesFactory = incomesComponent.viewModelFactory(),
+                categoriesFactory = expenseCategoriesComponent.viewModelFactory(),
+                incomesHistoryFactory = incomesHistoryComponent.viewModelFactory(),
+                expensesHistoryFactory = expensesHistoryComponent.viewModelFactory(),
+                editAccountFactory = editAccountComponent.viewModelFactory(),
+                editTransactionFactory = editTransactionComponent.viewModelFactory(),
+                createTransactionFactory = createTransactionComponent.viewModelFactory(),
+            )
         }
     }
 }

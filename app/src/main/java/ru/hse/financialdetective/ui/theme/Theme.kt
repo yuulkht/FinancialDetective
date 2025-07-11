@@ -22,7 +22,8 @@ private val LightColorScheme = lightColorScheme(
     surface = Surface,
     outlineVariant = GreyLight,
     surfaceContainerHigh = GreyDark,
-    onBackground = GreenLight
+    onBackground = GreenLight,
+    error = ErrorColor
 )
 
 @Composable

@@ -13,12 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import ru.hse.coursework.financialdetective.R
 
@@ -26,7 +28,9 @@ import ru.hse.coursework.financialdetective.R
 fun EditBalance(
     balance: String,
     onTextChanged: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    height: Dp = 70.dp,
+    color: Color = Color.Transparent
 ) {
     val focusManager = LocalFocusManager.current
 
@@ -69,7 +73,8 @@ fun EditBalance(
                 )
             )
         },
-        height = 70.dp,
+        height = height,
+        color = color,
         showDivider = true,
         modifier = modifier
     )

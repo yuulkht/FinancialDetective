@@ -27,7 +27,8 @@ fun ListExpenseItem(
     amount: String,
     currency: String,
     modifier: Modifier = Modifier,
-    comment: String = ""
+    comment: String = "",
+    onExpenseClick: () -> Unit = {}
 ) {
     ListItem(
         leadIcon = {
@@ -62,6 +63,8 @@ fun ListExpenseItem(
                 tint = GreyDark
             )
         },
+        isClickable = true,
+        onClick = onExpenseClick,
         showDivider = true,
         modifier = modifier
     )

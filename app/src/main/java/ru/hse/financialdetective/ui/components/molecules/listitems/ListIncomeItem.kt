@@ -20,7 +20,8 @@ fun ListIncomeItem(
     name: String,
     amount: String,
     currency: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onIncomeClick: () -> Unit = {}
 ) {
     ListItem(
         content = {
@@ -40,6 +41,8 @@ fun ListIncomeItem(
                 tint = GreyDark
             )
         },
+        isClickable = true,
+        onClick = onIncomeClick,
         showDivider = true,
         modifier = modifier
     )

@@ -1,8 +1,8 @@
 package ru.hse.financialdetective.domain.usecase
 
 import jakarta.inject.Inject
-import ru.hse.financialdetective.data.repository.CategoryRepository
 import ru.hse.financialdetective.domain.model.Categories
+import ru.hse.financialdetective.domain.repository.CategoryRepository
 
 /**
  * Отвечает за получение информации о категориях пользователя
