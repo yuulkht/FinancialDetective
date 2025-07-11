@@ -36,6 +36,10 @@ fun ExpensesScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+//    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+//        viewModel.loadTodayExpenses()
+//    }
+
     when (uiState) {
         is ExpensesUiState.Loading -> {
             LoadingScreen()
@@ -70,7 +74,12 @@ fun ExpensesScreen(
                         amount = (uiState as ExpensesUiState.Success).data.total,
                         currency = (uiState as ExpensesUiState.Success).data.currency.symbol
                     )
-                    ExpensesList(expenses = (uiState as ExpensesUiState.Success).data.expenses)
+                    ExpensesList(
+                        expenses = (uiState as ExpensesUiState.Success).data.expenses,
+                        onExpenseClick = {
+                            navController.navigate(NavigationItem.EditTransaction.route + "/${it.id}")
+                        }
+                    )
                 }
                 AddButton(
                     onClick = { }, //todo

@@ -37,6 +37,10 @@ fun IncomesScreen(
 
     val uiState by viewModel.uiState.collectAsState()
 
+//    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+//        viewModel.loadTodayIncomes()
+//    }
+
     when (uiState) {
         is IncomesUiState.Loading -> {
             LoadingScreen()
@@ -70,7 +74,12 @@ fun IncomesScreen(
                         amount = (uiState as IncomesUiState.Success).data.total,
                         currency = (uiState as IncomesUiState.Success).data.currency.symbol
                     )
-                    IncomesList(incomes = (uiState as IncomesUiState.Success).data.incomes)
+                    IncomesList(
+                        incomes = (uiState as IncomesUiState.Success).data.incomes,
+                        onIncomeClick = {
+                            navController.navigate(NavigationItem.EditTransaction.route + "/${it.id}")
+                        }
+                    )
                 }
                 AddButton(
                     onClick = { }, //TODO

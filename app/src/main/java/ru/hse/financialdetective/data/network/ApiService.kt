@@ -61,20 +61,20 @@ interface ApiService {
     ): Response<TransactionDtoRs>
 
     // Обновить транзакцию
-    @PUT("/api/v1/transactions{id}")
+    @PUT("/api/v1/transactions/{id}")
     suspend fun updateTransaction(
         @Path("id") id: Int,
         @Body transactionDtoRq: TransactionDtoRq
     ): Response<TransactionResponse>
 
     // Удалить транзакцию
-    @DELETE("/api/v1/transactions{id}")
+    @DELETE("/api/v1/transactions/{id}")
     suspend fun deleteTransaction(
         @Path("id") id: Int
     ): Response<String>
 
     // Получить транзакцию
-    @GET("/api/v1/transactions{id}")
+    @GET("/api/v1/transactions/{id}")
     suspend fun getTransaction(
         @Path("id") id: Int
     ): Response<TransactionResponse>

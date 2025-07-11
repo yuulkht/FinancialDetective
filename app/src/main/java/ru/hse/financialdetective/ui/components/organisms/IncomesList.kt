@@ -13,7 +13,8 @@ import ru.hse.financialdetective.ui.uimodel.model.IncomeUiModel
 @Composable
 fun IncomesList(
     incomes: List<IncomeUiModel>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onIncomeClick: (IncomeUiModel) -> Unit = {}
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(incomes) { income ->
@@ -21,7 +22,9 @@ fun IncomesList(
                 name = income.category,
                 amount = income.amount,
                 currency = income.currency.symbol,
-                //TODO добавить возможность клика
+                onIncomeClick = {
+                    onIncomeClick(income)
+                }
             )
 
         }

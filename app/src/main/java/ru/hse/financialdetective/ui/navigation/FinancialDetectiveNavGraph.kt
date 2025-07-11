@@ -11,6 +11,8 @@ import ru.hse.financialdetective.ui.feature.accounts.screen.AccountsScreen
 import ru.hse.financialdetective.ui.feature.accounts.viewmodel.AccountsViewModel
 import ru.hse.financialdetective.ui.feature.categories.screen.ExpenseCategoriesScreen
 import ru.hse.financialdetective.ui.feature.categories.viewmodel.ExpenseCategoriesViewModel
+import ru.hse.financialdetective.ui.feature.configuretransaction.screen.EditTransactionScreen
+import ru.hse.financialdetective.ui.feature.configuretransaction.viewmodel.EditTransactionViewModel
 import ru.hse.financialdetective.ui.feature.editaccountscreen.screen.EditAccountScreen
 import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
 import ru.hse.financialdetective.ui.feature.expenses.screen.ExpensesScreen
@@ -32,6 +34,7 @@ fun FinancialDetectiveNavGraph(
     incomesHistoryFactory: ViewModelProvider.Factory,
     expensesHistoryFactory: ViewModelProvider.Factory,
     editAccountFactory: ViewModelProvider.Factory,
+    editTransactionFactory: ViewModelProvider.Factory,
 ) {
     NavHost(
         navController = navController,
@@ -88,6 +91,19 @@ fun FinancialDetectiveNavGraph(
                 factory = editAccountFactory
             )
             EditAccountScreen(navController, viewModel)
+        }
+        composable(NavigationItem.EditTransaction.route + "/{transactionId}") { backStackEntry ->
+            val transactionId = backStackEntry.arguments?.getString("transactionId")
+            when (val id = transactionId?.toIntOrNull()) {
+                null -> {}
+                else -> {
+                    val viewModel: EditTransactionViewModel = viewModel(
+                        viewModelStoreOwner = backStackEntry,
+                        factory = editTransactionFactory
+                    )
+                    EditTransactionScreen(navController, viewModel, id)
+                }
+            }
         }
     }
 }

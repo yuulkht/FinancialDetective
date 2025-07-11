@@ -7,6 +7,7 @@ import ru.hse.financialdetective.data.di.NetworkModule
 import ru.hse.financialdetective.data.di.RepositoryModule
 import ru.hse.financialdetective.ui.feature.accounts.di.AccountsComponent
 import ru.hse.financialdetective.ui.feature.categories.di.ExpenseCategoriesComponent
+import ru.hse.financialdetective.ui.feature.configuretransaction.di.EditTransactionComponent
 import ru.hse.financialdetective.ui.feature.editaccountscreen.di.EditAccountComponent
 import ru.hse.financialdetective.ui.feature.expenses.di.ExpensesComponent
 import ru.hse.financialdetective.ui.feature.expenseshistory.di.ExpensesHistoryComponent
@@ -24,6 +25,7 @@ interface AppComponent {
     fun expensesHistoryComponent(): ExpensesHistoryComponent.Factory
     fun incomesComponent(): IncomesComponent.Factory
     fun incomesHistoryComponent(): IncomesHistoryComponent.Factory
+    fun editTransactionComponent(): EditTransactionComponent.Factory
 
 
     @Component.Factory

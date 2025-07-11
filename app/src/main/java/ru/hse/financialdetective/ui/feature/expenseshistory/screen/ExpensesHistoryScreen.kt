@@ -26,6 +26,7 @@ import ru.hse.financialdetective.ui.components.molecules.listitems.TransactionsI
 import ru.hse.financialdetective.ui.components.organisms.ExpensesHistoryList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.feature.expenseshistory.viewmodel.ExpensesHistoryViewModel
+import ru.hse.financialdetective.ui.navigation.NavigationItem
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.uimodel.model.ExpensesUiState
@@ -36,6 +37,10 @@ fun ExpensesHistoryScreen(
     viewModel: ExpensesHistoryViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
+//    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+//        viewModel.loadForPeriodExpenses()
+//    }
 
     when (uiState) {
         is ExpensesUiState.Loading -> {
@@ -95,7 +100,12 @@ fun ExpensesHistoryScreen(
                         currency = (uiState as ExpensesUiState.Success).data.currency.symbol,
                         text = "Сумма"
                     )
-                    ExpensesHistoryList(expenses = (uiState as ExpensesUiState.Success).data.expenses)
+                    ExpensesHistoryList(
+                        expenses = (uiState as ExpensesUiState.Success).data.expenses,
+                        onExpenseClick = {
+                            navController.navigate(NavigationItem.EditTransaction.route + "/${it.id}")
+                        }
+                    )
                 }
                 AddButton(
                     onClick = {}, //todo

@@ -31,7 +31,7 @@ class IncomesViewModel @Inject constructor(
         loadTodayIncomes()
     }
 
-    private fun loadTodayIncomes() {
+    fun loadTodayIncomes() {
         viewModelScope.launch {
             _uiState.value = IncomesUiState.Loading
 

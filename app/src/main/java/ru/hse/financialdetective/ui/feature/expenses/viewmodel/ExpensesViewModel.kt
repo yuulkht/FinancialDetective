@@ -31,7 +31,7 @@ class ExpensesViewModel @Inject constructor(
         loadTodayExpenses()
     }
 
-    private fun loadTodayExpenses() {
+    fun loadTodayExpenses() {
         viewModelScope.launch {
             _uiState.value = ExpensesUiState.Loading
 

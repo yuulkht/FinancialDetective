@@ -13,7 +13,8 @@ import ru.hse.financialdetective.ui.uimodel.model.ExpenseUiModel
 @Composable
 fun ExpensesHistoryList(
     expenses: List<ExpenseUiModel>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onExpenseClick: (ExpenseUiModel) -> Unit = {}
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(expenses) { expense ->
@@ -22,8 +23,10 @@ fun ExpensesHistoryList(
                 category = expense.category,
                 amount = expense.amount,
                 currency = expense.currency.symbol,
-                date = expense.date
-                //TODO добавить возможность клика
+                date = expense.date,
+                onExpenseClick = {
+                    onExpenseClick(expense)
+                }
             )
 
         }

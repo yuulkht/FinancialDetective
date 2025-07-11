@@ -26,6 +26,7 @@ import ru.hse.financialdetective.ui.components.molecules.listitems.TransactionsI
 import ru.hse.financialdetective.ui.components.organisms.IncomesHistoryList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.feature.incomeshistory.viewmodel.IncomesHistoryViewModel
+import ru.hse.financialdetective.ui.navigation.NavigationItem
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
@@ -36,6 +37,10 @@ fun IncomesHistoryScreen(
     viewModel: IncomesHistoryViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
+//    LifecycleEventEffect(Lifecycle.Event.) {
+//        viewModel.loadForPeriodIncomes()
+//    }
 
     when (uiState) {
         is IncomesUiState.Loading -> {
@@ -95,7 +100,12 @@ fun IncomesHistoryScreen(
                         currency = (uiState as IncomesUiState.Success).data.currency.symbol,
                         text = stringResource(R.string.sum)
                     )
-                    IncomesHistoryList(incomes = (uiState as IncomesUiState.Success).data.incomes)
+                    IncomesHistoryList(
+                        incomes = (uiState as IncomesUiState.Success).data.incomes,
+                        onIncomeClick = {
+                            navController.navigate(NavigationItem.EditTransaction.route + "/${it.id}")
+                        }
+                    )
                 }
                 AddButton(
                     onClick = {}, //TODO

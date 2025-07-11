@@ -31,7 +31,7 @@ class AccountsViewModel @Inject constructor(
         loadAccountInfo()
     }
 
-    private fun loadAccountInfo() {
+    fun loadAccountInfo() {
         viewModelScope.launch {
             _uiState.value = AccountUiState.Loading
 

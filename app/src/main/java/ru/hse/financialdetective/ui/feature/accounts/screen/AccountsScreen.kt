@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
@@ -36,6 +38,10 @@ fun AccountsScreen(
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
+
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
+        viewModel.loadAccountInfo()
+    }
 
     when (uiState) {
         is AccountUiState.Loading -> {

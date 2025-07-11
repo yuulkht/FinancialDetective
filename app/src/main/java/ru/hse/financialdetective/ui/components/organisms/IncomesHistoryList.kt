@@ -13,7 +13,8 @@ import ru.hse.financialdetective.ui.uimodel.model.IncomeUiModel
 @Composable
 fun IncomesHistoryList(
     incomes: List<IncomeUiModel>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onIncomeClick: (IncomeUiModel) -> Unit = {}
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(incomes) { income ->
@@ -21,8 +22,10 @@ fun IncomesHistoryList(
                 name = income.category,
                 amount = income.amount,
                 currency = income.currency.symbol,
-                date = income.date
-                //TODO добавить возможность клика
+                date = income.date,
+                onIncomeClick = {
+                    onIncomeClick(income)
+                }
             )
 
         }
