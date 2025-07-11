@@ -19,7 +19,9 @@ import ru.hse.financialdetective.ui.theme.GreenLight
 fun ListCategoryItem(
     emoji: String,
     title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+    isClickable: Boolean = false
 ) {
     ListItem(
         leadIcon = {
@@ -43,6 +45,8 @@ fun ListCategoryItem(
             )
         },
         showDivider = true,
+        onClick = onClick,
+        isClickable = isClickable,
         modifier = modifier
     )
 }

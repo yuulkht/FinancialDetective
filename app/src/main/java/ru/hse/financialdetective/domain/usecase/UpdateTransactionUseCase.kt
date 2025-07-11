@@ -3,8 +3,8 @@ package ru.hse.financialdetective.domain.usecase
 import jakarta.inject.Inject
 import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.domain.mapper.todto.toDto
-import ru.hse.financialdetective.domain.model.CreateTransactionRequest
 import ru.hse.financialdetective.domain.model.Transaction
+import ru.hse.financialdetective.domain.model.TransactionRequest
 import ru.hse.financialdetective.domain.repository.AccountRepository
 import ru.hse.financialdetective.domain.repository.TransactionRepository
 
@@ -17,7 +17,7 @@ class UpdateTransactionUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(
         transactionId: Int,
-        createTransactionRequest: CreateTransactionRequest
+        transactionRequest: TransactionRequest
     ): Result<Transaction> {
         val accountResponse = accountRepository.getFirstAccount()
         if (accountResponse.isFailure) {
@@ -31,7 +31,7 @@ class UpdateTransactionUseCase @Inject constructor(
 
         return transactionRepository.updateTransaction(
             transactionId,
-            createTransactionRequest.toDto(accountId)
+            transactionRequest.toDto(accountId)
         )
     }
 }

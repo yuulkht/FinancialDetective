@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.components.molecules.datepicker
+package ru.hse.financialdetective.ui.components.molecules.timepicker
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,32 +12,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.molecules.listitems.ListItem
-import ru.hse.financialdetective.ui.theme.GreenLight
-import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun DateSelector(
-    selectedDate: LocalDate,
-    onDateSelected: (LocalDate?) -> Unit,
+fun TimeSelector(
+    selectedTime: LocalTime,
+    onTimeSelected: (LocalTime?) -> Unit,
     modifier: Modifier = Modifier,
-    label: String = stringResource(R.string.start),
-    height: Dp = 56.dp,
-    color: Color = GreenLight
+    label: String = "Время",
+    height: Dp = 70.dp,
+    color: Color = Color.Transparent
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
     if (showDialog) {
-        LocalDatePickerDialog(
-            selectedDate = selectedDate,
-            onDateClick = {
-                onDateSelected(it)
+        CustomTimePickerAlertDialog(
+            selectedTime = selectedTime,
+            onTimeSelected = {
+                onTimeSelected(it)
                 showDialog = false
             },
             onDismiss = { showDialog = false }
@@ -53,7 +50,7 @@ fun DateSelector(
         },
         modifier = modifier,
         height = height,
-        tailString = selectedDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+        tailString = selectedTime.format(DateTimeFormatter.ofPattern("HH:mm")),
         isClickable = true,
         onClick = { showDialog = true },
         color = color
@@ -62,12 +59,12 @@ fun DateSelector(
 
 @Composable
 @Preview(showBackground = true, apiLevel = 34)
-fun DateSelectorPreview() {
+fun TimeSelectorPreview() {
     Column {
         Spacer(Modifier.height(200.dp))
-        DateSelector(
-            selectedDate = LocalDate.of(2025, 6, 21),
-            onDateSelected = {},
+        TimeSelector(
+            selectedTime = LocalTime.of(14, 30),
+            onTimeSelected = {},
         )
     }
 }

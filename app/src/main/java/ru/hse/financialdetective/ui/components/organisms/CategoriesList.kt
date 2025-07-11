@@ -12,14 +12,18 @@ import ru.hse.financialdetective.ui.uimodel.model.CategoryUiModel
 @Composable
 fun CategoriesList(
     categories: List<CategoryUiModel>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onCategoryClick: (CategoryUiModel) -> Unit = {}
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(categories) { category ->
             ListCategoryItem(
                 emoji = category.emoji,
                 title = category.name,
-                //TODO добавить возможность клика на категорию
+                isClickable = true,
+                onClick = {
+                    onCategoryClick(category)
+                }
             )
 
         }

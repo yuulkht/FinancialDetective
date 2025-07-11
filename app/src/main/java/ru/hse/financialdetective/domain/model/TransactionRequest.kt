@@ -2,7 +2,7 @@ package ru.hse.financialdetective.domain.model
 
 import java.time.Instant
 
-data class CreateTransactionRequest(
+data class TransactionRequest(
     val categoryId: Int,
     val amount: String,
     val transactionDate: Instant,

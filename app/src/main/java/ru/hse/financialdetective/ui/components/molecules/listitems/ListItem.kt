@@ -39,12 +39,12 @@ fun ListItem(
         modifier = modifier
             .fillMaxWidth()
             .background(color)
+            .clickable(enabled = isClickable, onClick = onClick),
     ) {
         Row(
             modifier = Modifier
                 .height(height)
-                .padding(horizontal = 16.dp, vertical = 8.dp)
-                .clickable(enabled = isClickable, onClick = onClick),
+                .padding(horizontal = 16.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             leadIcon()

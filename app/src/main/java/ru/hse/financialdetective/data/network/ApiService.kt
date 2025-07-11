@@ -73,4 +73,10 @@ interface ApiService {
         @Path("id") id: Int
     ): Response<String>
 
+    // Получить транзакцию
+    @GET("/api/v1/transactions{id}")
+    suspend fun getTransaction(
+        @Path("id") id: Int
+    ): Response<TransactionResponse>
+
 }
