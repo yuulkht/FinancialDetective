@@ -10,12 +10,20 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.hse.financialdetective.ui.theme.GreenBright
 
 @Composable
 fun MainScreen(
+    accountsFactory: ViewModelProvider.Factory,
+    expensesFactory: ViewModelProvider.Factory,
+    incomesFactory: ViewModelProvider.Factory,
+    categoriesFactory: ViewModelProvider.Factory,
+    incomesHistoryFactory: ViewModelProvider.Factory,
+    expensesHistoryFactory: ViewModelProvider.Factory,
+    editAccountFactory: ViewModelProvider.Factory,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -33,7 +41,16 @@ fun MainScreen(
                 .fillMaxSize()
                 .padding(bottom = innerPadding.calculateBottomPadding())
         ) {
-            FinancialDetectiveNavGraph(navController)
+            FinancialDetectiveNavGraph(
+                navController,
+                accountsFactory,
+                expensesFactory,
+                incomesFactory,
+                categoriesFactory,
+                incomesHistoryFactory,
+                expensesHistoryFactory,
+                editAccountFactory,
+            )
         }
     }
 }

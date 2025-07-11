@@ -7,9 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.hse.financialdetective.data.exception.DataException
-import ru.hse.financialdetective.domain.usecase.GetAccountInfoUseCase
 import ru.hse.financialdetective.domain.usecase.GetExpensesTodayUseCase
-import ru.hse.financialdetective.ui.feature.accounts.viewmodel.AccountsViewModel
 import ru.hse.financialdetective.ui.uimodel.mapper.toUi
 import ru.hse.financialdetective.ui.uimodel.model.ExpensesUiState
 import javax.inject.Inject

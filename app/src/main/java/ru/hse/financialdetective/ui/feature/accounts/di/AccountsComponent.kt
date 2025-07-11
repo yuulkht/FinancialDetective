@@ -2,11 +2,8 @@ package ru.hse.financialdetective.ui.feature.accounts.di
 
 import dagger.Subcomponent
 import ru.hse.financialdetective.ui.feature.accounts.viewmodel.AccountsViewModel
-import ru.hse.financialdetective.ui.feature.editaccountscreen.di.EditAccountComponent
-import ru.hse.financialdetective.ui.feature.editaccountscreen.di.EditAccountScope
-import ru.hse.financialdetective.ui.feature.incomes.di.IncomesModule
 
-@EditAccountScope
+@AccountsScope
 @Subcomponent(modules = [AccountsModule::class])
 interface AccountsComponent {
     fun viewModelFactory(): AccountsViewModel.Factory

@@ -5,8 +5,6 @@ import dagger.Provides
 import ru.hse.financialdetective.domain.repository.AccountRepository
 import ru.hse.financialdetective.domain.usecase.GetAccountInfoUseCase
 import ru.hse.financialdetective.domain.usecase.UpdateAccountUseCase
-import ru.hse.financialdetective.ui.feature.accounts.viewmodel.AccountsViewModel
-import ru.hse.financialdetective.ui.feature.editaccountscreen.di.EditAccountScope
 import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
 
 @Module

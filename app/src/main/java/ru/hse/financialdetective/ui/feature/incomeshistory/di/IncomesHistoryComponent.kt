@@ -2,7 +2,6 @@ package ru.hse.financialdetective.ui.feature.incomeshistory.di
 
 import dagger.Subcomponent
 import ru.hse.financialdetective.ui.feature.expenseshistory.di.IncomesHistoryScope
-import ru.hse.financialdetective.ui.feature.incomes.di.IncomesModule
 import ru.hse.financialdetective.ui.feature.incomeshistory.viewmodel.IncomesHistoryViewModel
 
 @IncomesHistoryScope

@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.feature.categories.di
+package ru.hse.financialdetective.ui.feature.accounts.di
 
 import javax.inject.Scope
 

@@ -9,9 +9,7 @@ import kotlinx.coroutines.launch
 import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.domain.model.Categories
 import ru.hse.financialdetective.domain.usecase.FilterCategoriesUseCase
-import ru.hse.financialdetective.domain.usecase.GetAccountInfoUseCase
 import ru.hse.financialdetective.domain.usecase.GetCategoriesUseCase
-import ru.hse.financialdetective.ui.feature.accounts.viewmodel.AccountsViewModel
 import ru.hse.financialdetective.ui.uimodel.mapper.toUi
 import ru.hse.financialdetective.ui.uimodel.model.CategoriesUiState
 import javax.inject.Inject

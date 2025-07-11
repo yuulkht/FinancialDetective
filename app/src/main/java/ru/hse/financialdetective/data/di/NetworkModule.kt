@@ -14,6 +14,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import ru.hse.coursework.financialdetective.BuildConfig
 import ru.hse.financialdetective.data.network.ApiService
 import ru.hse.financialdetective.data.network.JWTInterceptor
+import ru.hse.financialdetective.di.AppScope
 
 /**
  * Отвечает за di для походов в сеть
@@ -22,7 +23,7 @@ import ru.hse.financialdetective.data.network.JWTInterceptor
 class NetworkModule {
 
     @Provides
-    @DataScope
+    @AppScope
     fun provideMapper(): ObjectMapper {
         return ObjectMapper().apply {
             registerModule(JavaTimeModule())
@@ -31,7 +32,7 @@ class NetworkModule {
     }
 
     @Provides
-    @DataScope
+    @AppScope
     fun provideOkHttp(): Call.Factory {
         return OkHttpClient.Builder()
             .addInterceptor(JWTInterceptor())
@@ -44,7 +45,7 @@ class NetworkModule {
     }
 
     @Provides
-    @DataScope
+    @AppScope
     fun provideRetrofit(okHttp: Lazy<Call.Factory>, mapper: ObjectMapper): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.SERVER_URL)
@@ -54,7 +55,7 @@ class NetworkModule {
     }
 
     @Provides
-    @DataScope
+    @AppScope
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }

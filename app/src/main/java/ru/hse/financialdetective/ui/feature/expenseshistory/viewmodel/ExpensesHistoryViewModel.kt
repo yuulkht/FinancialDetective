@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.domain.usecase.GetExpensesForPeriodUseCase
-import ru.hse.financialdetective.domain.usecase.GetIncomesTodayUseCase
-import ru.hse.financialdetective.ui.feature.incomes.viewmodel.IncomesViewModel
 import ru.hse.financialdetective.ui.uimodel.mapper.toUi
 import ru.hse.financialdetective.ui.uimodel.model.ExpensesUiState
 import java.time.LocalDate

@@ -1,10 +1,10 @@
 package ru.hse.financialdetective.di
 
+import android.app.Application
+import dagger.BindsInstance
 import dagger.Component
-import ru.hse.financialdetective.data.di.DataComponent
-import ru.hse.financialdetective.data.network.ApiService
-import ru.hse.financialdetective.domain.repository.AccountRepository
-import ru.hse.financialdetective.domain.repository.TransactionRepository
+import ru.hse.financialdetective.data.di.NetworkModule
+import ru.hse.financialdetective.data.di.RepositoryModule
 import ru.hse.financialdetective.ui.feature.accounts.di.AccountsComponent
 import ru.hse.financialdetective.ui.feature.categories.di.ExpenseCategoriesComponent
 import ru.hse.financialdetective.ui.feature.editaccountscreen.di.EditAccountComponent
@@ -14,21 +14,20 @@ import ru.hse.financialdetective.ui.feature.incomes.di.IncomesComponent
 import ru.hse.financialdetective.ui.feature.incomeshistory.di.IncomesHistoryComponent
 
 @AppScope
-@Component
+@Component(modules = [NetworkModule::class, RepositoryModule::class])
 interface AppComponent {
 
-    fun dataComponent(): DataComponent.Factory
-    fun accountComponent(): AccountsComponent
-    fun categoriesComponent(): ExpenseCategoriesComponent
-    fun editAccountComponent(): EditAccountComponent
-    fun expensesComponent(): ExpensesComponent
-    fun expensesHistoryComponent(): ExpensesHistoryComponent
-    fun IncomesComponent(): IncomesComponent
-    fun IncomesHistoryComponent(): IncomesHistoryComponent
+    fun accountComponent(): AccountsComponent.Factory
+    fun categoriesComponent(): ExpenseCategoriesComponent.Factory
+    fun editAccountComponent(): EditAccountComponent.Factory
+    fun expensesComponent(): ExpensesComponent.Factory
+    fun expensesHistoryComponent(): ExpensesHistoryComponent.Factory
+    fun incomesComponent(): IncomesComponent.Factory
+    fun incomesHistoryComponent(): IncomesHistoryComponent.Factory
 
 
     @Component.Factory
     interface Factory {
-        fun create(): AppComponent
+        fun create(@BindsInstance application: Application): AppComponent
     }
 }

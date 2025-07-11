@@ -14,8 +14,8 @@ class ExpensesHistoryModule {
     @ExpensesHistoryScope
     fun provideGetExpensesForPeriodUseCase(
         accountRepository: AccountRepository,
-        transactionRepository: TransactionRepository): GetExpensesForPeriodUseCase
-    {
+        transactionRepository: TransactionRepository
+    ): GetExpensesForPeriodUseCase {
         return GetExpensesForPeriodUseCase(accountRepository, transactionRepository)
     }
 
