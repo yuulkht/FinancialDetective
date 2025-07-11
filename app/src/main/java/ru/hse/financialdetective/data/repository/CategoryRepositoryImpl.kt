@@ -40,4 +40,58 @@ class CategoryRepositoryImpl @Inject constructor(
             Result.failure(DataException(DataException.SERVER_ERROR))
         }
     }
+
+    override suspend fun getIncomeCategories(): Result<Categories> {
+        return try {
+            val response = api.getCategoriesByType(true)
+
+            when (response.code()) {
+                200 -> {
+                    val categories = response.body() ?: return Result.failure(
+                        DataException(
+                            DataException.NO_CATEGORIES
+                        )
+                    )
+                    Result.success(CategoriesResponse(categories).toDomain())
+                }
+
+                401 -> {
+                    Result.failure(DataException(DataException.UNAUTHORIZED))
+                }
+
+                else -> {
+                    Result.failure(DataException("${DataException.UNRECOGNIZED}: ${response.code()}"))
+                }
+            }
+        } catch (e: Exception) {
+            Result.failure(DataException(DataException.SERVER_ERROR))
+        }
+    }
+
+    override suspend fun getExpenseCategories(): Result<Categories> {
+        return try {
+            val response = api.getCategoriesByType(false)
+
+            when (response.code()) {
+                200 -> {
+                    val categories = response.body() ?: return Result.failure(
+                        DataException(
+                            DataException.NO_CATEGORIES
+                        )
+                    )
+                    Result.success(CategoriesResponse(categories).toDomain())
+                }
+
+                401 -> {
+                    Result.failure(DataException(DataException.UNAUTHORIZED))
+                }
+
+                else -> {
+                    Result.failure(DataException("${DataException.UNRECOGNIZED}: ${response.code()}"))
+                }
+            }
+        } catch (e: Exception) {
+            Result.failure(DataException(DataException.SERVER_ERROR))
+        }
+    }
 }
