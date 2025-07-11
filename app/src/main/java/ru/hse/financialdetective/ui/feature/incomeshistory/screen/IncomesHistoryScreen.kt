@@ -4,14 +4,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -20,7 +19,6 @@ import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
-import ru.hse.financialdetective.ui.components.molecules.common.AddButton
 import ru.hse.financialdetective.ui.components.molecules.datepicker.DateSelector
 import ru.hse.financialdetective.ui.components.molecules.listitems.TransactionsInfoItem
 import ru.hse.financialdetective.ui.components.organisms.IncomesHistoryList
@@ -38,9 +36,9 @@ fun IncomesHistoryScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-//    LifecycleEventEffect(Lifecycle.Event.) {
-//        viewModel.loadForPeriodIncomes()
-//    }
+    LaunchedEffect(Unit) {
+        viewModel.loadForPeriodIncomes()
+    }
 
     when (uiState) {
         is IncomesUiState.Loading -> {
@@ -107,12 +105,6 @@ fun IncomesHistoryScreen(
                         }
                     )
                 }
-                AddButton(
-                    onClick = {}, //TODO
-                    modifier = Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(16.dp)
-                )
             }
         }
     }

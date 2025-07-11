@@ -25,6 +25,7 @@ fun MainScreen(
     expensesHistoryFactory: ViewModelProvider.Factory,
     editAccountFactory: ViewModelProvider.Factory,
     editTransactionFactory: ViewModelProvider.Factory,
+    createTransactionFactory: ViewModelProvider.Factory,
     navController: NavHostController = rememberNavController()
 ) {
 
@@ -51,8 +52,8 @@ fun MainScreen(
                 incomesHistoryFactory,
                 expensesHistoryFactory,
                 editAccountFactory,
-                editTransactionFactory
-
+                editTransactionFactory,
+                createTransactionFactory
             )
         }
     }

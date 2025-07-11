@@ -1,15 +1,10 @@
-package ru.hse.financialdetective.ui.feature.configuretransaction.screen
+package ru.hse.financialdetective.ui.feature.createtransaction.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -27,27 +22,26 @@ import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
-import ru.hse.financialdetective.ui.components.molecules.common.DeleteButton
 import ru.hse.financialdetective.ui.components.organisms.ConfigureTransactionInfoList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
-import ru.hse.financialdetective.ui.feature.configuretransaction.viewmodel.EditTransactionViewModel
+import ru.hse.financialdetective.ui.feature.createtransaction.viewmodel.CreateTransactionViewModel
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.uimodel.mapper.parseLocalDate
 import ru.hse.financialdetective.ui.uimodel.mapper.parseLocalTime
-import ru.hse.financialdetective.ui.uimodel.model.EditTransactionEvent
-import ru.hse.financialdetective.ui.uimodel.model.TransactionUiState
+import ru.hse.financialdetective.ui.uimodel.model.CreateTransactionEvent
+import ru.hse.financialdetective.ui.uimodel.model.CreateTransactionUiState
 
 @Composable
-fun EditTransactionScreen(
+fun CreateTransactionScreen(
     navController: NavController,
-    viewModel: EditTransactionViewModel,
-    transactionId: Int
+    viewModel: CreateTransactionViewModel,
+    isIncome: Boolean
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LifecycleEventEffect(Lifecycle.Event.ON_START) {
-        viewModel.loadInfo(transactionId)
+        viewModel.loadInfo(isIncome)
     }
 
     val context = LocalContext.current
@@ -56,13 +50,13 @@ fun EditTransactionScreen(
 
     LaunchedEffect(event) {
         when (event) {
-            is EditTransactionEvent.SuccessSave -> {
-                Toast.makeText(context, "Изменения сохранены", Toast.LENGTH_LONG).show()
+            is CreateTransactionEvent.SuccessSave -> {
+                Toast.makeText(context, "Транзакция сохранена", Toast.LENGTH_LONG).show()
                 navController.popBackStack()
             }
 
-            is EditTransactionEvent.Error -> {
-                val message = (event as EditTransactionEvent.Error).message
+            is CreateTransactionEvent.Error -> {
+                val message = (event as CreateTransactionEvent.Error).message
                 Toast.makeText(
                     context,
                     message,
@@ -79,17 +73,17 @@ fun EditTransactionScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         when (uiState) {
-            is TransactionUiState.Loading -> {
+            is CreateTransactionUiState.Loading -> {
                 LoadingScreen()
             }
 
-            is TransactionUiState.Error -> {
+            is CreateTransactionUiState.Error -> {
                 ErrorScreen()
             }
 
-            is TransactionUiState.Success -> {
-                EditTransactionContent(
-                    uiState = uiState as TransactionUiState.Success,
+            is CreateTransactionUiState.Success -> {
+                CreateTransactionContent(
+                    uiState = uiState as CreateTransactionUiState.Success,
                     navController = navController,
                     viewModel = viewModel,
                 )
@@ -100,10 +94,10 @@ fun EditTransactionScreen(
 
 
 @Composable
-fun EditTransactionContent(
-    uiState: TransactionUiState.Success,
+fun CreateTransactionContent(
+    uiState: CreateTransactionUiState.Success,
     navController: NavController,
-    viewModel: EditTransactionViewModel,
+    viewModel: CreateTransactionViewModel,
 ) {
     val data = uiState.data
 
@@ -151,17 +145,6 @@ fun EditTransactionContent(
                 comment = data.comment,
                 onTextChanged = viewModel::onCommentChanged,
             )
-
-            Spacer(Modifier.height(20.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                DeleteButton(
-                    onClick = { viewModel.deleteTransaction() }
-                )
-            }
 
         }
     }

@@ -11,10 +11,12 @@ import ru.hse.financialdetective.ui.feature.accounts.screen.AccountsScreen
 import ru.hse.financialdetective.ui.feature.accounts.viewmodel.AccountsViewModel
 import ru.hse.financialdetective.ui.feature.categories.screen.ExpenseCategoriesScreen
 import ru.hse.financialdetective.ui.feature.categories.viewmodel.ExpenseCategoriesViewModel
-import ru.hse.financialdetective.ui.feature.configuretransaction.screen.EditTransactionScreen
-import ru.hse.financialdetective.ui.feature.configuretransaction.viewmodel.EditTransactionViewModel
+import ru.hse.financialdetective.ui.feature.createtransaction.screen.CreateTransactionScreen
+import ru.hse.financialdetective.ui.feature.createtransaction.viewmodel.CreateTransactionViewModel
 import ru.hse.financialdetective.ui.feature.editaccountscreen.screen.EditAccountScreen
 import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
+import ru.hse.financialdetective.ui.feature.edittransaction.screen.EditTransactionScreen
+import ru.hse.financialdetective.ui.feature.edittransaction.viewmodel.EditTransactionViewModel
 import ru.hse.financialdetective.ui.feature.expenses.screen.ExpensesScreen
 import ru.hse.financialdetective.ui.feature.expenses.viewmodel.ExpensesViewModel
 import ru.hse.financialdetective.ui.feature.expenseshistory.screen.ExpensesHistoryScreen
@@ -35,6 +37,7 @@ fun FinancialDetectiveNavGraph(
     expensesHistoryFactory: ViewModelProvider.Factory,
     editAccountFactory: ViewModelProvider.Factory,
     editTransactionFactory: ViewModelProvider.Factory,
+    createTransactionFactory: ViewModelProvider.Factory,
 ) {
     NavHost(
         navController = navController,
@@ -102,6 +105,19 @@ fun FinancialDetectiveNavGraph(
                         factory = editTransactionFactory
                     )
                     EditTransactionScreen(navController, viewModel, id)
+                }
+            }
+        }
+        composable(NavigationItem.CreateTransaction.route + "/{isIncome}") { backStackEntry ->
+            val isIncome = backStackEntry.arguments?.getString("isIncome")
+            when (val income = isIncome?.toBoolean()) {
+                null -> {}
+                else -> {
+                    val viewModel: CreateTransactionViewModel = viewModel(
+                        viewModelStoreOwner = backStackEntry,
+                        factory = createTransactionFactory
+                    )
+                    CreateTransactionScreen(navController, viewModel, income)
                 }
             }
         }

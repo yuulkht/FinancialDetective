@@ -1,15 +1,19 @@
-package ru.hse.financialdetective.ui.feature.editaccountscreen.screen
+package ru.hse.financialdetective.ui.feature.edittransaction.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -17,29 +21,34 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.navigation.NavController
 import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.error.ErrorScreen
 import ru.hse.financialdetective.ui.components.loading.LoadingScreen
-import ru.hse.financialdetective.ui.components.molecules.listitems.CurrencyItem
-import ru.hse.financialdetective.ui.components.molecules.listitems.EditAccountName
-import ru.hse.financialdetective.ui.components.molecules.listitems.EditBalance
-import ru.hse.financialdetective.ui.components.organisms.CurrencyChangeBottomSheet
+import ru.hse.financialdetective.ui.components.molecules.common.DeleteButton
+import ru.hse.financialdetective.ui.components.organisms.ConfigureTransactionInfoList
 import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
-import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
+import ru.hse.financialdetective.ui.feature.edittransaction.viewmodel.EditTransactionViewModel
 import ru.hse.financialdetective.ui.theme.GreenBright
-import ru.hse.financialdetective.ui.theme.GreenLight
 import ru.hse.financialdetective.ui.theme.GreyDark
-import ru.hse.financialdetective.ui.uimodel.model.AccountUiState
-import ru.hse.financialdetective.ui.uimodel.model.EditAccountEvent
+import ru.hse.financialdetective.ui.uimodel.mapper.parseLocalDate
+import ru.hse.financialdetective.ui.uimodel.mapper.parseLocalTime
+import ru.hse.financialdetective.ui.uimodel.model.EditTransactionEvent
+import ru.hse.financialdetective.ui.uimodel.model.TransactionUiState
 
 @Composable
-fun EditAccountScreen(
+fun EditTransactionScreen(
     navController: NavController,
-    viewModel: EditAccountViewModel
+    viewModel: EditTransactionViewModel,
+    transactionId: Int
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    val showCurrencyChoiceSheet = viewModel.showCurrencyChoiceSheet
+
+    LifecycleEventEffect(Lifecycle.Event.ON_START) {
+        viewModel.loadInfo(transactionId)
+    }
 
     val context = LocalContext.current
 
@@ -47,13 +56,13 @@ fun EditAccountScreen(
 
     LaunchedEffect(event) {
         when (event) {
-            is EditAccountEvent.SuccessSave -> {
+            is EditTransactionEvent.SuccessSave -> {
                 Toast.makeText(context, "Изменения сохранены", Toast.LENGTH_LONG).show()
                 navController.popBackStack()
             }
 
-            is EditAccountEvent.Error -> {
-                val message = (event as EditAccountEvent.Error).message
+            is EditTransactionEvent.Error -> {
+                val message = (event as EditTransactionEvent.Error).message
                 Toast.makeText(
                     context,
                     message,
@@ -70,20 +79,19 @@ fun EditAccountScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         when (uiState) {
-            is AccountUiState.Loading -> {
+            is TransactionUiState.Loading -> {
                 LoadingScreen()
             }
 
-            is AccountUiState.Error -> {
+            is TransactionUiState.Error -> {
                 ErrorScreen()
             }
 
-            is AccountUiState.Success -> {
-                EditAccountContent(
-                    uiState = uiState as AccountUiState.Success,
+            is TransactionUiState.Success -> {
+                EditTransactionContent(
+                    uiState = uiState as TransactionUiState.Success,
                     navController = navController,
                     viewModel = viewModel,
-                    showCurrencyChoiceSheet = showCurrencyChoiceSheet
                 )
             }
         }
@@ -92,11 +100,10 @@ fun EditAccountScreen(
 
 
 @Composable
-fun EditAccountContent(
-    uiState: AccountUiState.Success,
+fun EditTransactionContent(
+    uiState: TransactionUiState.Success,
     navController: NavController,
-    viewModel: EditAccountViewModel,
-    showCurrencyChoiceSheet: MutableState<Boolean>
+    viewModel: EditTransactionViewModel,
 ) {
     val data = uiState.data
 
@@ -105,7 +112,7 @@ fun EditAccountContent(
             modifier = Modifier.fillMaxSize()
         ) {
             ScreenHeader(
-                title = "Мой счёт",
+                title = if (viewModel.isIncome.value) "Мои доходы" else "Мои расходы",
                 leadingIcon = {
                     Icon(
                         painter = painterResource(R.drawable.close),
@@ -129,33 +136,34 @@ fun EditAccountContent(
                 color = GreenBright
             )
 
-            EditAccountName(
-                accountTitle = data.name,
-                onTextChanged = viewModel::onTitleChanged,
-                height = 56.dp,
-                color = GreenLight
+            ConfigureTransactionInfoList(
+                accountTitle = data.account.name,
+                selectedCategory = data.category,
+                onCategorySelected = viewModel::onCategoryChanged,
+                categoriesToChoose = data.categories,
+                sum = data.amount,
+                onSumChanged = viewModel::onAmountChanged,
+                currency = data.account.currency,
+                selectedDate = parseLocalDate(data.date),
+                onDateSelected = viewModel::onDateChanged,
+                selectedTime = parseLocalTime(data.time),
+                onTimeSelected = viewModel::onTimeChanged,
+                comment = data.comment,
+                onTextChanged = viewModel::onCommentChanged,
             )
 
-            EditBalance(
-                balance = data.balance,
-                onTextChanged = viewModel::onBalanceChanged,
-                height = 56.dp,
-                color = GreenLight
-            )
+            Spacer(Modifier.height(20.dp))
 
-            CurrencyItem(
-                currency = data.currency.symbol,
-                isClickable = true,
-                onClick = { showCurrencyChoiceSheet.value = true }
-            )
-        }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                DeleteButton(
+                    label = if (viewModel.isIncome.value) "Удалить доход" else "Удалить расход",
+                    onClick = { viewModel.deleteTransaction() }
+                )
+            }
 
-        if (showCurrencyChoiceSheet.value) {
-            CurrencyChangeBottomSheet(
-                currentCurrency = data.currency,
-                onCurrencySelected = viewModel::onCurrencyChanged,
-                onDismissRequest = { showCurrencyChoiceSheet.value = false }
-            )
         }
     }
 }

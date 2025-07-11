@@ -151,7 +151,7 @@ class TransactionRepositoryImpl @Inject constructor(
             val response = api.createTransaction(transactionDto)
 
             when (response.code()) {
-                200 -> {
+                201 -> {
                     val transaction = response.body() ?: return Result.failure(
                         DataException(
                             DataException.INCORRECT_TRANSACTION

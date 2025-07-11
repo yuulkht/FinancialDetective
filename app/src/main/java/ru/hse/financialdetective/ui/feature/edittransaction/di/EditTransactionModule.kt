@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.feature.configuretransaction.di
+package ru.hse.financialdetective.ui.feature.edittransaction.di
 
 import dagger.Module
 import dagger.Provides
@@ -9,19 +9,10 @@ import ru.hse.financialdetective.domain.usecase.DeleteTransactionUseCase
 import ru.hse.financialdetective.domain.usecase.GetCategoriesByTypeUseCase
 import ru.hse.financialdetective.domain.usecase.GetTransactionByIdUseCase
 import ru.hse.financialdetective.domain.usecase.UpdateTransactionUseCase
-import ru.hse.financialdetective.ui.feature.configuretransaction.viewmodel.EditTransactionViewModel
+import ru.hse.financialdetective.ui.feature.edittransaction.viewmodel.EditTransactionViewModel
 
 @Module
 class EditTransactionModule {
-
-//    @Provides
-//    @EditTransactionScope
-//    fun provideCreateTransactionUseCase(
-//        transactionRepository: TransactionRepository,
-//        accountRepository: AccountRepository
-//    ): CreateTransactionUseCase {
-//        return CreateTransactionUseCase(transactionRepository, accountRepository)
-//    }
 
     @Provides
     @EditTransactionScope

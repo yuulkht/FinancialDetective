@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.feature.configuretransaction.viewmodel
+package ru.hse.financialdetective.ui.feature.edittransaction.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -138,26 +138,32 @@ class EditTransactionViewModel @Inject constructor(
             val data = currentState.data
 
             viewModelScope.launch {
-                val result = updateTransactionUseCase(
-                    transactionId = data.id,
-                    transactionRequest = TransactionRequest(
-                        categoryId = data.category.id,
-                        amount = data.amount,
-                        transactionDate = stringsToInstant(data.date, data.time),
-                        comment = data.comment
+                if (data.amount == "") {
+                    _event.value = EditTransactionEvent.Error(
+                        ("Вы заполнили не все поля")
                     )
-                )
-
-                _event.value = result.fold(
-                    onSuccess = {
-                        EditTransactionEvent.SuccessSave
-                    },
-                    onFailure = {
-                        EditTransactionEvent.Error(
-                            ("Не удалось сохранить изменения. " + it.message)
+                } else {
+                    val result = updateTransactionUseCase(
+                        transactionId = data.id,
+                        transactionRequest = TransactionRequest(
+                            categoryId = data.category.id,
+                            amount = data.amount,
+                            transactionDate = stringsToInstant(data.date, data.time),
+                            comment = data.comment
                         )
-                    }
-                )
+                    )
+
+                    _event.value = result.fold(
+                        onSuccess = {
+                            EditTransactionEvent.SuccessSave
+                        },
+                        onFailure = {
+                            EditTransactionEvent.Error(
+                                ("Не удалось сохранить изменения. " + it.message)
+                            )
+                        }
+                    )
+                }
             }
         }
     }

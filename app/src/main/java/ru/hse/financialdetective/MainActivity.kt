@@ -36,6 +36,10 @@ class MainActivity : ComponentActivity() {
         appComponent.editTransactionComponent().create()
     }
 
+    private val createTransactionComponent by lazy {
+        appComponent.createTransactionComponent().create()
+    }
+
     private val expensesHistoryComponent by lazy {
         appComponent.expensesHistoryComponent().create()
     }
@@ -69,6 +73,7 @@ class MainActivity : ComponentActivity() {
                 expensesHistoryFactory = expensesHistoryComponent.viewModelFactory(),
                 editAccountFactory = editAccountComponent.viewModelFactory(),
                 editTransactionFactory = editTransactionComponent.viewModelFactory(),
+                createTransactionFactory = createTransactionComponent.viewModelFactory(),
             )
         }
     }

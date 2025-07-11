@@ -1,7 +1,7 @@
-package ru.hse.financialdetective.ui.feature.configuretransaction.di
+package ru.hse.financialdetective.ui.feature.edittransaction.di
 
 import dagger.Subcomponent
-import ru.hse.financialdetective.ui.feature.configuretransaction.viewmodel.EditTransactionViewModel
+import ru.hse.financialdetective.ui.feature.edittransaction.viewmodel.EditTransactionViewModel
 
 @EditTransactionScope
 @Subcomponent(modules = [EditTransactionModule::class])

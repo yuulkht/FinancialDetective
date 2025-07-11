@@ -10,6 +10,7 @@ sealed class NavigationItem(val route: String, val icon: Int, val title: String)
     data object Incomes : NavigationItem("incomes", R.drawable.incomes, "Доходы")
 
     data object EditTransaction : NavigationItem("edit_transaction", 0, "Изменить транзакцию")
+    data object CreateTransaction : NavigationItem("create_transaction", 0, "Создать транзакцию")
 
 
     data object ExpenseCategories :

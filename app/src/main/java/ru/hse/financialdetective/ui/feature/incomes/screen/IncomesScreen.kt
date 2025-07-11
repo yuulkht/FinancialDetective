@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,9 +38,9 @@ fun IncomesScreen(
 
     val uiState by viewModel.uiState.collectAsState()
 
-//    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) {
-//        viewModel.loadTodayIncomes()
-//    }
+    LaunchedEffect(Unit) {
+        viewModel.loadTodayIncomes()
+    }
 
     when (uiState) {
         is IncomesUiState.Loading -> {
@@ -82,7 +83,9 @@ fun IncomesScreen(
                     )
                 }
                 AddButton(
-                    onClick = { }, //TODO
+                    onClick = {
+                        navController.navigate(NavigationItem.CreateTransaction.route + "/true")
+                    },
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(16.dp)

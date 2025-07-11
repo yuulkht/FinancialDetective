@@ -1,4 +1,4 @@
-package ru.hse.financialdetective.ui.feature.configuretransaction.di
+package ru.hse.financialdetective.ui.feature.edittransaction.di
 
 import javax.inject.Scope
 
