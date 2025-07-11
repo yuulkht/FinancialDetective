@@ -2,6 +2,7 @@ package ru.hse.financialdetective.data.network
 
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -65,5 +66,11 @@ interface ApiService {
         @Path("id") id: Int,
         @Body transactionDtoRq: TransactionDtoRq
     ): Response<TransactionResponse>
+
+    // Удалить транзакцию
+    @DELETE("/api/v1/transactions{id}")
+    suspend fun deleteTransaction(
+        @Path("id") id: Int
+    ): Response<String>
 
 }

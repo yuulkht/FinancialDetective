@@ -5,9 +5,9 @@ import java.time.Instant
 
 data class TransactionDtoRq(
     @JsonProperty("accountId")
-    val account: AccountBrief,
+    val accountId: Int,
     @JsonProperty("categoryId")
-    val categoryDto: CategoryDto,
+    val categoryId: Int,
     @JsonProperty("amount")
     val amount: String,
     @JsonProperty("transactionDate")
@@ -20,9 +20,9 @@ data class TransactionDtoRs(
     @JsonProperty("id")
     val id: Int,
     @JsonProperty("accountId")
-    val account: AccountBrief,
+    val accountId: Int,
     @JsonProperty("categoryId")
-    val categoryDto: CategoryDto,
+    val categoryId: Int,
     @JsonProperty("amount")
     val amount: String,
     @JsonProperty("transactionDate")

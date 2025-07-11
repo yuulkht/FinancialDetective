@@ -1,9 +1,8 @@
 package ru.hse.financialdetective.domain.repository
 
 import ru.hse.financialdetective.data.model.TransactionDtoRq
-import ru.hse.financialdetective.data.model.TransactionDtoRs
-import ru.hse.financialdetective.data.model.TransactionResponse
 import ru.hse.financialdetective.data.model.TransactionsResponse
+import ru.hse.financialdetective.domain.model.Transaction
 
 interface TransactionRepository {
     suspend fun getExpensesForToday(accountId: Int): Result<TransactionsResponse>
@@ -22,10 +21,14 @@ interface TransactionRepository {
 
     suspend fun createTransaction(
         transactionDto: TransactionDtoRq
-    ): Result<TransactionDtoRs>
+    ): Result<Transaction>
 
     suspend fun updateTransaction(
         transactionId: Int,
         transactionDto: TransactionDtoRq
-    ): Result<TransactionResponse>
+    ): Result<Transaction>
+
+    suspend fun deleteTransaction(
+        transactionId: Int
+    ): Result<String>
 }
