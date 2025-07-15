@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -16,6 +17,7 @@ fun TransactionsInfoItem(
     currency: String,
     modifier: Modifier = Modifier,
     text: String = stringResource(R.string.total),
+    color: Color = GreenLight
 ) {
     ListItem(
         content = {
@@ -25,7 +27,7 @@ fun TransactionsInfoItem(
             )
         },
         tailString = "$amount $currency",
-        color = GreenLight,
+        color = color,
         height = 56.dp,
         modifier = modifier
     )

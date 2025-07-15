@@ -17,6 +17,8 @@ import ru.hse.financialdetective.ui.feature.editaccountscreen.screen.EditAccount
 import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
 import ru.hse.financialdetective.ui.feature.edittransaction.screen.EditTransactionScreen
 import ru.hse.financialdetective.ui.feature.edittransaction.viewmodel.EditTransactionViewModel
+import ru.hse.financialdetective.ui.feature.expenseanalysis.screen.ExpenseAnalysisScreen
+import ru.hse.financialdetective.ui.feature.expenseanalysis.viewmodel.ExpenseAnalysisViewModel
 import ru.hse.financialdetective.ui.feature.expenses.screen.ExpensesScreen
 import ru.hse.financialdetective.ui.feature.expenses.viewmodel.ExpensesViewModel
 import ru.hse.financialdetective.ui.feature.expenseshistory.screen.ExpensesHistoryScreen
@@ -25,6 +27,7 @@ import ru.hse.financialdetective.ui.feature.incomes.screen.IncomesScreen
 import ru.hse.financialdetective.ui.feature.incomes.viewmodel.IncomesViewModel
 import ru.hse.financialdetective.ui.feature.incomeshistory.screen.IncomesHistoryScreen
 import ru.hse.financialdetective.ui.feature.incomeshistory.viewmodel.IncomesHistoryViewModel
+import ru.hse.financialdetective.ui.uimodel.mapper.instantStringToLocalDate
 
 @Composable
 fun FinancialDetectiveNavGraph(
@@ -38,6 +41,7 @@ fun FinancialDetectiveNavGraph(
     editAccountFactory: ViewModelProvider.Factory,
     editTransactionFactory: ViewModelProvider.Factory,
     createTransactionFactory: ViewModelProvider.Factory,
+    expensesAnalysisFactory: ViewModelProvider.Factory,
 ) {
     NavHost(
         navController = navController,
@@ -121,5 +125,26 @@ fun FinancialDetectiveNavGraph(
                 }
             }
         }
+        composable(NavigationItem.ExpensesAnalysis.route + "/{dateFrom}/{dateTo}") { backStackEntry ->
+            val dateFromStr = backStackEntry.arguments?.getString("dateFrom")
+            val dateToStr = backStackEntry.arguments?.getString("dateTo")
+
+            if (dateFromStr != null && dateToStr != null) {
+                val dateFrom = instantStringToLocalDate(dateFromStr)
+                val dateTo = instantStringToLocalDate(dateToStr)
+
+                val viewModel: ExpenseAnalysisViewModel = viewModel(
+                    viewModelStoreOwner = backStackEntry,
+                    factory = expensesAnalysisFactory
+                )
+                ExpenseAnalysisScreen(
+                    navController = navController,
+                    viewModel = viewModel,
+                    dateFrom = dateFrom,
+                    dateTo = dateTo
+                )
+            }
+        }
+
     }
 }
