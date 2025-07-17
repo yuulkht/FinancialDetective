@@ -17,8 +17,8 @@ import ru.hse.financialdetective.ui.feature.editaccountscreen.screen.EditAccount
 import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
 import ru.hse.financialdetective.ui.feature.edittransaction.screen.EditTransactionScreen
 import ru.hse.financialdetective.ui.feature.edittransaction.viewmodel.EditTransactionViewModel
-import ru.hse.financialdetective.ui.feature.expenseanalysis.screen.ExpenseAnalysisScreen
-import ru.hse.financialdetective.ui.feature.expenseanalysis.viewmodel.ExpenseAnalysisViewModel
+import ru.hse.financialdetective.ui.feature.expenseanalysis.screen.TransactionsAnalysisScreen
+import ru.hse.financialdetective.ui.feature.expenseanalysis.viewmodel.TransactionsAnalysisViewModel
 import ru.hse.financialdetective.ui.feature.expenses.screen.ExpensesScreen
 import ru.hse.financialdetective.ui.feature.expenses.viewmodel.ExpensesViewModel
 import ru.hse.financialdetective.ui.feature.expenseshistory.screen.ExpensesHistoryScreen
@@ -41,7 +41,7 @@ fun FinancialDetectiveNavGraph(
     editAccountFactory: ViewModelProvider.Factory,
     editTransactionFactory: ViewModelProvider.Factory,
     createTransactionFactory: ViewModelProvider.Factory,
-    expensesAnalysisFactory: ViewModelProvider.Factory,
+    transactionsAnalysisFactory: ViewModelProvider.Factory,
 ) {
     NavHost(
         navController = navController,
@@ -125,24 +125,31 @@ fun FinancialDetectiveNavGraph(
                 }
             }
         }
-        composable(NavigationItem.ExpensesAnalysis.route + "/{dateFrom}/{dateTo}") { backStackEntry ->
+        composable(NavigationItem.TransactionsAnalysis.route + "/{dateFrom}/{dateTo}/{isIncome}") { backStackEntry ->
             val dateFromStr = backStackEntry.arguments?.getString("dateFrom")
             val dateToStr = backStackEntry.arguments?.getString("dateTo")
+            val isIncome = backStackEntry.arguments?.getString("isIncome")
 
-            if (dateFromStr != null && dateToStr != null) {
-                val dateFrom = instantStringToLocalDate(dateFromStr)
-                val dateTo = instantStringToLocalDate(dateToStr)
+            when (val income = isIncome?.toBoolean()) {
+                null -> {}
+                else -> {
+                    if (dateFromStr != null && dateToStr != null) {
+                        val dateFrom = instantStringToLocalDate(dateFromStr)
+                        val dateTo = instantStringToLocalDate(dateToStr)
 
-                val viewModel: ExpenseAnalysisViewModel = viewModel(
-                    viewModelStoreOwner = backStackEntry,
-                    factory = expensesAnalysisFactory
-                )
-                ExpenseAnalysisScreen(
-                    navController = navController,
-                    viewModel = viewModel,
-                    dateFrom = dateFrom,
-                    dateTo = dateTo
-                )
+                        val viewModel: TransactionsAnalysisViewModel = viewModel(
+                            viewModelStoreOwner = backStackEntry,
+                            factory = transactionsAnalysisFactory
+                        )
+                        TransactionsAnalysisScreen(
+                            navController = navController,
+                            viewModel = viewModel,
+                            dateFrom = dateFrom,
+                            dateTo = dateTo,
+                            isIncome = income
+                        )
+                    }
+                }
             }
         }
 

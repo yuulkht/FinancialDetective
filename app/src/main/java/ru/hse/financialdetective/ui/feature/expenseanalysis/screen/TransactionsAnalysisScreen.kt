@@ -34,7 +34,7 @@ import ru.hse.financialdetective.ui.components.organisms.ScreenHeader
 import ru.hse.financialdetective.ui.feature.expenseanalysis.screen.components.CategoriesForPieList
 import ru.hse.financialdetective.ui.feature.expenseanalysis.screen.components.DatePeriodComponent
 import ru.hse.financialdetective.ui.feature.expenseanalysis.screen.components.PieChartWithLegend
-import ru.hse.financialdetective.ui.feature.expenseanalysis.viewmodel.ExpenseAnalysisViewModel
+import ru.hse.financialdetective.ui.feature.expenseanalysis.viewmodel.TransactionsAnalysisViewModel
 import ru.hse.financialdetective.ui.theme.GreyDark
 import ru.hse.financialdetective.ui.theme.GreyLight
 import ru.hse.financialdetective.ui.uimodel.model.CategoriesForPieUiState
@@ -42,16 +42,17 @@ import java.time.LocalDate
 
 
 @Composable
-fun ExpenseAnalysisScreen(
+fun TransactionsAnalysisScreen(
     navController: NavController,
-    viewModel: ExpenseAnalysisViewModel,
+    viewModel: TransactionsAnalysisViewModel,
     dateFrom: LocalDate,
-    dateTo: LocalDate
+    dateTo: LocalDate,
+    isIncome: Boolean
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LifecycleEventEffect(Lifecycle.Event.ON_START) {
-        viewModel.loadForPeriodExpenses(dateFrom, dateTo)
+        viewModel.loadForPeriodExpenses(dateFrom, dateTo, isIncome)
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -145,7 +146,6 @@ fun ExpenseAnalysisScreen(
                                 )
                             }
                         }
-
                     }
                 }
             }

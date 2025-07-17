@@ -1,6 +1,6 @@
 package ru.hse.financialdetective.domain.model
 
-data class CategoryExpense(
+data class CategoryTransaction(
     val emoji: String,
     val name: String,
     val amount: Double,
@@ -8,8 +8,8 @@ data class CategoryExpense(
     val currency: Currency
 )
 
-data class CategoriesExpenses(
-    val categoryExpenses: List<CategoryExpense>,
+data class CategoriesTransactions(
+    val categoryTransactions: List<CategoryTransaction>,
     val total: Double,
     val currency: Currency
 )

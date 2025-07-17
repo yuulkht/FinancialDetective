@@ -76,9 +76,10 @@ fun ExpensesHistoryScreen(
                                     .size(48.dp)
                                     .clickable {
                                         navController.navigate(
-                                            NavigationItem.ExpensesAnalysis.route +
+                                            NavigationItem.TransactionsAnalysis.route +
                                                     "/${localDateToInstantString(viewModel.dateFrom.value)}" +
-                                                    "/${localDateToInstantString(viewModel.dateTo.value)}"
+                                                    "/${localDateToInstantString(viewModel.dateTo.value)}" +
+                                                    "/false"
                                         )
                                     },
                                 tint = GreyDark

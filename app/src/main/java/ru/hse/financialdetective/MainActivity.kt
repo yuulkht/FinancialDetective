@@ -52,8 +52,8 @@ class MainActivity : ComponentActivity() {
         appComponent.incomesHistoryComponent().create()
     }
 
-    private val expensesAnalysisComponent by lazy {
-        appComponent.expensesAnalysisComponent().create()
+    private val transactionsAnalysisComponent by lazy {
+        appComponent.transactionsAnalysisComponent().create()
     }
 
 
@@ -78,7 +78,7 @@ class MainActivity : ComponentActivity() {
                 editAccountFactory = editAccountComponent.viewModelFactory(),
                 editTransactionFactory = editTransactionComponent.viewModelFactory(),
                 createTransactionFactory = createTransactionComponent.viewModelFactory(),
-                expensesAnalysisComponent = expensesAnalysisComponent.viewModelFactory()
+                transactionsAnalysisComponent = transactionsAnalysisComponent.viewModelFactory()
             )
         }
     }

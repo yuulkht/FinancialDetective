@@ -7,8 +7,8 @@ import ru.hse.coursework.financialdetective.R
  */
 sealed class NavigationItem(val route: String, val icon: Int, val title: String) {
     data object Expenses : NavigationItem("expenses", R.drawable.expenses, "Расходы")
-    data object ExpensesAnalysis :
-        NavigationItem("expenses_analysis", R.drawable.expenses, "Расходы анализ")
+    data object TransactionsAnalysis :
+        NavigationItem("transactions_analysis", 0, "Транзакции анализ")
 
     data object Incomes : NavigationItem("incomes", R.drawable.incomes, "Доходы")
 

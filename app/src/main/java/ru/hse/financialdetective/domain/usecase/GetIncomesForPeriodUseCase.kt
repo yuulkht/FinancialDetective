@@ -2,8 +2,8 @@ package ru.hse.financialdetective.domain.usecase
 
 import jakarta.inject.Inject
 import ru.hse.financialdetective.data.exception.DataException
-import ru.hse.financialdetective.domain.mapper.todomain.toIncomesDomain
-import ru.hse.financialdetective.domain.model.Incomes
+import ru.hse.financialdetective.domain.mapper.todomain.toTransactionsAnalysisDomain
+import ru.hse.financialdetective.domain.model.TransactionsAnalysis
 import ru.hse.financialdetective.domain.repository.AccountRepository
 import ru.hse.financialdetective.domain.repository.TransactionRepository
 import java.time.Instant
@@ -19,7 +19,7 @@ class GetIncomesForPeriodUseCase @Inject constructor(
     suspend operator fun invoke(
         dateFrom: Instant,
         dateTo: Instant
-    ): Result<Incomes> {
+    ): Result<TransactionsAnalysis> {
         val accountResponse = accountRepository.getFirstAccount()
         if (accountResponse.isFailure) {
             return Result.failure(
@@ -50,7 +50,7 @@ class GetIncomesForPeriodUseCase @Inject constructor(
             )
         )
 
-        return Result.success(incomes.toIncomesDomain(currency))
+        return Result.success(incomes.toTransactionsAnalysisDomain(currency, true))
     }
 }
 

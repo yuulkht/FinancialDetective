@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.hse.financialdetective.data.exception.DataException
 import ru.hse.financialdetective.domain.usecase.GetIncomesForPeriodUseCase
-import ru.hse.financialdetective.ui.uimodel.mapper.toUi
+import ru.hse.financialdetective.ui.uimodel.mapper.toIncomesUi
 import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
 import java.time.LocalDate
 import java.time.LocalTime
@@ -47,8 +47,8 @@ class IncomesHistoryViewModel @Inject constructor(
                 dateTo.value.atTime(LocalTime.MAX).atZone(ZoneId.systemDefault()).toInstant()
             )
             _uiState.value = result.fold(
-                onSuccess = { expenses ->
-                    IncomesUiState.Success(expenses.toUi())
+                onSuccess = { incomes ->
+                    IncomesUiState.Success(incomes.toIncomesUi())
                 },
                 onFailure = { error ->
                     IncomesUiState.Error(error.message ?: DataException.UNRECOGNIZED)
