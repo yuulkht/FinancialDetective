@@ -70,8 +70,7 @@ fun ListItem(
                 if (tailDate != "") {
                     Text(
                         text = tailDate,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = GreyDark,
+                        style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier.align(Alignment.End)
                     )
                 }

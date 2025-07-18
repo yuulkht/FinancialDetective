@@ -7,8 +7,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.ui.components.molecules.categorypicker.CategorySelector
 import ru.hse.financialdetective.ui.components.molecules.datepicker.DateSelector
 import ru.hse.financialdetective.ui.components.molecules.listitems.EditComment
@@ -56,7 +58,7 @@ fun ConfigureTransactionInfoList(
         DateSelector(
             selectedDate = selectedDate,
             onDateSelected = onDateSelected,
-            label = "Дата", //TODO
+            label = stringResource(R.string.date),
             height = 70.dp,
             color = Color.Transparent
         )

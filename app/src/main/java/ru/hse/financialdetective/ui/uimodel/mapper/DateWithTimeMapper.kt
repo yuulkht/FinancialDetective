@@ -5,6 +5,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 fun convertInstantToDateWithTime(instant: Instant): String {
@@ -64,3 +65,12 @@ fun stringsToInstant(
         zoneId = zoneId
     )
 }
+
+fun localDateToInstantString(date: LocalDate): String {
+    return date.atStartOfDay(ZoneOffset.UTC).toInstant().toString()
+}
+
+fun instantStringToLocalDate(instantStr: String): LocalDate {
+    return Instant.parse(instantStr).atZone(ZoneOffset.UTC).toLocalDate()
+}
+

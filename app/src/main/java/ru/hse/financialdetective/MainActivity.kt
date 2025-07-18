@@ -52,6 +52,10 @@ class MainActivity : ComponentActivity() {
         appComponent.incomesHistoryComponent().create()
     }
 
+    private val transactionsAnalysisComponent by lazy {
+        appComponent.transactionsAnalysisComponent().create()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +78,7 @@ class MainActivity : ComponentActivity() {
                 editAccountFactory = editAccountComponent.viewModelFactory(),
                 editTransactionFactory = editTransactionComponent.viewModelFactory(),
                 createTransactionFactory = createTransactionComponent.viewModelFactory(),
+                transactionsAnalysisComponent = transactionsAnalysisComponent.viewModelFactory()
             )
         }
     }

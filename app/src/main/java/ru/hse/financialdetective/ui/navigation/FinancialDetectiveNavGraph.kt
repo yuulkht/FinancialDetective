@@ -17,6 +17,8 @@ import ru.hse.financialdetective.ui.feature.editaccountscreen.screen.EditAccount
 import ru.hse.financialdetective.ui.feature.editaccountscreen.viewmodel.EditAccountViewModel
 import ru.hse.financialdetective.ui.feature.edittransaction.screen.EditTransactionScreen
 import ru.hse.financialdetective.ui.feature.edittransaction.viewmodel.EditTransactionViewModel
+import ru.hse.financialdetective.ui.feature.expenseanalysis.screen.TransactionsAnalysisScreen
+import ru.hse.financialdetective.ui.feature.expenseanalysis.viewmodel.TransactionsAnalysisViewModel
 import ru.hse.financialdetective.ui.feature.expenses.screen.ExpensesScreen
 import ru.hse.financialdetective.ui.feature.expenses.viewmodel.ExpensesViewModel
 import ru.hse.financialdetective.ui.feature.expenseshistory.screen.ExpensesHistoryScreen
@@ -25,6 +27,7 @@ import ru.hse.financialdetective.ui.feature.incomes.screen.IncomesScreen
 import ru.hse.financialdetective.ui.feature.incomes.viewmodel.IncomesViewModel
 import ru.hse.financialdetective.ui.feature.incomeshistory.screen.IncomesHistoryScreen
 import ru.hse.financialdetective.ui.feature.incomeshistory.viewmodel.IncomesHistoryViewModel
+import ru.hse.financialdetective.ui.uimodel.mapper.instantStringToLocalDate
 
 @Composable
 fun FinancialDetectiveNavGraph(
@@ -38,6 +41,7 @@ fun FinancialDetectiveNavGraph(
     editAccountFactory: ViewModelProvider.Factory,
     editTransactionFactory: ViewModelProvider.Factory,
     createTransactionFactory: ViewModelProvider.Factory,
+    transactionsAnalysisFactory: ViewModelProvider.Factory,
 ) {
     NavHost(
         navController = navController,
@@ -121,5 +125,33 @@ fun FinancialDetectiveNavGraph(
                 }
             }
         }
+        composable(NavigationItem.TransactionsAnalysis.route + "/{dateFrom}/{dateTo}/{isIncome}") { backStackEntry ->
+            val dateFromStr = backStackEntry.arguments?.getString("dateFrom")
+            val dateToStr = backStackEntry.arguments?.getString("dateTo")
+            val isIncome = backStackEntry.arguments?.getString("isIncome")
+
+            when (val income = isIncome?.toBoolean()) {
+                null -> {}
+                else -> {
+                    if (dateFromStr != null && dateToStr != null) {
+                        val dateFrom = instantStringToLocalDate(dateFromStr)
+                        val dateTo = instantStringToLocalDate(dateToStr)
+
+                        val viewModel: TransactionsAnalysisViewModel = viewModel(
+                            viewModelStoreOwner = backStackEntry,
+                            factory = transactionsAnalysisFactory
+                        )
+                        TransactionsAnalysisScreen(
+                            navController = navController,
+                            viewModel = viewModel,
+                            dateFrom = dateFrom,
+                            dateTo = dateTo,
+                            isIncome = income
+                        )
+                    }
+                }
+            }
+        }
+
     }
 }

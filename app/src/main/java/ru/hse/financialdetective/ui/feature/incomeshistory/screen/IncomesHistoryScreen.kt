@@ -27,6 +27,7 @@ import ru.hse.financialdetective.ui.feature.incomeshistory.viewmodel.IncomesHist
 import ru.hse.financialdetective.ui.navigation.NavigationItem
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
+import ru.hse.financialdetective.ui.uimodel.mapper.localDateToInstantString
 import ru.hse.financialdetective.ui.uimodel.model.IncomesUiState
 
 @Composable
@@ -72,7 +73,15 @@ fun IncomesHistoryScreen(
                                 painter = painterResource(R.drawable.analysis),
                                 contentDescription = "История",
                                 modifier = Modifier
-                                    .size(48.dp),
+                                    .size(48.dp)
+                                    .clickable {
+                                        navController.navigate(
+                                            NavigationItem.TransactionsAnalysis.route +
+                                                    "/${localDateToInstantString(viewModel.dateFrom.value)}" +
+                                                    "/${localDateToInstantString(viewModel.dateTo.value)}" +
+                                                    "/true"
+                                        )
+                                    },
                                 tint = GreyDark
                             )
                         },

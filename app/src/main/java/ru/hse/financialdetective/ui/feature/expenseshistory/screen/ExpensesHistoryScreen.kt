@@ -27,6 +27,7 @@ import ru.hse.financialdetective.ui.feature.expenseshistory.viewmodel.ExpensesHi
 import ru.hse.financialdetective.ui.navigation.NavigationItem
 import ru.hse.financialdetective.ui.theme.GreenBright
 import ru.hse.financialdetective.ui.theme.GreyDark
+import ru.hse.financialdetective.ui.uimodel.mapper.localDateToInstantString
 import ru.hse.financialdetective.ui.uimodel.model.ExpensesUiState
 
 @Composable
@@ -64,7 +65,7 @@ fun ExpensesHistoryScreen(
                                 modifier = Modifier
                                     .size(48.dp)
                                     .clickable { navController.popBackStack() },
-                                tint = MaterialTheme.colorScheme.onSurface //TODO
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
                         },
                         tailIcon = {
@@ -72,7 +73,15 @@ fun ExpensesHistoryScreen(
                                 painter = painterResource(R.drawable.analysis),
                                 contentDescription = stringResource(R.string.history),
                                 modifier = Modifier
-                                    .size(48.dp),
+                                    .size(48.dp)
+                                    .clickable {
+                                        navController.navigate(
+                                            NavigationItem.TransactionsAnalysis.route +
+                                                    "/${localDateToInstantString(viewModel.dateFrom.value)}" +
+                                                    "/${localDateToInstantString(viewModel.dateTo.value)}" +
+                                                    "/false"
+                                        )
+                                    },
                                 tint = GreyDark
                             )
                         },
