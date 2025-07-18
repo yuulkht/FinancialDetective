@@ -71,7 +71,7 @@ fun TransactionsAnalysisScreen(
                         modifier = Modifier.fillMaxSize()
                     ) {
                         ScreenHeader(
-                            title = "Анализ", //todo
+                            title = stringResource(R.string.analysis),
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(R.drawable.back),
@@ -87,7 +87,7 @@ fun TransactionsAnalysisScreen(
                         ListItem(
                             content = {
                                 Text(
-                                    text = "Период: начало", //todo
+                                    text = stringResource(R.string.period_begin),
                                     style = MaterialTheme.typography.bodyLarge,
                                 )
                             },
@@ -98,7 +98,7 @@ fun TransactionsAnalysisScreen(
                         ListItem(
                             content = {
                                 Text(
-                                    text = "Период: конец", //todo
+                                    text = stringResource(R.string.period_end),
                                     style = MaterialTheme.typography.bodyLarge,
                                 )
                             },
@@ -141,7 +141,7 @@ fun TransactionsAnalysisScreen(
                                 horizontalArrangement = Arrangement.Center
                             ) {
                                 Text(
-                                    text = "Нет трат за период", //todo
+                                    text = stringResource(R.string.no_expenses),
                                     style = MaterialTheme.typography.bodyLarge,
                                 )
                             }

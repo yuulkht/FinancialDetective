@@ -16,11 +16,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.hse.coursework.financialdetective.R
 import ru.hse.financialdetective.domain.model.Currency
 import ru.hse.financialdetective.ui.uimodel.mapper.toUiModel
 import ru.hse.financialdetective.ui.uimodel.model.CurrencyUiModel
@@ -37,7 +39,7 @@ fun EditTransactionSum(
     ListItem(
         leadIcon = {
             Text(
-                text = "Сумма", // TODO
+                text = stringResource(R.string.sum),
                 style = MaterialTheme.typography.bodyLarge
             )
             Spacer(Modifier.width(16.dp))
@@ -61,7 +63,7 @@ fun EditTransactionSum(
                     decorationBox = { innerTextField ->
                         if (sum.isEmpty()) {
                             Text(
-                                text = "Введите сумму", //TODO
+                                text = stringResource(R.string.enter_sum),
                                 style = MaterialTheme.typography.bodyLarge.copy(
                                     textAlign = TextAlign.End
                                 ),

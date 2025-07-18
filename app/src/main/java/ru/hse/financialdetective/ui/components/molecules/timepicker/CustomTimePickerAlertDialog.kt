@@ -47,7 +47,7 @@ fun CustomTimePickerAlertDialog(
         containerColor = GreenLight,
         title = {
             Text(
-                text = "Выберите время", //TODO
+                text = stringResource(R.string.enter_time),
                 style = MaterialTheme.typography.titleMedium,
                 color = TextColor
             )

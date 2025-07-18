@@ -79,7 +79,7 @@ fun AccountsScreen(
                     //TODO график
                 }
                 AddButton(
-                    onClick = { }, //TODO
+                    onClick = { },
                     modifier = Modifier
                         .align(Alignment.BottomEnd)
                         .padding(16.dp)

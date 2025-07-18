@@ -19,6 +19,15 @@
     <string name="error_loading">Произошла ошибка загрузки</string>
     <string name="enter_account_name">Название счета</string>
 
+    <string name="enter_sum">Введите сумму"</string>
+    <string name="enter_comment">Введите комментарий"</string>
+    <string name="enter_time">Выберите время"</string>
+    <string name="date">Дата</string>
+    <string name="analysis">Анализ</string>
+    <string name="period_begin">Период: начало</string>
+    <string name="period_end">Период: начало</string>
+    <string name="no_expenses">Нет трат за период</string>
+
     <!-- Разделы приложения -->
     <string name="expenses">Расходы</string>
     <string name="incomes">Доходы</string>

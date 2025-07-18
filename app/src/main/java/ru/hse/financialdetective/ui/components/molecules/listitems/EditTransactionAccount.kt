@@ -8,8 +8,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.hse.coursework.financialdetective.R
 
 @Composable
 fun EditTransactionAccount(
@@ -19,7 +21,7 @@ fun EditTransactionAccount(
     ListItem(
         leadIcon = {
             Text(
-                text = "Счет", // TODO
+                text = stringResource(R.string.accounts),
                 style = MaterialTheme.typography.bodyLarge
             )
             Spacer(Modifier.width(16.dp))
@@ -27,7 +29,7 @@ fun EditTransactionAccount(
         content = {},
         tailIcon = {
             Text(
-                text = account, // TODO
+                text = account,
                 style = MaterialTheme.typography.bodyLarge
             )
         },

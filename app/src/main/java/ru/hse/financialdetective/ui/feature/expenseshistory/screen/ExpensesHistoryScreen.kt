@@ -65,7 +65,7 @@ fun ExpensesHistoryScreen(
                                 modifier = Modifier
                                     .size(48.dp)
                                     .clickable { navController.popBackStack() },
-                                tint = MaterialTheme.colorScheme.onSurface //TODO
+                                tint = MaterialTheme.colorScheme.onSurface
                             )
                         },
                         tailIcon = {
